@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+<rss version="0.91">
+  <channel>
+    <title>com.irurueta:irurueta-server-commons-image - Checkstyle report</title>
+    <link>https://github.com/albertoirurueta/irurueta-server-commons-image</link>
+    <description>com.irurueta:irurueta-server-commons-image - Checkstyle report</description>
+    <language>en-us</language>
+    <copyright>&#169;2016</copyright>
+    <item>
+      <title>File: 16,
+             Errors: 404,
+             Warnings: 0,
+             Infos: 0
+      </title>
+            <link>https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html</link>
+      <description>
+        <p>Click <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html">here</a> for the full Checkstyle report.</p>
+
+        <table summary="Files" boder="1">
+          <thead>
+            <tr>
+              <th>Files</th>
+              <th style="width:30px;"><abbr title="Info">I</abbr></th>
+              <th style="width:30px;"><abbr title="Warning">W</abbr></th>
+              <th style="width:30px;"><abbr title="Error">E</abbr></th>
+            </tr>
+          </thead>
+          <tbody>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.ImageFormat.java">com/irurueta/server/commons/image/ImageFormat.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.ImageReaderResult.java">com/irurueta/server/commons/image/ImageReaderResult.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  8
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.Unit.java">com/irurueta/server/commons/image/Unit.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  7
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.InvalidImageException.java">com/irurueta/server/commons/image/InvalidImageException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.Flash.java">com/irurueta/server/commons/image/Flash.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  86
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.ThumbnailCreator.java">com/irurueta/server/commons/image/ThumbnailCreator.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  27
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.GPSCoordinates.java">com/irurueta/server/commons/image/GPSCoordinates.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.ImageMetadata.java">com/irurueta/server/commons/image/ImageMetadata.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.LightSource.java">com/irurueta/server/commons/image/LightSource.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  19
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.ThumbnailFormat.java">com/irurueta/server/commons/image/ThumbnailFormat.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  14
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.build-info.properties">com/irurueta/server/commons/image/build-info.properties</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.ImageOrientation.java">com/irurueta/server/commons/image/ImageOrientation.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  12
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.ImageException.java">com/irurueta/server/commons/image/ImageException.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.package-info.java">com/irurueta/server/commons/image/package-info.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.ImageReader.java">com/irurueta/server/commons/image/ImageReader.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  231
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/albertoirurueta/irurueta-server-commons-image/checkstyle.html#com.irurueta.server.commons.image.BuildInfo.java">com/irurueta/server/commons/image/BuildInfo.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                      </tbody>
+        </table>
+        
+      </description>
+    </item>
+  </channel>
+</rss>
+
