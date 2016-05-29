@@ -41,28 +41,28 @@ public class ImageReaderResult {
     /**
      * Image file length in bytes.
      */
-    private long mFileLength = 0;
+    private long mFileLength;
     
     /**
      * Timestamp when image file was last modified.
      */
-    private long mLastModified = 0;
+    private long mLastModified;
     
     /**
      * MIME content type assigned to image file depending on detected image
      * format (i.e. image/jpeg or image/png).
      */
-    private String mContentType = null;
+    private String mContentType;
     
     /**
      * Image metadata such as image size, and EXIF tags such as GPS location.
      */
-    ImageMetadata mMetadata = null;    
+    private ImageMetadata mMetadata;    
     
     /**
      * Detected image format. Supported formats are: JPG, PNG, GIF, BMP.
      */
-    ImageFormat mImageFormat = ImageFormat.UNKNOWN;
+    private ImageFormat mImageFormat = ImageFormat.UNKNOWN;
     
     /**
      * Constructor.

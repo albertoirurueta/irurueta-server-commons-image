@@ -52,7 +52,7 @@ public class ThumbnailCreator {
     /**
      * Reference to singleton instance of thumbnail creator.
      */
-    private static SoftReference<ThumbnailCreator> mReference = null;
+    private static SoftReference<ThumbnailCreator> mReference;
     
     /**
      * Maximum number of threads that can generate a thumbnail at the same time.
@@ -85,7 +85,7 @@ public class ThumbnailCreator {
      * Factory method. Creates or returns the singleton instance of this class
      * @return singleton.
      */
-    public synchronized static ThumbnailCreator getInstance() {
+    public static synchronized ThumbnailCreator getInstance() {
         ThumbnailCreator creator;
         if (mReference == null || (creator = mReference.get()) == null) {
             creator = new ThumbnailCreator();
@@ -111,8 +111,9 @@ public class ThumbnailCreator {
      */
     public synchronized void setMaxConcurrentThreads(int maxConcurrentThreads) 
             throws IllegalArgumentException {
-        if(maxConcurrentThreads < MIN_CONCURRENT_THREADS) 
+        if (maxConcurrentThreads < MIN_CONCURRENT_THREADS) {
             throw new IllegalArgumentException();
+        }
         
         this.mMaxConcurrentThreads = maxConcurrentThreads;
     }
@@ -165,13 +166,16 @@ public class ThumbnailCreator {
             ThumbnailFormat format) throws IllegalArgumentException, 
             IOException {
         
-        if(width <= MIN_SIZE || height <= MIN_SIZE) 
+        if (width <= MIN_SIZE || height <= MIN_SIZE) {
             throw new IllegalArgumentException();
+        }
         
         synchronized (this) {
-            try{
-                while(mNumThreads >= mMaxConcurrentThreads) wait();
-            }catch(InterruptedException e){}
+            try {
+                while (mNumThreads >= mMaxConcurrentThreads) {
+                    wait();
+                }
+            } catch (InterruptedException e) { }
             mNumThreads++;
         }
         
@@ -183,17 +187,23 @@ public class ThumbnailCreator {
                 //take into account only orientations below, other orientations
                 //will be ignored
                 switch (inputOrientation) {
-                    case LEFT_BOTTOM: //orientaton == 8 (counterclockwise 90º)
+                    case LEFT_BOTTOM: 
+                        //orientaton == 8 (counterclockwise 90º)
                         exchangeSize = true;
                         quadrants = -1;
                         break;
-                    case BOTTOM_RIGHT: //orientaton == 3 (clockwise 180º)
+                    case BOTTOM_RIGHT: 
+                        //orientaton == 3 (clockwise 180º)
                         exchangeSize = false;
                         quadrants = -2;
                         break;
-                    case RIGHT_TOP: //orientaton == 6 (clockwise 90º)
+                    case RIGHT_TOP: 
+                        //orientaton == 6 (clockwise 90º)
                         exchangeSize = true;
                         quadrants = -3;
+                        break;
+                    default:
+                        break;
                 }
             }
             
@@ -293,7 +303,8 @@ public class ThumbnailCreator {
         
             if (!ImageIO.write(thumbnailImage, format.getValue(), 
                     generatedThumbnailFile)) {
-                throw new IOException(); //if format is not supported
+                //if format is not supported
+                throw new IOException(); 
             }
         } finally {
             //decrease counter of threads no matter if thumbnail generation 

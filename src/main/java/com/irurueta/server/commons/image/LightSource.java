@@ -133,7 +133,7 @@ public enum LightSource {
      * Constructor.
      * @param value integer representation of a light source.
      */
-    private LightSource(int value) {
+    LightSource(int value) {
         mValue = value;
     }
     

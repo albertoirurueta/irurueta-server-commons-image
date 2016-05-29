@@ -60,7 +60,7 @@ public class ImageReader {
     /**
      * Reference to singleton instance of this class.
      */
-    private static SoftReference<ImageReader> mReference = null;
+    private static SoftReference<ImageReader> mReference;
     
     /**
      * Indicates if CRC will be computed when reading image metadata.
@@ -81,9 +81,9 @@ public class ImageReader {
      * Factory method. Creates or returns singleton instance.
      * @return singleton instance.
      */
-    public synchronized static ImageReader getInstance() {
+    public static synchronized ImageReader getInstance() {
         ImageReader reader;
-        if(mReference == null || (reader = mReference.get()) == null){
+        if (mReference == null || (reader = mReference.get()) == null) {
             reader = new ImageReader();
             mReference = new SoftReference<>(reader);
         }
@@ -135,7 +135,7 @@ public class ImageReader {
      */
     public ImageReaderResult readImage(File f) throws InvalidImageException, 
             IOException {
-        try{
+        try {
             ImageReaderResult result = new ImageReaderResult();
             ImageInfo imageInfo = Sanselan.getImageInfo(f);
             result.setValid(internalCheckValid(imageInfo));
@@ -150,10 +150,10 @@ public class ImageReader {
             result.setMetadata(metadata);
             
             //if file is JPEG read its exif data
-            if(imageInfo.getFormat() == 
-                    org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG){
+            if (imageInfo.getFormat() == 
+                    org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG) {
                 internalReadExif(f, imageInfo, metadata);
-            }else{
+            } else {
                 //if not, at least set image size so we can generate thumbnails
                 metadata.setWidth(imageInfo.getWidth());
                 metadata.setHeight(imageInfo.getHeight());
@@ -161,7 +161,7 @@ public class ImageReader {
         
             computeCRCandMd5(f, result);
             return result;
-        }catch(ImageReadException e){
+        } catch (ImageReadException e) {
             throw new InvalidImageException(e);
         }
     }
@@ -175,12 +175,12 @@ public class ImageReader {
      */
     public static boolean checkValidFile(File f) throws InvalidImageException, 
             IOException {
-        try{
+        try {
             ImageInfo imageInfo = Sanselan.getImageInfo(f);
             return internalCheckValid(imageInfo);
-        }catch(IOException e){
+        } catch (IOException e) {
             throw e;
-        }catch(Throwable t){
+        } catch (Throwable t) {
             throw new InvalidImageException(t);
         }
     }
@@ -194,20 +194,22 @@ public class ImageReader {
      */
     private void computeCRCandMd5(File f, ImageReaderResult result) 
             throws IOException {
-        if(f == null || result == null) return;
+        if (f == null || result == null) {
+            return;
+        }
         
-        try(InputStream stream = new FileInputStream(f)) {
+        try (InputStream stream = new FileInputStream(f)) {
             CRC32 crc = null;
-            if(mComputeCrc){
-                 crc = new CRC32();
+            if (mComputeCrc) {
+                crc = new CRC32();
             }
 
             MessageDigest digest = null;
-            if(mComputeMd5){
-                try{
+            if (mComputeMd5) {
+                try {
                     digest = MessageDigest.getInstance("MD5");
                     digest.reset();
-                }catch(NoSuchAlgorithmException e){
+                } catch (NoSuchAlgorithmException e) {
                     digest = null;
                 }
             }
@@ -215,15 +217,19 @@ public class ImageReader {
             
             byte [] buffer = new byte[BUFFER_SIZE];
             int n;
-            while((n = stream.read(buffer)) > 0){
-                if(crc != null) crc.update(buffer, 0, n);
-                if(digest != null) digest.update(buffer, 0, n);
+            while ((n = stream.read(buffer)) > 0) {
+                if (crc != null) {
+                    crc.update(buffer, 0, n);
+                }
+                if (digest != null) {
+                    digest.update(buffer, 0, n);
+                }
             }
             
-            if(crc != null){
+            if (crc != null) {
                 result.setCrc(crc.getValue());
             }
-            if(digest != null){
+            if (digest != null) {
                 result.setMd5(Base64.encodeBase64String(digest.digest()));
             }            
         }
@@ -237,15 +243,15 @@ public class ImageReader {
     private com.irurueta.server.commons.image.ImageFormat getImageFormat(
             ImageInfo imageInfo) {
         org.apache.sanselan.ImageFormat format = imageInfo.getFormat();
-        if(format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG){
+        if (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG) {
             return com.irurueta.server.commons.image.ImageFormat.JPEG;
-        }else if(format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_PNG){
+        } else if (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_PNG) {
             return com.irurueta.server.commons.image.ImageFormat.PNG;
-        }else if(format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_GIF){
+        } else if (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_GIF) {
             return com.irurueta.server.commons.image.ImageFormat.GIF;
-        }else if(format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_BMP){
+        } else if (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_BMP) {
             return com.irurueta.server.commons.image.ImageFormat.BMP;
-        }else{
+        } else {
             return com.irurueta.server.commons.image.ImageFormat.UNKNOWN;
         }
     }
@@ -258,10 +264,10 @@ public class ImageReader {
      */
     private static boolean internalCheckValid(ImageInfo imageInfo) {
         org.apache.sanselan.ImageFormat format = imageInfo.getFormat();
-        return (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG) ||
-                (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_PNG) ||
-                (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_GIF) ||
-                (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_BMP);
+        return format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG ||
+                format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_PNG ||
+                format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_GIF ||
+                format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_BMP;
     }   
     
     /**
@@ -276,37 +282,47 @@ public class ImageReader {
     private void internalReadExif(File f, ImageInfo imageInfo, 
             ImageMetadata result) throws InvalidImageException, IOException {
         
-        try{
+        try {
             //store image size
             result.setWidth(imageInfo.getWidth());
             result.setHeight(imageInfo.getHeight());
             
             JpegImageMetadata metadata = 
                     (JpegImageMetadata)Sanselan.getMetadata(f);
-            if(metadata == null) return;
+            if (metadata == null) {
+                return;
+            }
             
             //Get maker
             TiffField makerField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_MAKE);
             String maker = null;
-            if(makerField != null) maker = makerField.getValueDescription();
-            if(maker != null) result.setMaker(trim(maker));
+            if (makerField != null) {
+                maker = makerField.getValueDescription();
+            }
+            if (maker != null) {
+                result.setMaker(trim(maker));
+            }
                 
             //Get model
             TiffField modelField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_MODEL);
             String model = null;
-            if(modelField != null) model = modelField.getValueDescription();
-            if(model != null) result.setModel(trim(model));
+            if (modelField != null) {
+                model = modelField.getValueDescription();
+            }
+            if (model != null) {
+                result.setModel(trim(model));
+            }
             
             //Focal length
             TiffField focalLengthField = metadata.findEXIFValue(
                     TiffConstants.EXIF_TAG_FOCAL_LENGTH);
-            if(focalLengthField != null && 
-                    (focalLengthField.fieldType instanceof FieldTypeRational)){
+            if (focalLengthField != null && 
+                    focalLengthField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)focalLengthField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setFocalLength(number.doubleValue());
                 }
             }
@@ -314,11 +330,11 @@ public class ImageReader {
             //Focal plane x resolution
             TiffField focalPlaneXResolutionField = metadata.findEXIFValue(
                     TiffConstants.EXIF_TAG_FOCAL_PLANE_XRESOLUTION);
-            if(focalPlaneXResolutionField != null &&
-                    (focalPlaneXResolutionField.fieldType instanceof FieldTypeRational)){
+            if (focalPlaneXResolutionField != null &&
+                    focalPlaneXResolutionField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)focalPlaneXResolutionField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setFocalPlaneXResolution(number.doubleValue());
                 }
             }
@@ -326,11 +342,11 @@ public class ImageReader {
             //Focal plane y resolution
             TiffField focalPlaneYResolutionField = metadata.findEXIFValue(
                     TiffConstants.EXIF_TAG_FOCAL_PLANE_YRESOLUTION);
-            if(focalPlaneYResolutionField != null &&
-                    (focalPlaneYResolutionField.fieldType instanceof FieldTypeRational)){
+            if (focalPlaneYResolutionField != null &&
+                    focalPlaneYResolutionField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)focalPlaneYResolutionField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setFocalPlaneYResolution(number.doubleValue());
                 }
             }
@@ -338,11 +354,11 @@ public class ImageReader {
             //Focal plane resolution unit
             TiffField focalPlaneResolutionUnitField = metadata.findEXIFValue(
                     TiffConstants.EXIF_TAG_FOCAL_PLANE_RESOLUTION_UNIT);
-            if(focalPlaneResolutionUnitField != null && 
-                    (focalPlaneResolutionUnitField.fieldType instanceof FieldTypeShort)){
+            if (focalPlaneResolutionUnitField != null && 
+                    focalPlaneResolutionUnitField.fieldType instanceof FieldTypeShort) {
                 Integer number = 
                         (Integer)focalPlaneResolutionUnitField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setFocalPlaneResolutionUnit(Unit.fromValue(number));
                 }
             }
@@ -350,10 +366,10 @@ public class ImageReader {
             //Orientation
             TiffField orientationField = metadata.findEXIFValue(
                     TiffConstants.EXIF_TAG_ORIENTATION);
-            if(orientationField != null &&
-                    (orientationField.fieldType instanceof FieldTypeShort)){
+            if (orientationField != null &&
+                    orientationField.fieldType instanceof FieldTypeShort) {
                 Integer number = (Integer)orientationField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setOrientation(ImageOrientation.fromValue(number));
                 }
             }
@@ -362,12 +378,12 @@ public class ImageReader {
             Double latitude = null;
             TiffField gpsLatitudeField = metadata.findEXIFValue(
                     TiffConstants.GPS_TAG_GPS_LATITUDE);
-            if(gpsLatitudeField != null &&
-                    (gpsLatitudeField.fieldType instanceof FieldTypeRational)){
+            if (gpsLatitudeField != null &&
+                    gpsLatitudeField.fieldType instanceof FieldTypeRational) {
                 RationalNumber gpsLatitude[] = 
                         (RationalNumber[])gpsLatitudeField.getValue();
                 
-                if(gpsLatitude != null && gpsLatitude.length >= 3){
+                if (gpsLatitude != null && gpsLatitude.length >= 3) {
                     RationalNumber gpsLatitudeDegrees = gpsLatitude[0];
                     RationalNumber gpsLatitudeMinutes = gpsLatitude[1];
                     RationalNumber gpsLatitudeSeconds = gpsLatitude[2];
@@ -378,15 +394,15 @@ public class ImageReader {
                     //set north by default
                     String gpsLatitudeRef = TiffConstants.
                             GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH;
-                    if(gpsLatitudeRefField != null){
+                    if (gpsLatitudeRefField != null) {
                         gpsLatitudeRef = (String)gpsLatitudeRefField.getValue();
                     }
                     double tmp = gpsLatitudeDegrees.doubleValue() + 
                             gpsLatitudeMinutes.doubleValue() / 60.0 +
                             gpsLatitudeSeconds.doubleValue() / 3600.0;
-                    if(!gpsLatitudeRef.toUpperCase().contains(
+                    if (!gpsLatitudeRef.toUpperCase().contains(
                             TiffConstants.GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH.
-                            toUpperCase())){
+                            toUpperCase())) {
                         tmp *= -1.0;
                     }
                     latitude = tmp;
@@ -397,12 +413,12 @@ public class ImageReader {
             Double longitude = null;
             TiffField gpsLongitudeField = metadata.findEXIFValue(
                     TiffConstants.GPS_TAG_GPS_LONGITUDE);            
-            if(gpsLongitudeField != null &&
-                    gpsLongitudeField.fieldType instanceof FieldTypeRational){
+            if (gpsLongitudeField != null &&
+                    gpsLongitudeField.fieldType instanceof FieldTypeRational) {
                 RationalNumber gpsLongitude[] = (RationalNumber[])
                         gpsLongitudeField.getValue();
                             
-                if(gpsLongitude != null && gpsLongitude.length >= 3){
+                if (gpsLongitude != null && gpsLongitude.length >= 3) {
                     RationalNumber gpsLongitudeDegrees = gpsLongitude[0];
                     RationalNumber gpsLongitudeMinutes = gpsLongitude[1];
                     RationalNumber gpsLongitudeSeconds = gpsLongitude[2];
@@ -413,15 +429,16 @@ public class ImageReader {
                     //set east by default
                     String gpsLongitudeRef = TiffConstants.
                             GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST;
-                    if(gpsLongitudeRefField != null){
-                        gpsLongitudeRef = (String)gpsLongitudeRefField.getValue();                    
+                    if (gpsLongitudeRefField != null) {
+                        gpsLongitudeRef = (String)gpsLongitudeRefField.
+                                getValue();                    
                     }
                     double tmp = gpsLongitudeDegrees.doubleValue() +
                                 gpsLongitudeMinutes.doubleValue() / 60.0 +
                                 gpsLongitudeSeconds.doubleValue() / 3600.0;
-                    if(!gpsLongitudeRef.toUpperCase().contains(
+                    if (!gpsLongitudeRef.toUpperCase().contains(
                             TiffConstants.GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST.
-                            toUpperCase())){
+                            toUpperCase())) {
                         tmp *= -1.0;
                     }                
                     longitude = tmp;
@@ -432,11 +449,11 @@ public class ImageReader {
             Double altitude = null;
             TiffField gpsAltitudeField = metadata.findEXIFValue(
                     TiffConstants.GPS_TAG_GPS_ALTITUDE);
-            if(gpsAltitudeField != null &&
-                    (gpsAltitudeField.fieldType instanceof FieldTypeRational)){
+            if (gpsAltitudeField != null &&
+                    gpsAltitudeField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)gpsAltitudeField.getValue();
-                if(number != null){
+                if (number != null) {
                     double tmp = number.doubleValue();
 
                     //check if above or under sea level
@@ -444,12 +461,12 @@ public class ImageReader {
                             TiffConstants.GPS_TAG_GPS_ALTITUDE_REF);
                     Integer above = TiffConstants.
                             GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL;
-                    if(gpsAltitudeRefField != null &&
-                            (gpsAltitudeRefField.fieldType instanceof FieldTypeShort)){
+                    if (gpsAltitudeRefField != null &&
+                            gpsAltitudeRefField.fieldType instanceof FieldTypeShort) {
                         above = (Integer)gpsAltitudeRefField.getValue();
                     }   
-                    if(above != TiffConstants.
-                            GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL){
+                    if (above != TiffConstants.
+                            GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL) {
                         //below sea level
                         tmp *= -1.0;
                     }
@@ -458,27 +475,31 @@ public class ImageReader {
             }
             
             GPSCoordinates coordinates = null;
-            if(latitude != null && longitude != null && altitude != null){
+            if (latitude != null && longitude != null && altitude != null) {
                 coordinates = new GPSCoordinates(latitude, longitude, altitude);
-            }else if(latitude != null && longitude != null && 
-                        altitude == null){
+            } else if (latitude != null && longitude != null && 
+                        altitude == null) {
                 coordinates = new GPSCoordinates(latitude, longitude);
             }
             
-            if(coordinates != null){
+            if (coordinates != null) {
                 result.setLocation(coordinates);
             }
             
-            if(result.getOrientation() != null){
+            if (result.getOrientation() != null) {
                 //if orientation is available as exif data, check if width and
                 //height need to be exchangd
-                switch(result.getOrientation()){
-                    case RIGHT_TOP: //orientation == 6 (clockwise 270º)
-                    case LEFT_BOTTOM: //orientation == 8 (clockwise 90º)
+                switch (result.getOrientation()) {
+                    case RIGHT_TOP: 
+                        //orientation == 6 (clockwise 270º)
+                    case LEFT_BOTTOM: 
+                        //orientation == 8 (clockwise 90º)
                         //width and height must be exchanged
                         result.setWidth(imageInfo.getHeight());
                         result.setHeight(imageInfo.getWidth());
-                        break;                        
+                        break;                  
+                    default:
+                        break;
                 }
             }  
             
@@ -486,89 +507,111 @@ public class ImageReader {
             TiffField artistField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_ARTIST);
             String artist = null;
-            if(artistField != null) artist = artistField.getValueDescription();
-            if(artist != null) result.setArtist(trim(artist));
+            if (artistField != null) {
+                artist = artistField.getValueDescription();
+            }
+            if (artist != null) {
+                result.setArtist(trim(artist));
+            }
             
             //Get copyright
             TiffField copyrightField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_COPYRIGHT);
             String copyright = null;
-            if(copyrightField != null) 
+            if (copyrightField != null) {
                 copyright = copyrightField.getValueDescription();
-            if(copyright != null) result.setCopyright(trim(copyright));
+            }
+            if (copyright != null) {
+                result.setCopyright(trim(copyright));
+            }
             
             //Get document name
             TiffField documentNameField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_DOCUMENT_NAME);
             String documentName = null;
-            if(documentNameField != null) 
+            if (documentNameField != null) {
                 documentName = artistField.getValueDescription();
-            if(documentName != null) result.setDocumentName(trim(documentName));
+            }
+            if (documentName != null) {
+                result.setDocumentName(trim(documentName));
+            }
             
             //Get host computer
             TiffField hostComputerField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_HOST_COMPUTER);
             String hostComputer = null;
-            if(hostComputerField != null)
+            if (hostComputerField != null) {
                 hostComputer = hostComputerField.getValueDescription();
-            if(hostComputer != null) result.setHostComputer(trim(hostComputer));
+            }
+            if (hostComputer != null) {
+                result.setHostComputer(trim(hostComputer));
+            }
             
             //Get image description
             TiffField imageDescriptionField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_IMAGE_DESCRIPTION);
             String imageDescription = null;
-            if(imageDescriptionField != null)
+            if (imageDescriptionField != null) {
                 imageDescription = imageDescriptionField.getValueDescription();
-            if(imageDescription != null) 
+            }
+            if (imageDescription != null) {
                 result.setImageDescription(trim(imageDescription));
+            }
             
             //Get software
             TiffField softwareField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_SOFTWARE);
             String software = null;
-            if(softwareField != null)
+            if (softwareField != null) {
                 software = softwareField.getValueDescription();
-            if(software != null) result.setSoftware(trim(software));
+            }
+            if (software != null) {
+                result.setSoftware(trim(software));
+            }
             
             //Get target printer
             TiffField targetPrinterField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_TARGET_PRINTER);
             String targetPrinter = null;
-            if(targetPrinterField != null)
+            if (targetPrinterField != null) {
                 targetPrinter = targetPrinterField.getValueDescription();
-            if(targetPrinter != null) 
+            }
+            if (targetPrinter != null) {
                 result.setTargetPrinter(trim(targetPrinter));
+            }
             
             //Get camera serial number
             TiffField cameraSerialNumberField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_CAMERA_SERIAL_NUMBER);
             String cameraSerialNumber = null;
-            if(cameraSerialNumberField != null)
+            if (cameraSerialNumberField != null) {
                 cameraSerialNumber = 
                         cameraSerialNumberField.getValueDescription();
-            if(cameraSerialNumber != null) 
+            }
+            if (cameraSerialNumber != null) {
                 result.setCameraSerialNumber(trim(cameraSerialNumber));
+            }
             
             //Get digital zoom ratio
             TiffField digitalZoomRatioField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_DIGITAL_ZOOM_RATIO);
-            if(digitalZoomRatioField != null && 
-                    (digitalZoomRatioField.fieldType instanceof FieldTypeRational)){
+            if (digitalZoomRatioField != null && 
+                    digitalZoomRatioField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)digitalZoomRatioField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setDigitalZoomRatio(number.doubleValue());
                 }
-            }           
+            }
             
             //Get exposure time
             TiffField exposureTimeField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_EXPOSURE_TIME);
-            if(exposureTimeField != null &&
-                    (exposureTimeField.fieldType instanceof FieldTypeRational)){
+            if (exposureTimeField != null &&
+                    exposureTimeField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)exposureTimeField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setExposureTime(number.doubleValue());
                 }
             }
@@ -576,10 +619,10 @@ public class ImageReader {
             //Get flash
             TiffField flashField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_FLASH);
-            if(flashField != null &&
-                    (flashField.fieldType instanceof FieldTypeShort)){
-                Integer number =(Integer)flashField.getValue();
-                if(number != null){
+            if (flashField != null &&
+                    flashField.fieldType instanceof FieldTypeShort) {
+                Integer number = (Integer)flashField.getValue();
+                if (number != null) {
                     result.setFlash(Flash.fromValue(number));
                 }
             }
@@ -587,11 +630,11 @@ public class ImageReader {
             //Get flash energy
             TiffField flashEnergyField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_FLASH_ENERGY);
-            if(flashEnergyField != null &&
-                    (flashEnergyField.fieldType instanceof FieldTypeRational)){
+            if (flashEnergyField != null &&
+                    flashEnergyField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)flashEnergyField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setFlashEnergy(number.doubleValue());
                 }
             }
@@ -599,10 +642,10 @@ public class ImageReader {
             //Get F number
             TiffField fNumberField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_FNUMBER);
-            if(fNumberField != null && 
-                    (fNumberField.fieldType instanceof FieldTypeRational)){
+            if (fNumberField != null && 
+                    fNumberField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number = (RationalNumber)fNumberField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setFNumber(number.doubleValue());
                 }
             }
@@ -610,11 +653,11 @@ public class ImageReader {
             //Get focal length in 35mm film
             TiffField focalLength35mmFormatField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_FOCAL_LENGTH_IN_35MM_FORMAT);
-            if(focalLength35mmFormatField != null &&
-                    (focalLength35mmFormatField.fieldType instanceof FieldTypeRational)){
+            if (focalLength35mmFormatField != null &&
+                    focalLength35mmFormatField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)focalLength35mmFormatField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setFocalLengthIn35mmFilm(number.doubleValue());
                 }
             }
@@ -623,19 +666,21 @@ public class ImageReader {
             TiffField uniqueCameraModelField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_UNIQUE_CAMERA_MODEL);
             String uniqueCameraModel = null;
-            if(uniqueCameraModelField != null) 
+            if (uniqueCameraModelField != null) {
                 uniqueCameraModel = modelField.getValueDescription();
-            if(uniqueCameraModel != null) 
+            }
+            if (uniqueCameraModel != null) {
                 result.setUniqueCameraModel(trim(uniqueCameraModel));
+            }
             
             //Get subject distance
             TiffField subjectDistanceField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_SUBJECT_DISTANCE);
-            if(subjectDistanceField != null &&
-                    (subjectDistanceField.fieldType instanceof FieldTypeRational)){
+            if (subjectDistanceField != null &&
+                    subjectDistanceField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)subjectDistanceField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setSubjectDistance(number.doubleValue());
                 }
             }
@@ -643,11 +688,11 @@ public class ImageReader {
             //Get shutter speed value
             TiffField shutterSpeedField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_SHUTTER_SPEED_VALUE);
-            if(shutterSpeedField != null &&
-                    (shutterSpeedField.fieldType instanceof FieldTypeRational)){
+            if (shutterSpeedField != null &&
+                    shutterSpeedField.fieldType instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)shutterSpeedField.getValue();
-                if(number != null){
+                if (number != null) {
                     result.setShutterSpeedValue(number.doubleValue());
                 }
             }
@@ -655,15 +700,15 @@ public class ImageReader {
             //Get ISO
             TiffField isoField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_ISO);
-            if(isoField != null &&
-                    (isoField.fieldType instanceof FieldTypeShort)){
-                Integer number =(Integer)isoField.getValue();
-                if(number != null){
+            if (isoField != null &&
+                    isoField.fieldType instanceof FieldTypeShort) {
+                Integer number = (Integer)isoField.getValue();
+                if (number != null) {
                     result.setISO(number);
                 }
             }            
             
-        }catch(ImageReadException e){
+        } catch (ImageReadException e) {
             throw new InvalidImageException(e);
         }
     }
@@ -675,11 +720,14 @@ public class ImageReader {
      */
     private String trim(String s) {
         String result = null;
-        if(s != null){
+        if (s != null) {
             result = s;
-            if(s.startsWith("'")) result = result.substring(1);
-            if(s.endsWith("'")) 
+            if (s.startsWith("'")) {
+                result = result.substring(1);
+            }
+            if (s.endsWith("'")) {
                 result = result.substring(0, result.length() - 1);
+            }
         }
         return result;
     }

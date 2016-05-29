@@ -82,7 +82,7 @@ public enum ImageOrientation {
      * Constructor.
      * @param value integer representation of image orientation.
      */
-    private ImageOrientation(int value){
+    ImageOrientation(int value) {
         mValue = value;
     }
     
@@ -90,7 +90,7 @@ public enum ImageOrientation {
      * Returns integer representation of image orientation.
      * @return integer representation of image orientation.
      */
-    public int getValue(){
+    public int getValue() {
         return mValue;
     }
     
@@ -99,8 +99,8 @@ public enum ImageOrientation {
      * @param value integer representation of image orientation.
      * @return image orientation.
      */
-    public static ImageOrientation fromValue(int value){
-        switch(value){
+    public static ImageOrientation fromValue(int value) {
+        switch (value) {
             case 1:
                 return TOP_LEFT;
             case 2:

@@ -48,7 +48,7 @@ public enum Unit {
      * Constructor.
      * @param value integer representation of units.
      */
-    private Unit(int value){
+    Unit(int value) {
         mValue = value;
     }
     
@@ -56,7 +56,7 @@ public enum Unit {
      * Returns integer representation of units.
      * @return integer representation of units.
      */
-    public int getValue(){
+    public int getValue() {
         return mValue;
     }
     
@@ -65,8 +65,8 @@ public enum Unit {
      * @param value integer representation.
      * @return unit.
      */
-    public static Unit fromValue(int value){
-        switch(value){
+    public static Unit fromValue(int value) {
+        switch (value) {
             case 1:
                 return NOT_AVAILABLE;
             case 2:

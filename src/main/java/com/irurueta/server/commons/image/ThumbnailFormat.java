@@ -53,7 +53,7 @@ public enum ThumbnailFormat {
      * Constructor.
      * @param value string representation or file extension of format.
      */
-    private ThumbnailFormat(String value) {
+    ThumbnailFormat(String value) {
         mValue = value;
     }
     
@@ -72,17 +72,17 @@ public enum ThumbnailFormat {
      * @return thumbnail format.
      */
     public static ThumbnailFormat fromValue(String value) {
-        if(value == null) {
+        if (value == null) {
             return UNKNOWN;
         }
         
-        if(value.equalsIgnoreCase("jpeg") || value.equalsIgnoreCase("jpg")) {
+        if (value.equalsIgnoreCase("jpeg") || value.equalsIgnoreCase("jpg")) {
             return JPEG;
-        } else if(value.equalsIgnoreCase("png")) {
+        } else if (value.equalsIgnoreCase("png")) {
             return PNG;
-        } else if(value.equalsIgnoreCase("gif")) {
+        } else if (value.equalsIgnoreCase("gif")) {
             return GIF;
-        } else if(value.equalsIgnoreCase("bmp")) {
+        } else if (value.equalsIgnoreCase("bmp")) {
             return BMP;
         } else {
             return UNKNOWN;
@@ -95,11 +95,11 @@ public enum ThumbnailFormat {
      * @return thumbnail format.
      */
     public static ThumbnailFormat fromImageFormat(ImageFormat format) {
-        if(format == null) {
+        if (format == null) {
             return ThumbnailFormat.UNKNOWN;
         }
         
-        switch(format){
+        switch (format) {
             case JPEG:
                 return ThumbnailFormat.JPEG;
             case PNG:

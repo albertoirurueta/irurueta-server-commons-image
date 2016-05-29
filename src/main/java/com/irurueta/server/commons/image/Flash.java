@@ -144,7 +144,7 @@ public enum Flash {
      * Constructor.
      * @param value integer value representing flash mode.
      */
-    private Flash(int value) {
+    Flash(int value) {
         mValue = value;
     }
     
@@ -162,25 +162,40 @@ public enum Flash {
      */
     public boolean isFlashFired() {
         switch (mValue) {
-            case 0x0001: //FLASH_FIRED
-            case 0x0009: //FLASH_FIRED_COMPULSORY_FLASH_MODE
-            case 0x000D: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_NOTDETECTED
-            case 0x000F: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_DETECTED
-            case 0x001D: //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED
-            case 0x001F: //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED
-            case 0x0041: //FLASH_FIRED_RED_EYE_REDUCTION_MODE
-            case 0x0045: //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
-            case 0x0047: //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
-            case 0x0049: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE
-            case 0x004D: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED;
-            case 0x004F: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
-            case 0x0059: //FLASH_FIRED_AUTO_MODE_RED_EYE_REDUCTION_MODE
-            case 0x005D: //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED_RED_EYE_REDUCTION_MODE
-            case 0x005F: //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE
+            case 0x0001: 
+                //FLASH_FIRED
+            case 0x0009: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE
+            case 0x000D: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_NOTDETECTED
+            case 0x000F: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_DETECTED
+            case 0x001D: 
+                //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED
+            case 0x001F: 
+                //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED
+            case 0x0041: 
+                //FLASH_FIRED_RED_EYE_REDUCTION_MODE
+            case 0x0045: 
+                //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
+            case 0x0047: 
+                //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
+            case 0x0049: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE
+            case 0x004D: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED;
+            case 0x004F: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
+            case 0x0059: 
+                //FLASH_FIRED_AUTO_MODE_RED_EYE_REDUCTION_MODE
+            case 0x005D: 
+                //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED_RED_EYE_REDUCTION_MODE
+            case 0x005F: 
+                //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE
                 return true;
-        }            
-        
-        return false;
+            default:
+                return false;
+        }        
     }
     
     /**
@@ -189,17 +204,24 @@ public enum Flash {
      */
     public boolean isReturnLightDetected() {
         switch (mValue) {
-            case 0x0007: //STROBE_RETURN_LIGHT_DETECTED
-            case 0x000F: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_DETECTED
-            case 0x0019: //FLASH_FIRED_AUTO_MODE
-            case 0x001F: //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED
-            case 0x0047: //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
-            case 0x004F: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
-            case 0x005F: //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE
+            case 0x0007: 
+                //STROBE_RETURN_LIGHT_DETECTED
+            case 0x000F: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_DETECTED
+            case 0x0019: 
+                //FLASH_FIRED_AUTO_MODE
+            case 0x001F: 
+                //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED
+            case 0x0047: 
+                //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
+            case 0x004F: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
+            case 0x005F: 
+                //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE
                 return true;
-        }            
-        
-        return false;
+            default:
+                return false;
+        }
     }
     
     /**
@@ -208,19 +230,28 @@ public enum Flash {
      */
     public boolean isRedEyeReductionEnabled() {
         switch (mValue) {
-            case 0x0041: //FLASH_FIRED_RED_EYE_REDUCTION_MODE
-            case 0x0045: //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
-            case 0x0047: //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
-            case 0x0049: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE
-            case 0x004D: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
-            case 0x004F: //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
-            case 0x0059: //FLASH_FIRED_AUTO_MODE_RED_EYE_REDUCTION_MODE
-            case 0x005D: //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED_RED_EYE_REDUCTION_MODE
-            case 0x005F: //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE
+            case 0x0041: 
+                //FLASH_FIRED_RED_EYE_REDUCTION_MODE
+            case 0x0045: 
+                //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
+            case 0x0047: 
+                //FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
+            case 0x0049: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE
+            case 0x004D: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
+            case 0x004F: 
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
+            case 0x0059: 
+                //FLASH_FIRED_AUTO_MODE_RED_EYE_REDUCTION_MODE
+            case 0x005D: 
+                //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED_RED_EYE_REDUCTION_MODE
+            case 0x005F: 
+                //FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE
                 return true;
+            default:
+                return false;
         }            
-        
-        return false;
     }
     
     /**
