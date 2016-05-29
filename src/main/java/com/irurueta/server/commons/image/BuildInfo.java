@@ -34,7 +34,7 @@ public class BuildInfo {
      * This class logger.
      */
     private static final Logger LOGGER = Logger.getLogger(
-            com.irurueta.server.commons.BuildInfo.class.getName());
+            BuildInfo.class.getName());
 
     /**
      * Location of properties file that contains build data.
