@@ -48,7 +48,7 @@ package com.irurueta.server.commons.image;
      * Constructor.
      * @param value integer representation of units.
      */
-<span class="fc" id="L51">    private Unit(int value){</span>
+<span class="fc" id="L51">    Unit(int value) {</span>
 <span class="fc" id="L52">        mValue = value;</span>
 <span class="fc" id="L53">    }</span>
     
@@ -56,7 +56,7 @@ package com.irurueta.server.commons.image;
      * Returns integer representation of units.
      * @return integer representation of units.
      */
-    public int getValue(){
+    public int getValue() {
 <span class="fc" id="L60">        return mValue;</span>
     }
     
@@ -65,8 +65,8 @@ package com.irurueta.server.commons.image;
      * @param value integer representation.
      * @return unit.
      */
-    public static Unit fromValue(int value){
-<span class="fc bfc" id="L69" title="All 4 branches covered.">        switch(value){</span>
+    public static Unit fromValue(int value) {
+<span class="fc bfc" id="L69" title="All 4 branches covered.">        switch (value) {</span>
             case 1:
 <span class="fc" id="L71">                return NOT_AVAILABLE;</span>
             case 2:

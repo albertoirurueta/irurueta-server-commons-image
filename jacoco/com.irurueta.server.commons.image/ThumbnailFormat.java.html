@@ -53,7 +53,7 @@ package com.irurueta.server.commons.image;
      * Constructor.
      * @param value string representation or file extension of format.
      */
-<span class="fc" id="L56">    private ThumbnailFormat(String value) {</span>
+<span class="fc" id="L56">    ThumbnailFormat(String value) {</span>
 <span class="fc" id="L57">        mValue = value;</span>
 <span class="fc" id="L58">    }</span>
     
@@ -72,17 +72,17 @@ package com.irurueta.server.commons.image;
      * @return thumbnail format.
      */
     public static ThumbnailFormat fromValue(String value) {
-<span class="fc bfc" id="L75" title="All 2 branches covered.">        if(value == null) {</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (value == null) {</span>
 <span class="fc" id="L76">            return UNKNOWN;</span>
         }
         
-<span class="fc bfc" id="L79" title="All 4 branches covered.">        if(value.equalsIgnoreCase(&quot;jpeg&quot;) || value.equalsIgnoreCase(&quot;jpg&quot;)) {</span>
+<span class="fc bfc" id="L79" title="All 4 branches covered.">        if (value.equalsIgnoreCase(&quot;jpeg&quot;) || value.equalsIgnoreCase(&quot;jpg&quot;)) {</span>
 <span class="fc" id="L80">            return JPEG;</span>
-<span class="fc bfc" id="L81" title="All 2 branches covered.">        } else if(value.equalsIgnoreCase(&quot;png&quot;)) {</span>
+<span class="fc bfc" id="L81" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;png&quot;)) {</span>
 <span class="fc" id="L82">            return PNG;</span>
-<span class="fc bfc" id="L83" title="All 2 branches covered.">        } else if(value.equalsIgnoreCase(&quot;gif&quot;)) {</span>
+<span class="fc bfc" id="L83" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;gif&quot;)) {</span>
 <span class="fc" id="L84">            return GIF;</span>
-<span class="fc bfc" id="L85" title="All 2 branches covered.">        } else if(value.equalsIgnoreCase(&quot;bmp&quot;)) {</span>
+<span class="fc bfc" id="L85" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;bmp&quot;)) {</span>
 <span class="fc" id="L86">            return BMP;</span>
         } else {
 <span class="fc" id="L88">            return UNKNOWN;</span>
@@ -95,11 +95,11 @@ package com.irurueta.server.commons.image;
      * @return thumbnail format.
      */
     public static ThumbnailFormat fromImageFormat(ImageFormat format) {
-<span class="fc bfc" id="L98" title="All 2 branches covered.">        if(format == null) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (format == null) {</span>
 <span class="fc" id="L99">            return ThumbnailFormat.UNKNOWN;</span>
         }
         
-<span class="pc bfc" id="L102" title="All 5 branches covered.">        switch(format){</span>
+<span class="pc bfc" id="L102" title="All 5 branches covered.">        switch (format) {</span>
             case JPEG:
 <span class="fc" id="L104">                return ThumbnailFormat.JPEG;</span>
             case PNG:
