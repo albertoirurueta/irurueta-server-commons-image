@@ -14,7 +14,7 @@
             <name>The Apache License, Version 2.0</name>
             <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
         </license>
-    </licenses>    
+    </licenses>
     <developers>
         <developer>
             <name>Alberto Irurueta Carro</name>
@@ -27,7 +27,7 @@
         <developerConnection>scm:git@github.com:albertoirurueta/irurueta-server-commons-image.git</developerConnection>
         <url>git@github.com:albertoirurueta/irurueta-server-commons-image.git</url>
     </scm>
-    
+
     <distributionManagement>
         <!-- maven central snapshot repository -->
         <snapshotRepository>
@@ -35,13 +35,13 @@
             <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-    
+
     <dependencies>
         <!-- dependencies for unit tests -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.13.1</version>
             <scope>test</scope>
             <type>jar</type>
         </dependency>
@@ -56,7 +56,7 @@
             <groupId>com.irurueta</groupId>
             <artifactId>irurueta-server-commons</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>org.apache.sanselan</groupId>
             <artifactId>sanselan</artifactId>
@@ -66,16 +66,16 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.4</version>
-        </dependency>        
-    </dependencies>    
+        </dependency>
+    </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.7</maven.compiler.source>
         <maven.compiler.target>1.7</maven.compiler.target>
         <github.global.server>github</github.global.server>
-        <github.global.oauth2Token>${env.GITHUB_OAUTH_TOKEN}</github.global.oauth2Token>        
+        <github.global.oauth2Token>${env.GITHUB_OAUTH_TOKEN}</github.global.oauth2Token>
     </properties>
-    
+
     <profiles>
         <profile>
             <!-- profile to be run on CI server -->
@@ -105,14 +105,7 @@
                                 <phase>site</phase>
                             </execution>
                         </executions>
-                    </plugin>    
-                    
-                    <!-- publishes coverage info to coveralls -->
-                    <plugin>
-                        <groupId>org.eluder.coveralls</groupId>
-                        <artifactId>coveralls-maven-plugin</artifactId>
-                        <version>4.1.0</version>
-                    </plugin>                
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -147,7 +140,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-source-plugin</artifactId>
-                        <version>3.0.0</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>attach-sources</id>
@@ -160,7 +153,7 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.10.3</version>
+                        <version>3.0.1</version>
                         <executions>
                             <execution>
                                 <id>attach-javadocs</id>
@@ -172,14 +165,14 @@
                     </plugin>
                 </plugins>
             </build>
-        </profile>        
+        </profile>
     </profiles>
-    
+
     <!-- default profile -->
     <build>
-        <!-- 
+        <!--
         include al non java files in source and test folders, this can
-        include properties files, or other resources 
+        include properties files, or other resources
         -->
         <resources>
             <resource>
@@ -196,24 +189,24 @@
                     <exclude>**/*.java</exclude>
                 </excludes>
             </testResource>
-        </testResources>        
+        </testResources>
         <plugins>
             <!-- unit tests plugins -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.19.1</version>               
+                <version>2.22.0</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.19.1</version>
-            </plugin>     
-            <!-- code coverage plugin -->                          
+                <version>2.22.0</version>
+            </plugin>
+            <!-- code coverage plugin -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
+                <version>0.8.2</version>
                 <executions>
                     <execution>
                         <id>jacoco-initialize</id>
@@ -234,15 +227,21 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.3</version>
+                <version>3.0.5</version>
+            </plugin>
+            <!-- maven site -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
             </plugin>
             <!-- save build info into generated package -->
             <plugin>
                 <groupId>org.codehaus.gmaven</groupId>
                 <artifactId>gmaven-plugin</artifactId>
                 <version>1.5</version>
-                    <executions>
-                        <execution>
+                <executions>
+                    <execution>
                         <phase>validate</phase>
                         <goals>
                             <goal>execute</goal>
@@ -250,58 +249,58 @@
                         <configuration>
                             <source>
                                 <![CDATA[
-                                    import java.util.Date;
-                                    import java.util.Properties;
-                                    import java.text.SimpleDateFormat;
-                                    import java.io.File;
-                                    import java.io.FileWriter;
-                                    
-                                    println("Saving build info...");
-                                    def dateFormatter = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
-                                    def buildTimestamp = dateFormatter.format(new Date());
-                                    
-                                    def groupId = "${project.groupId}";
-                                    def artifactId = "${project.artifactId}";
-                                    def version = "${project.version}";
-                                    
-                                    //JENKINS
-                                    def buildNumber = System.getenv("BUILD_NUMBER");
-                                    def commit = System.getenv("GIT_COMMIT");
-                                    def branch = System.getenv("GIT_BRANCH");
-                                    
-                                    //TRAVIS CI
-                                    if(buildNumber == null){
-                                        buildNumber = System.getenv("TRAVIS_BUILD_NUMBER");
-                                    }
-                                    if(commit == null){
-                                        commit = System.getenv("TRAVIS_COMMIT");
-                                    }
-                                    if(branch == null){
-                                        branch = System.getenv("TRAVIS_BRANCH");
-                                    }
-                                    
-                                    def props = new Properties();
-                                    props.setProperty("BUILD_TIMESTAMP", buildTimestamp);
-                                    props.setProperty("GROUP_ID", groupId);
-                                    props.setProperty("ARTIFACT_ID", artifactId);
-                                    props.setProperty("VERSION", version);
-                                    if(buildNumber != null){
-                                        props.setProperty("BUILD_NUMBER", buildNumber);
-                                    }
-                                    if(commit != null){
-                                        props.setProperty("COMMIT", commit);
-                                    }
-                                    if(branch != null){
-                                        props.setProperty("BRANCH", branch);
-                                    }
-                                    
-                                    File dir = new File("src/main/java/com/irurueta/server/commons/image");
-                                    dir.mkdirs();
-                                    File file = new File(dir, "build-info.properties");
-                                    FileWriter writer = new FileWriter(file);
-                                    props.store(writer, null);
-                                    writer.close();
-                                    println("Build info saved at " + file);
+                                import java.util.Date;
+                                import java.util.Properties;
+                                import java.text.SimpleDateFormat;
+                                import java.io.File;
+                                import java.io.FileWriter;
+
+                                println("Saving build info...");
+                                def dateFormatter = new SimpleDateFormat("yy-MM-dd HH:mm:ss");
+                                def buildTimestamp = dateFormatter.format(new Date());
+
+                                def groupId = "${project.groupId}";
+                                def artifactId = "${project.artifactId}";
+                                def version = "${project.version}";
+
+                                //JENKINS
+                                def buildNumber = System.getenv("BUILD_NUMBER");
+                                def commit = System.getenv("GIT_COMMIT");
+                                def branch = System.getenv("GIT_BRANCH");
+
+                                //TRAVIS CI
+                                if(buildNumber == null){
+                                    buildNumber = System.getenv("TRAVIS_BUILD_NUMBER");
+                                }
+                                if(commit == null){
+                                    commit = System.getenv("TRAVIS_COMMIT");
+                                }
+                                if(branch == null){
+                                    branch = System.getenv("TRAVIS_BRANCH");
+                                }
+
+                                def props = new Properties();
+                                props.setProperty("BUILD_TIMESTAMP", buildTimestamp);
+                                props.setProperty("GROUP_ID", groupId);
+                                props.setProperty("ARTIFACT_ID", artifactId);
+                                props.setProperty("VERSION", version);
+                                if(buildNumber != null){
+                                    props.setProperty("BUILD_NUMBER", buildNumber);
+                                }
+                                if(commit != null){
+                                    props.setProperty("COMMIT", commit);
+                                }
+                                if(branch != null){
+                                    props.setProperty("BRANCH", branch);
+                                }
+
+                                File dir = new File("src/main/java/com/irurueta/server/commons/image");
+                                dir.mkdirs();
+                                File file = new File(dir, "build-info.properties");
+                                FileWriter writer = new FileWriter(file);
+                                props.store(writer, null);
+                                writer.close();
+                                println("Build info saved at " + file);
                                 ]]>
                             </source>
                         </configuration>
@@ -336,8 +335,8 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>   
-            
+            </plugin>
+
             <!-- deploys artifact to snapshots repository -->
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
@@ -349,46 +348,43 @@
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
-            </plugin>                              
+            </plugin>
         </plugins>
     </build>
-    
+
     <reporting>
         <plugins>
             <!-- add javadoc report into site -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
+                <version>3.0.1</version>
                 <configuration>
                     <show>private</show>
                     <nohelp>true</nohelp>
-                    <aggregate>true</aggregate>
-                    <links>
-                        <link>http://docs.oracle.com/javase/7/docs/api/</link>
-                    </links>
+                    <detectJavaApiLink>true</detectJavaApiLink>
                 </configuration>
             </plugin>
             <!-- adds unit tests report into site -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.19.1</version>
-            </plugin> 
-            <!-- adds code coverage report into site -->  
+                <version>2.22.0</version>
+            </plugin>
+            <!-- adds code coverage report into site -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.7.6.201602180812</version>
-            </plugin>     
-            <!-- adds code quality reports into site -->               
+                <version>0.8.2</version>
+            </plugin>
+            <!-- adds code quality reports into site -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.17</version>
+                <version>3.0.0</version>
                 <configuration>
                     <configLocation>checkstyle.xml</configLocation>
-                </configuration>                
+                </configuration>
                 <reportSets>
                     <reportSet>
                         <reports>
@@ -396,17 +392,17 @@
                         </reports>
                     </reportSet>
                 </reportSets>
-            </plugin>  
-               
+            </plugin>
+
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>findbugs-maven-plugin</artifactId>
                 <version>3.0.3</version>
-            </plugin>                   
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.6</version>
+                <version>3.10.0</version>
             </plugin>
             <!-- 
             adds cross reference into source for easier navigation of source in 
@@ -419,7 +415,7 @@
                 <configuration>
                     <aggregate>true</aggregate>
                 </configuration>
-            </plugin>            
+            </plugin>
         </plugins>
-    </reporting>        
+    </reporting>
 </project>
