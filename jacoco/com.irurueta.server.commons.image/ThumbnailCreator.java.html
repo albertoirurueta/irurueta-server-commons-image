@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ThumbnailCreator.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ThumbnailCreator.java</span></div><h1>ThumbnailCreator.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThumbnailCreator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ThumbnailCreator.java</span></div><h1>ThumbnailCreator.java</h1><pre class="source lang-java linenums">/**
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -177,7 +177,7 @@ public class ThumbnailCreator {
                 }
 <span class="pc" id="L178">            } catch (InterruptedException e) { }</span>
 <span class="fc" id="L179">            mNumThreads++;</span>
-<span class="pc" id="L180">        }</span>
+<span class="fc" id="L180">        }</span>
         
         try {
             //default (orientation == 1)
@@ -186,7 +186,7 @@ public class ThumbnailCreator {
 <span class="fc bfc" id="L186" title="All 2 branches covered.">            if (inputOrientation != null) {</span>
                 //take into account only orientations below, other orientations
                 //will be ignored
-<span class="pc bfc" id="L189" title="All 4 branches covered.">                switch (inputOrientation) {</span>
+<span class="fc bfc" id="L189" title="All 4 branches covered.">                switch (inputOrientation) {</span>
                     case LEFT_BOTTOM: 
                         //orientaton == 8 (counterclockwise 90º)
 <span class="fc" id="L192">                        exchangeSize = true;</span>
@@ -222,8 +222,8 @@ public class ThumbnailCreator {
             BufferedImage resizedImage;  
             Graphics2D graphics2D;
 <span class="fc bfc" id="L224" title="All 2 branches covered.">            if (exchangeSize) {</span>
-<span class="pc bpc" id="L225" title="1 of 4 branches missed.">                if (width &gt; inputImage.getHeight() || </span>
-                        height &gt; inputImage.getWidth()) {
+<span class="fc bfc" id="L225" title="All 2 branches covered.">                if (width &gt; inputImage.getHeight() || </span>
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">                        height &gt; inputImage.getWidth()) {</span>
 <span class="fc" id="L227">                    throw new IllegalArgumentException();</span>
                 }
             
@@ -237,8 +237,8 @@ public class ThumbnailCreator {
 <span class="fc" id="L237">                graphics2D.dispose();</span>
             
             } else {
-<span class="pc bpc" id="L240" title="1 of 4 branches missed.">                if (width &gt; inputImage.getWidth() || </span>
-                        height &gt; inputImage.getHeight()) {
+<span class="fc bfc" id="L240" title="All 2 branches covered.">                if (width &gt; inputImage.getWidth() || </span>
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">                        height &gt; inputImage.getHeight()) {</span>
 <span class="fc" id="L242">                    throw new IllegalArgumentException();</span>
                 }
             
@@ -312,8 +312,8 @@ public class ThumbnailCreator {
 <span class="fc" id="L312">            synchronized (this) {</span>
 <span class="fc" id="L313">                mNumThreads--;</span>
 <span class="fc" id="L314">                this.notifyAll();</span>
-<span class="pc" id="L315">            }            </span>
-<span class="fc" id="L316">        }</span>
+<span class="fc" id="L315">            }            </span>
+        }
 <span class="fc" id="L317">    }</span>
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ImageReader.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ImageReader.java</span></div><h1>ImageReader.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageReader.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ImageReader.java</span></div><h1>ImageReader.java</h1><pre class="source lang-java linenums">/**
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -198,7 +198,7 @@ public class ImageReader {
 <span class="nc" id="L198">            return;</span>
         }
         
-<span class="pc" id="L201">        try (InputStream stream = new FileInputStream(f)) {</span>
+<span class="fc" id="L201">        try (InputStream stream = new FileInputStream(f)) {</span>
 <span class="fc" id="L202">            CRC32 crc = null;</span>
 <span class="pc bpc" id="L203" title="1 of 2 branches missed.">            if (mComputeCrc) {</span>
 <span class="fc" id="L204">                crc = new CRC32();</span>
@@ -232,7 +232,7 @@ public class ImageReader {
 <span class="pc bpc" id="L232" title="1 of 2 branches missed.">            if (digest != null) {</span>
 <span class="fc" id="L233">                result.setMd5(Base64.encodeBase64String(digest.digest()));</span>
             }            
-<span class="pc bpc" id="L235" title="6 of 8 branches missed.">        }</span>
+        }
 <span class="fc" id="L236">    }</span>
                 
     /**
@@ -288,7 +288,7 @@ public class ImageReader {
 <span class="fc" id="L288">            result.setHeight(imageInfo.getHeight());</span>
             
 <span class="fc" id="L290">            JpegImageMetadata metadata = </span>
-                    (JpegImageMetadata)Sanselan.getMetadata(f);
+<span class="fc" id="L291">                    (JpegImageMetadata)Sanselan.getMetadata(f);</span>
 <span class="fc bfc" id="L292" title="All 2 branches covered.">            if (metadata == null) {</span>
 <span class="fc" id="L293">                return;</span>
             }
@@ -321,7 +321,7 @@ public class ImageReader {
 <span class="pc bpc" id="L321" title="1 of 4 branches missed.">            if (focalLengthField != null &amp;&amp; </span>
                     focalLengthField.fieldType instanceof FieldTypeRational) {
 <span class="fc" id="L323">                RationalNumber number = </span>
-                        (RationalNumber)focalLengthField.getValue();
+<span class="fc" id="L324">                        (RationalNumber)focalLengthField.getValue();</span>
 <span class="pc bpc" id="L325" title="1 of 2 branches missed.">                if (number != null) {</span>
 <span class="fc" id="L326">                    result.setFocalLength(number.doubleValue());</span>
                 }
@@ -333,7 +333,7 @@ public class ImageReader {
 <span class="pc bpc" id="L333" title="3 of 4 branches missed.">            if (focalPlaneXResolutionField != null &amp;&amp;</span>
                     focalPlaneXResolutionField.fieldType instanceof FieldTypeRational) {
 <span class="nc" id="L335">                RationalNumber number =</span>
-                        (RationalNumber)focalPlaneXResolutionField.getValue();
+<span class="nc" id="L336">                        (RationalNumber)focalPlaneXResolutionField.getValue();</span>
 <span class="nc bnc" id="L337" title="All 2 branches missed.">                if (number != null) {</span>
 <span class="nc" id="L338">                    result.setFocalPlaneXResolution(number.doubleValue());</span>
                 }
@@ -345,7 +345,7 @@ public class ImageReader {
 <span class="pc bpc" id="L345" title="3 of 4 branches missed.">            if (focalPlaneYResolutionField != null &amp;&amp;</span>
                     focalPlaneYResolutionField.fieldType instanceof FieldTypeRational) {
 <span class="nc" id="L347">                RationalNumber number =</span>
-                        (RationalNumber)focalPlaneYResolutionField.getValue();
+<span class="nc" id="L348">                        (RationalNumber)focalPlaneYResolutionField.getValue();</span>
 <span class="nc bnc" id="L349" title="All 2 branches missed.">                if (number != null) {</span>
 <span class="nc" id="L350">                    result.setFocalPlaneYResolution(number.doubleValue());</span>
                 }
@@ -357,7 +357,7 @@ public class ImageReader {
 <span class="pc bpc" id="L357" title="3 of 4 branches missed.">            if (focalPlaneResolutionUnitField != null &amp;&amp; </span>
                     focalPlaneResolutionUnitField.fieldType instanceof FieldTypeShort) {
 <span class="nc" id="L359">                Integer number = </span>
-                        (Integer)focalPlaneResolutionUnitField.getValue();
+<span class="nc" id="L360">                        (Integer)focalPlaneResolutionUnitField.getValue();</span>
 <span class="nc bnc" id="L361" title="All 2 branches missed.">                if (number != null) {</span>
 <span class="nc" id="L362">                    result.setFocalPlaneResolutionUnit(Unit.fromValue(number));</span>
                 }
@@ -381,7 +381,7 @@ public class ImageReader {
 <span class="fc bfc" id="L381" title="All 4 branches covered.">            if (gpsLatitudeField != null &amp;&amp;</span>
                     gpsLatitudeField.fieldType instanceof FieldTypeRational) {
 <span class="fc" id="L383">                RationalNumber gpsLatitude[] = </span>
-                        (RationalNumber[])gpsLatitudeField.getValue();
+<span class="fc" id="L384">                        (RationalNumber[])gpsLatitudeField.getValue();</span>
                 
 <span class="pc bpc" id="L386" title="2 of 4 branches missed.">                if (gpsLatitude != null &amp;&amp; gpsLatitude.length &gt;= 3) {</span>
 <span class="fc" id="L387">                    RationalNumber gpsLatitudeDegrees = gpsLatitude[0];</span>
@@ -398,11 +398,11 @@ public class ImageReader {
 <span class="fc" id="L398">                        gpsLatitudeRef = (String)gpsLatitudeRefField.getValue();</span>
                     }
 <span class="fc" id="L400">                    double tmp = gpsLatitudeDegrees.doubleValue() + </span>
-                            gpsLatitudeMinutes.doubleValue() / 60.0 +
-                            gpsLatitudeSeconds.doubleValue() / 3600.0;
+<span class="fc" id="L401">                            gpsLatitudeMinutes.doubleValue() / 60.0 +</span>
+<span class="fc" id="L402">                            gpsLatitudeSeconds.doubleValue() / 3600.0;</span>
 <span class="pc bpc" id="L403" title="1 of 2 branches missed.">                    if (!gpsLatitudeRef.toUpperCase().contains(</span>
                             TiffConstants.GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH.
-                            toUpperCase())) {
+<span class="fc" id="L405">                            toUpperCase())) {</span>
 <span class="nc" id="L406">                        tmp *= -1.0;</span>
                     }
 <span class="fc" id="L408">                    latitude = tmp;</span>
@@ -416,7 +416,7 @@ public class ImageReader {
 <span class="pc bpc" id="L416" title="1 of 4 branches missed.">            if (gpsLongitudeField != null &amp;&amp;</span>
                     gpsLongitudeField.fieldType instanceof FieldTypeRational) {
 <span class="fc" id="L418">                RationalNumber gpsLongitude[] = (RationalNumber[])</span>
-                        gpsLongitudeField.getValue();
+<span class="fc" id="L419">                        gpsLongitudeField.getValue();</span>
                             
 <span class="pc bpc" id="L421" title="2 of 4 branches missed.">                if (gpsLongitude != null &amp;&amp; gpsLongitude.length &gt;= 3) {</span>
 <span class="fc" id="L422">                    RationalNumber gpsLongitudeDegrees = gpsLongitude[0];</span>
@@ -431,14 +431,14 @@ public class ImageReader {
                             GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST;
 <span class="pc bpc" id="L432" title="1 of 2 branches missed.">                    if (gpsLongitudeRefField != null) {</span>
 <span class="fc" id="L433">                        gpsLongitudeRef = (String)gpsLongitudeRefField.</span>
-                                getValue();                    
+<span class="fc" id="L434">                                getValue();                    </span>
                     }
 <span class="fc" id="L436">                    double tmp = gpsLongitudeDegrees.doubleValue() +</span>
-                                gpsLongitudeMinutes.doubleValue() / 60.0 +
-                                gpsLongitudeSeconds.doubleValue() / 3600.0;
+<span class="fc" id="L437">                                gpsLongitudeMinutes.doubleValue() / 60.0 +</span>
+<span class="fc" id="L438">                                gpsLongitudeSeconds.doubleValue() / 3600.0;</span>
 <span class="pc bpc" id="L439" title="1 of 2 branches missed.">                    if (!gpsLongitudeRef.toUpperCase().contains(</span>
                             TiffConstants.GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST.
-                            toUpperCase())) {
+<span class="fc" id="L441">                            toUpperCase())) {</span>
 <span class="nc" id="L442">                        tmp *= -1.0;</span>
                     }                
 <span class="fc" id="L444">                    longitude = tmp;</span>
@@ -452,7 +452,7 @@ public class ImageReader {
 <span class="pc bpc" id="L452" title="1 of 4 branches missed.">            if (gpsAltitudeField != null &amp;&amp;</span>
                     gpsAltitudeField.fieldType instanceof FieldTypeRational) {
 <span class="fc" id="L454">                RationalNumber number = </span>
-                        (RationalNumber)gpsAltitudeField.getValue();
+<span class="fc" id="L455">                        (RationalNumber)gpsAltitudeField.getValue();</span>
 <span class="pc bpc" id="L456" title="1 of 2 branches missed.">                if (number != null) {</span>
 <span class="fc" id="L457">                    double tmp = number.doubleValue();</span>
 
@@ -489,7 +489,7 @@ public class ImageReader {
 <span class="pc bpc" id="L489" title="1 of 2 branches missed.">            if (result.getOrientation() != null) {</span>
                 //if orientation is available as exif data, check if width and
                 //height need to be exchangd
-<span class="pc bfc" id="L492" title="All 2 branches covered.">                switch (result.getOrientation()) {</span>
+<span class="fc bfc" id="L492" title="All 2 branches covered.">                switch (result.getOrientation()) {</span>
                     case RIGHT_TOP: 
                         //orientation == 6 (clockwise 270º)
                     case LEFT_BOTTOM: 
@@ -586,7 +586,7 @@ public class ImageReader {
 <span class="fc" id="L586">            String cameraSerialNumber = null;</span>
 <span class="pc bpc" id="L587" title="1 of 2 branches missed.">            if (cameraSerialNumberField != null) {</span>
 <span class="nc" id="L588">                cameraSerialNumber = </span>
-                        cameraSerialNumberField.getValueDescription();
+<span class="nc" id="L589">                        cameraSerialNumberField.getValueDescription();</span>
             }
 <span class="pc bpc" id="L591" title="1 of 2 branches missed.">            if (cameraSerialNumber != null) {</span>
 <span class="nc" id="L592">                result.setCameraSerialNumber(trim(cameraSerialNumber));</span>
@@ -598,7 +598,7 @@ public class ImageReader {
 <span class="pc bpc" id="L598" title="1 of 4 branches missed.">            if (digitalZoomRatioField != null &amp;&amp; </span>
                     digitalZoomRatioField.fieldType instanceof FieldTypeRational) {
 <span class="fc" id="L600">                RationalNumber number = </span>
-                        (RationalNumber)digitalZoomRatioField.getValue();
+<span class="fc" id="L601">                        (RationalNumber)digitalZoomRatioField.getValue();</span>
 <span class="pc bpc" id="L602" title="1 of 2 branches missed.">                if (number != null) {</span>
 <span class="fc" id="L603">                    result.setDigitalZoomRatio(number.doubleValue());</span>
                 }
@@ -610,7 +610,7 @@ public class ImageReader {
 <span class="pc bpc" id="L610" title="1 of 4 branches missed.">            if (exposureTimeField != null &amp;&amp;</span>
                     exposureTimeField.fieldType instanceof FieldTypeRational) {
 <span class="fc" id="L612">                RationalNumber number =</span>
-                        (RationalNumber)exposureTimeField.getValue();
+<span class="fc" id="L613">                        (RationalNumber)exposureTimeField.getValue();</span>
 <span class="pc bpc" id="L614" title="1 of 2 branches missed.">                if (number != null) {</span>
 <span class="fc" id="L615">                    result.setExposureTime(number.doubleValue());</span>
                 }
@@ -633,7 +633,7 @@ public class ImageReader {
 <span class="pc bpc" id="L633" title="3 of 4 branches missed.">            if (flashEnergyField != null &amp;&amp;</span>
                     flashEnergyField.fieldType instanceof FieldTypeRational) {
 <span class="nc" id="L635">                RationalNumber number =</span>
-                        (RationalNumber)flashEnergyField.getValue();
+<span class="nc" id="L636">                        (RationalNumber)flashEnergyField.getValue();</span>
 <span class="nc bnc" id="L637" title="All 2 branches missed.">                if (number != null) {</span>
 <span class="nc" id="L638">                    result.setFlashEnergy(number.doubleValue());</span>
                 }
@@ -656,7 +656,7 @@ public class ImageReader {
 <span class="pc bpc" id="L656" title="3 of 4 branches missed.">            if (focalLength35mmFormatField != null &amp;&amp;</span>
                     focalLength35mmFormatField.fieldType instanceof FieldTypeRational) {
 <span class="nc" id="L658">                RationalNumber number = </span>
-                        (RationalNumber)focalLength35mmFormatField.getValue();
+<span class="nc" id="L659">                        (RationalNumber)focalLength35mmFormatField.getValue();</span>
 <span class="nc bnc" id="L660" title="All 2 branches missed.">                if (number != null) {</span>
 <span class="nc" id="L661">                    result.setFocalLengthIn35mmFilm(number.doubleValue());</span>
                 }
@@ -679,7 +679,7 @@ public class ImageReader {
 <span class="pc bpc" id="L679" title="3 of 4 branches missed.">            if (subjectDistanceField != null &amp;&amp;</span>
                     subjectDistanceField.fieldType instanceof FieldTypeRational) {
 <span class="nc" id="L681">                RationalNumber number = </span>
-                        (RationalNumber)subjectDistanceField.getValue();
+<span class="nc" id="L682">                        (RationalNumber)subjectDistanceField.getValue();</span>
 <span class="nc bnc" id="L683" title="All 2 branches missed.">                if (number != null) {</span>
 <span class="nc" id="L684">                    result.setSubjectDistance(number.doubleValue());</span>
                 }
@@ -691,7 +691,7 @@ public class ImageReader {
 <span class="pc bpc" id="L691" title="1 of 4 branches missed.">            if (shutterSpeedField != null &amp;&amp;</span>
                     shutterSpeedField.fieldType instanceof FieldTypeRational) {
 <span class="fc" id="L693">                RationalNumber number =</span>
-                        (RationalNumber)shutterSpeedField.getValue();
+<span class="fc" id="L694">                        (RationalNumber)shutterSpeedField.getValue();</span>
 <span class="pc bpc" id="L695" title="1 of 2 branches missed.">                if (number != null) {</span>
 <span class="fc" id="L696">                    result.setShutterSpeedValue(number.doubleValue());</span>
                 }
@@ -732,4 +732,4 @@ public class ImageReader {
 <span class="fc" id="L732">        return result;</span>
     }
 }
-</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
