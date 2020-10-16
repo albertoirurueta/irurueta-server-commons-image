@@ -114,9 +114,9 @@ public class ImageReaderTest {
         assertEquals(metadata.getMaker(), "Canon");
         assertEquals(metadata.getModel(), "Canon PowerShot SX200 IS");
         assertEquals(metadata.getFocalLength(), 5.0, 0.001);
-        assertNull(metadata.getFocalPlaneXResolution());
-        assertNull(metadata.getFocalPlaneYResolution());
-        assertNull(metadata.getFocalPlaneResolutionUnit());
+        assertNotNull(metadata.getFocalPlaneXResolution());
+        assertNotNull(metadata.getFocalPlaneYResolution());
+        assertEquals(metadata.getFocalPlaneResolutionUnit(), Unit.INCHES);
         assertEquals(metadata.getOrientation().getValue(), 1);
         assertNull(metadata.getLocation());
         

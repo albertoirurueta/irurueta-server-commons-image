@@ -15,8 +15,20 @@
  */
 package com.irurueta.server.commons.image;
 
-import static com.irurueta.server.commons.image.ImageOrientation.LEFT_BOTTOM;
-import static com.irurueta.server.commons.image.ImageOrientation.RIGHT_TOP;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.imaging.ImageFormats;
+import org.apache.commons.imaging.ImageInfo;
+import org.apache.commons.imaging.ImageReadException;
+import org.apache.commons.imaging.Imaging;
+import org.apache.commons.imaging.common.RationalNumber;
+import org.apache.commons.imaging.formats.jpeg.JpegImageMetadata;
+import org.apache.commons.imaging.formats.tiff.TiffField;
+import org.apache.commons.imaging.formats.tiff.constants.ExifTagConstants;
+import org.apache.commons.imaging.formats.tiff.constants.GpsTagConstants;
+import org.apache.commons.imaging.formats.tiff.constants.TiffTagConstants;
+import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeRational;
+import org.apache.commons.imaging.formats.tiff.fieldtypes.FieldTypeShort;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,18 +37,6 @@ import java.lang.ref.SoftReference;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.zip.CRC32;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.sanselan.ImageInfo;
-import org.apache.sanselan.ImageReadException;
-import org.apache.sanselan.Sanselan;
-import org.apache.sanselan.common.RationalNumber;
-import org.apache.sanselan.formats.jpeg.JpegImageMetadata;
-import org.apache.sanselan.formats.tiff.TiffField;
-import org.apache.sanselan.formats.tiff.constants.ExifTagConstants;
-import org.apache.sanselan.formats.tiff.constants.TiffConstants;
-import org.apache.sanselan.formats.tiff.constants.TiffTagConstants;
-import org.apache.sanselan.formats.tiff.fieldtypes.FieldTypeRational;
-import org.apache.sanselan.formats.tiff.fieldtypes.FieldTypeShort;
 
 /**
  * Class to read image metadata.
@@ -137,7 +137,7 @@ public class ImageReader {
             IOException {
         try {
             ImageReaderResult result = new ImageReaderResult();
-            ImageInfo imageInfo = Sanselan.getImageInfo(f);
+            ImageInfo imageInfo = Imaging.getImageInfo(f);
             result.setValid(internalCheckValid(imageInfo));
             result.setFileLength(f.length());
             result.setLastModified(f.lastModified());
@@ -150,8 +150,8 @@ public class ImageReader {
             result.setMetadata(metadata);
             
             //if file is JPEG read its exif data
-            if (imageInfo.getFormat() == 
-                    org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG) {
+            if (imageInfo.getFormat() ==
+                    ImageFormats.JPEG) {
                 internalReadExif(f, imageInfo, metadata);
             } else {
                 //if not, at least set image size so we can generate thumbnails
@@ -176,7 +176,7 @@ public class ImageReader {
     public static boolean checkValidFile(File f) throws InvalidImageException, 
             IOException {
         try {
-            ImageInfo imageInfo = Sanselan.getImageInfo(f);
+            ImageInfo imageInfo = Imaging.getImageInfo(f);
             return internalCheckValid(imageInfo);
         } catch (IOException e) {
             throw e;
@@ -209,8 +209,7 @@ public class ImageReader {
                 try {
                     digest = MessageDigest.getInstance("MD5");
                     digest.reset();
-                } catch (NoSuchAlgorithmException e) {
-                    digest = null;
+                } catch (NoSuchAlgorithmException ignore) {
                 }
             }
 
@@ -242,14 +241,14 @@ public class ImageReader {
      */
     private com.irurueta.server.commons.image.ImageFormat getImageFormat(
             ImageInfo imageInfo) {
-        org.apache.sanselan.ImageFormat format = imageInfo.getFormat();
-        if (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG) {
+        org.apache.commons.imaging.ImageFormat format = imageInfo.getFormat();
+        if (format == ImageFormats.JPEG) {
             return com.irurueta.server.commons.image.ImageFormat.JPEG;
-        } else if (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_PNG) {
+        } else if (format == ImageFormats.PNG) {
             return com.irurueta.server.commons.image.ImageFormat.PNG;
-        } else if (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_GIF) {
+        } else if (format == ImageFormats.GIF) {
             return com.irurueta.server.commons.image.ImageFormat.GIF;
-        } else if (format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_BMP) {
+        } else if (format == ImageFormats.BMP) {
             return com.irurueta.server.commons.image.ImageFormat.BMP;
         } else {
             return com.irurueta.server.commons.image.ImageFormat.UNKNOWN;
@@ -263,11 +262,11 @@ public class ImageReader {
      * @return if image file has one of the supported formats.
      */
     private static boolean internalCheckValid(ImageInfo imageInfo) {
-        org.apache.sanselan.ImageFormat format = imageInfo.getFormat();
-        return format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_JPEG ||
-                format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_PNG ||
-                format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_GIF ||
-                format == org.apache.sanselan.ImageFormat.IMAGE_FORMAT_BMP;
+        org.apache.commons.imaging.ImageFormat format = imageInfo.getFormat();
+        return format == ImageFormats.JPEG ||
+                format == ImageFormats.PNG ||
+                format == ImageFormats.GIF ||
+                format == ImageFormats.BMP;
     }   
     
     /**
@@ -288,7 +287,7 @@ public class ImageReader {
             result.setHeight(imageInfo.getHeight());
             
             JpegImageMetadata metadata = 
-                    (JpegImageMetadata)Sanselan.getMetadata(f);
+                    (JpegImageMetadata)Imaging.getMetadata(f);
             if (metadata == null) {
                 return;
             }
@@ -317,9 +316,9 @@ public class ImageReader {
             
             //Focal length
             TiffField focalLengthField = metadata.findEXIFValue(
-                    TiffConstants.EXIF_TAG_FOCAL_LENGTH);
+                    ExifTagConstants.EXIF_TAG_FOCAL_LENGTH);
             if (focalLengthField != null && 
-                    focalLengthField.fieldType instanceof FieldTypeRational) {
+                    focalLengthField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)focalLengthField.getValue();
                 if (number != null) {
@@ -329,9 +328,9 @@ public class ImageReader {
             
             //Focal plane x resolution
             TiffField focalPlaneXResolutionField = metadata.findEXIFValue(
-                    TiffConstants.EXIF_TAG_FOCAL_PLANE_XRESOLUTION);
+                    ExifTagConstants.EXIF_TAG_FOCAL_PLANE_XRESOLUTION_EXIF_IFD);
             if (focalPlaneXResolutionField != null &&
-                    focalPlaneXResolutionField.fieldType instanceof FieldTypeRational) {
+                    focalPlaneXResolutionField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)focalPlaneXResolutionField.getValue();
                 if (number != null) {
@@ -341,9 +340,9 @@ public class ImageReader {
 
             //Focal plane y resolution
             TiffField focalPlaneYResolutionField = metadata.findEXIFValue(
-                    TiffConstants.EXIF_TAG_FOCAL_PLANE_YRESOLUTION);
+                    ExifTagConstants.EXIF_TAG_FOCAL_PLANE_YRESOLUTION_EXIF_IFD);
             if (focalPlaneYResolutionField != null &&
-                    focalPlaneYResolutionField.fieldType instanceof FieldTypeRational) {
+                    focalPlaneYResolutionField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)focalPlaneYResolutionField.getValue();
                 if (number != null) {
@@ -353,11 +352,11 @@ public class ImageReader {
             
             //Focal plane resolution unit
             TiffField focalPlaneResolutionUnitField = metadata.findEXIFValue(
-                    TiffConstants.EXIF_TAG_FOCAL_PLANE_RESOLUTION_UNIT);
+                    ExifTagConstants.EXIF_TAG_FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD);
             if (focalPlaneResolutionUnitField != null && 
-                    focalPlaneResolutionUnitField.fieldType instanceof FieldTypeShort) {
-                Integer number = 
-                        (Integer)focalPlaneResolutionUnitField.getValue();
+                    focalPlaneResolutionUnitField.getFieldType() instanceof FieldTypeShort) {
+                Short number =
+                        (Short)focalPlaneResolutionUnitField.getValue();
                 if (number != null) {
                     result.setFocalPlaneResolutionUnit(Unit.fromValue(number));
                 }
@@ -365,10 +364,10 @@ public class ImageReader {
             
             //Orientation
             TiffField orientationField = metadata.findEXIFValue(
-                    TiffConstants.EXIF_TAG_ORIENTATION);
+                    TiffTagConstants.TIFF_TAG_ORIENTATION);
             if (orientationField != null &&
-                    orientationField.fieldType instanceof FieldTypeShort) {
-                Integer number = (Integer)orientationField.getValue();
+                    orientationField.getFieldType() instanceof FieldTypeShort) {
+                Short number = (Short)orientationField.getValue();
                 if (number != null) {
                     result.setOrientation(ImageOrientation.fromValue(number));
                 }
@@ -377,10 +376,10 @@ public class ImageReader {
             //gps latitude
             Double latitude = null;
             TiffField gpsLatitudeField = metadata.findEXIFValue(
-                    TiffConstants.GPS_TAG_GPS_LATITUDE);
+                    GpsTagConstants.GPS_TAG_GPS_LATITUDE);
             if (gpsLatitudeField != null &&
-                    gpsLatitudeField.fieldType instanceof FieldTypeRational) {
-                RationalNumber gpsLatitude[] = 
+                    gpsLatitudeField.getFieldType() instanceof FieldTypeRational) {
+                RationalNumber[] gpsLatitude =
                         (RationalNumber[])gpsLatitudeField.getValue();
                 
                 if (gpsLatitude != null && gpsLatitude.length >= 3) {
@@ -390,10 +389,9 @@ public class ImageReader {
 
                     //obtain latitude ref
                     TiffField gpsLatitudeRefField = metadata.findEXIFValue(
-                        TiffConstants.GPS_TAG_GPS_LATITUDE_REF);
+                            GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF);
                     //set north by default
-                    String gpsLatitudeRef = TiffConstants.
-                            GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH;
+                    String gpsLatitudeRef = GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH;
                     if (gpsLatitudeRefField != null) {
                         gpsLatitudeRef = (String)gpsLatitudeRefField.getValue();
                     }
@@ -401,7 +399,7 @@ public class ImageReader {
                             gpsLatitudeMinutes.doubleValue() / 60.0 +
                             gpsLatitudeSeconds.doubleValue() / 3600.0;
                     if (!gpsLatitudeRef.toUpperCase().contains(
-                            TiffConstants.GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH.
+                            GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH.
                             toUpperCase())) {
                         tmp *= -1.0;
                     }
@@ -412,10 +410,10 @@ public class ImageReader {
             //gps longitude
             Double longitude = null;
             TiffField gpsLongitudeField = metadata.findEXIFValue(
-                    TiffConstants.GPS_TAG_GPS_LONGITUDE);            
+                    GpsTagConstants.GPS_TAG_GPS_LONGITUDE);
             if (gpsLongitudeField != null &&
-                    gpsLongitudeField.fieldType instanceof FieldTypeRational) {
-                RationalNumber gpsLongitude[] = (RationalNumber[])
+                    gpsLongitudeField.getFieldType() instanceof FieldTypeRational) {
+                RationalNumber[] gpsLongitude = (RationalNumber[])
                         gpsLongitudeField.getValue();
                             
                 if (gpsLongitude != null && gpsLongitude.length >= 3) {
@@ -425,10 +423,9 @@ public class ImageReader {
 
                     //obtain longitude ref
                     TiffField gpsLongitudeRefField = metadata.findEXIFValue(
-                        TiffConstants.GPS_TAG_GPS_LONGITUDE_REF);
+                        GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF);
                     //set east by default
-                    String gpsLongitudeRef = TiffConstants.
-                            GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST;
+                    String gpsLongitudeRef = GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST;
                     if (gpsLongitudeRefField != null) {
                         gpsLongitudeRef = (String)gpsLongitudeRefField.
                                 getValue();                    
@@ -437,7 +434,7 @@ public class ImageReader {
                                 gpsLongitudeMinutes.doubleValue() / 60.0 +
                                 gpsLongitudeSeconds.doubleValue() / 3600.0;
                     if (!gpsLongitudeRef.toUpperCase().contains(
-                            TiffConstants.GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST.
+                            GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST.
                             toUpperCase())) {
                         tmp *= -1.0;
                     }                
@@ -448,9 +445,9 @@ public class ImageReader {
             //gps altitude
             Double altitude = null;
             TiffField gpsAltitudeField = metadata.findEXIFValue(
-                    TiffConstants.GPS_TAG_GPS_ALTITUDE);
+                    GpsTagConstants.GPS_TAG_GPS_ALTITUDE);
             if (gpsAltitudeField != null &&
-                    gpsAltitudeField.fieldType instanceof FieldTypeRational) {
+                    gpsAltitudeField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)gpsAltitudeField.getValue();
                 if (number != null) {
@@ -458,15 +455,13 @@ public class ImageReader {
 
                     //check if above or under sea level
                     TiffField gpsAltitudeRefField = metadata.findEXIFValue(
-                            TiffConstants.GPS_TAG_GPS_ALTITUDE_REF);
-                    Integer above = TiffConstants.
-                            GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL;
+                            GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF);
+                    Short above = GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL;
                     if (gpsAltitudeRefField != null &&
-                            gpsAltitudeRefField.fieldType instanceof FieldTypeShort) {
-                        above = (Integer)gpsAltitudeRefField.getValue();
+                            gpsAltitudeRefField.getFieldType() instanceof FieldTypeShort) {
+                        above = (Short)gpsAltitudeRefField.getValue();
                     }   
-                    if (above != TiffConstants.
-                            GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL) {
+                    if (above != GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL) {
                         //below sea level
                         tmp *= -1.0;
                     }
@@ -477,8 +472,7 @@ public class ImageReader {
             GPSCoordinates coordinates = null;
             if (latitude != null && longitude != null && altitude != null) {
                 coordinates = new GPSCoordinates(latitude, longitude, altitude);
-            } else if (latitude != null && longitude != null && 
-                        altitude == null) {
+            } else if (latitude != null && longitude != null) { // altitude == null
                 coordinates = new GPSCoordinates(latitude, longitude);
             }
             
@@ -488,7 +482,7 @@ public class ImageReader {
             
             if (result.getOrientation() != null) {
                 //if orientation is available as exif data, check if width and
-                //height need to be exchangd
+                //height need to be exchanged
                 switch (result.getOrientation()) {
                     case RIGHT_TOP: 
                         //orientation == 6 (clockwise 270º)
@@ -529,7 +523,7 @@ public class ImageReader {
             TiffField documentNameField = metadata.findEXIFValue(
                     TiffTagConstants.TIFF_TAG_DOCUMENT_NAME);
             String documentName = null;
-            if (documentNameField != null) {
+            if (documentNameField != null && artistField != null) {
                 documentName = artistField.getValueDescription();
             }
             if (documentName != null) {
@@ -582,7 +576,7 @@ public class ImageReader {
             
             //Get camera serial number
             TiffField cameraSerialNumberField = metadata.findEXIFValue(
-                    ExifTagConstants.EXIF_TAG_CAMERA_SERIAL_NUMBER);
+                    ExifTagConstants.EXIF_TAG_BODY_SERIAL_NUMBER);
             String cameraSerialNumber = null;
             if (cameraSerialNumberField != null) {
                 cameraSerialNumber = 
@@ -591,12 +585,14 @@ public class ImageReader {
             if (cameraSerialNumber != null) {
                 result.setCameraSerialNumber(trim(cameraSerialNumber));
             }
+
+            // TODO: get lens serial number
             
             //Get digital zoom ratio
             TiffField digitalZoomRatioField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_DIGITAL_ZOOM_RATIO);
             if (digitalZoomRatioField != null && 
-                    digitalZoomRatioField.fieldType instanceof FieldTypeRational) {
+                    digitalZoomRatioField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)digitalZoomRatioField.getValue();
                 if (number != null) {
@@ -608,7 +604,7 @@ public class ImageReader {
             TiffField exposureTimeField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_EXPOSURE_TIME);
             if (exposureTimeField != null &&
-                    exposureTimeField.fieldType instanceof FieldTypeRational) {
+                    exposureTimeField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)exposureTimeField.getValue();
                 if (number != null) {
@@ -620,8 +616,8 @@ public class ImageReader {
             TiffField flashField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_FLASH);
             if (flashField != null &&
-                    flashField.fieldType instanceof FieldTypeShort) {
-                Integer number = (Integer)flashField.getValue();
+                    flashField.getFieldType() instanceof FieldTypeShort) {
+                Short number = (Short)flashField.getValue();
                 if (number != null) {
                     result.setFlash(Flash.fromValue(number));
                 }
@@ -629,9 +625,9 @@ public class ImageReader {
             
             //Get flash energy
             TiffField flashEnergyField = metadata.findEXIFValue(
-                    ExifTagConstants.EXIF_TAG_FLASH_ENERGY);
+                    ExifTagConstants.EXIF_TAG_FLASH_ENERGY_EXIF_IFD);
             if (flashEnergyField != null &&
-                    flashEnergyField.fieldType instanceof FieldTypeRational) {
+                    flashEnergyField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)flashEnergyField.getValue();
                 if (number != null) {
@@ -643,7 +639,7 @@ public class ImageReader {
             TiffField fNumberField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_FNUMBER);
             if (fNumberField != null && 
-                    fNumberField.fieldType instanceof FieldTypeRational) {
+                    fNumberField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number = (RationalNumber)fNumberField.getValue();
                 if (number != null) {
                     result.setFNumber(number.doubleValue());
@@ -654,7 +650,7 @@ public class ImageReader {
             TiffField focalLength35mmFormatField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_FOCAL_LENGTH_IN_35MM_FORMAT);
             if (focalLength35mmFormatField != null &&
-                    focalLength35mmFormatField.fieldType instanceof FieldTypeRational) {
+                    focalLength35mmFormatField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)focalLength35mmFormatField.getValue();
                 if (number != null) {
@@ -664,9 +660,9 @@ public class ImageReader {
             
             //Get unique camera model
             TiffField uniqueCameraModelField = metadata.findEXIFValue(
-                    ExifTagConstants.EXIF_TAG_UNIQUE_CAMERA_MODEL);
+                    ExifTagConstants.EXIF_TAG_MODEL_2);
             String uniqueCameraModel = null;
-            if (uniqueCameraModelField != null) {
+            if (uniqueCameraModelField != null && modelField != null) {
                 uniqueCameraModel = modelField.getValueDescription();
             }
             if (uniqueCameraModel != null) {
@@ -677,7 +673,7 @@ public class ImageReader {
             TiffField subjectDistanceField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_SUBJECT_DISTANCE);
             if (subjectDistanceField != null &&
-                    subjectDistanceField.fieldType instanceof FieldTypeRational) {
+                    subjectDistanceField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number = 
                         (RationalNumber)subjectDistanceField.getValue();
                 if (number != null) {
@@ -689,7 +685,7 @@ public class ImageReader {
             TiffField shutterSpeedField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_SHUTTER_SPEED_VALUE);
             if (shutterSpeedField != null &&
-                    shutterSpeedField.fieldType instanceof FieldTypeRational) {
+                    shutterSpeedField.getFieldType() instanceof FieldTypeRational) {
                 RationalNumber number =
                         (RationalNumber)shutterSpeedField.getValue();
                 if (number != null) {
@@ -701,10 +697,10 @@ public class ImageReader {
             TiffField isoField = metadata.findEXIFValue(
                     ExifTagConstants.EXIF_TAG_ISO);
             if (isoField != null &&
-                    isoField.fieldType instanceof FieldTypeShort) {
-                Integer number = (Integer)isoField.getValue();
+                    isoField.getFieldType() instanceof FieldTypeShort) {
+                Short number = (Short)isoField.getValue();
                 if (number != null) {
-                    result.setISO(number);
+                    result.setISO(number.intValue());
                 }
             }            
             

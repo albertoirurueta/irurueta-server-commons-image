@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e381eebd-200e-4700-aae4-f57657033f1c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_sanselan_sanselan_0_97_incubator.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.travis.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.travis.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/irurueta-server-commons-image.iml" beforeDir="false" afterPath="$PROJECT_DIR$/irurueta-server-commons-image.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/server/commons/image/ImageReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/server/commons/image/ImageReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/irurueta/server/commons/image/build-info.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/irurueta/server/commons/image/build-info.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/irurueta/server/commons/image/ImageReaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/irurueta/server/commons/image/ImageReaderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +63,7 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ThumbnailCreatorTest">
     <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android Application">
       <module name="" />
       <option name="DEPLOY" value="true" />
@@ -179,6 +184,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ImageReaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="irurueta-server-commons-image" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.irurueta.server.commons.image.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.irurueta.server.commons.image" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.server.commons.image.ImageReaderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ThumbnailCreatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="irurueta-server-commons-image" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.irurueta.server.commons.image.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.irurueta.server.commons.image" />
+      <option name="MAIN_CLASS_NAME" value="com.irurueta.server.commons.image.ThumbnailCreatorTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -238,8 +275,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="JUnit.All in irurueta-server-commons-image" />
+      <item itemvalue="JUnit.ImageReaderTest" />
+      <item itemvalue="JUnit.ThumbnailCreatorTest" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ThumbnailCreatorTest" />
+        <item itemvalue="JUnit.ImageReaderTest" />
         <item itemvalue="JUnit.All in irurueta-server-commons-image" />
       </list>
     </recent_temporary>
@@ -255,14 +299,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1464475663000</updated>
-      <workItem from="1602857159364" duration="1402000" />
+      <workItem from="1602857159364" duration="3590000" />
     </task>
     <servers />
-  </component>
-  <component name="TestHistory">
-    <history-entry file="All_in_irurueta-server-commons-image - 2016.05.29 at 00h 48m 02s.xml">
-      <configuration name="All in irurueta-server-commons-image" configurationId="JUnit" />
-    </history-entry>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
@@ -276,10 +315,34 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="507" y="123" key="SettingsEditor" timestamp="1602857256744">
+    <state width="1494" height="250" key="GridCell.Tab.0.bottom" timestamp="1602861324967">
       <screen x="0" y="23" width="1536" height="937" />
     </state>
-    <state x="507" y="123" key="SettingsEditor/0.23.1536.937@0.23.1536.937" timestamp="1602857256744" />
+    <state width="1494" height="250" key="GridCell.Tab.0.bottom/0.23.1536.937@0.23.1536.937" timestamp="1602861324967" />
+    <state width="1494" height="250" key="GridCell.Tab.0.center" timestamp="1602861324966">
+      <screen x="0" y="23" width="1536" height="937" />
+    </state>
+    <state width="1494" height="250" key="GridCell.Tab.0.center/0.23.1536.937@0.23.1536.937" timestamp="1602861324966" />
+    <state width="1494" height="250" key="GridCell.Tab.0.left" timestamp="1602861324966">
+      <screen x="0" y="23" width="1536" height="937" />
+    </state>
+    <state width="1494" height="250" key="GridCell.Tab.0.left/0.23.1536.937@0.23.1536.937" timestamp="1602861324966" />
+    <state width="1494" height="250" key="GridCell.Tab.0.right" timestamp="1602861324967">
+      <screen x="0" y="23" width="1536" height="937" />
+    </state>
+    <state width="1494" height="250" key="GridCell.Tab.0.right/0.23.1536.937@0.23.1536.937" timestamp="1602861324967" />
+    <state x="507" y="123" key="SettingsEditor" timestamp="1602860806086">
+      <screen x="0" y="23" width="1536" height="937" />
+    </state>
+    <state x="507" y="123" key="SettingsEditor/0.23.1536.937@0.23.1536.937" timestamp="1602860806086" />
+    <state x="104" y="123" width="1336" height="737" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1602860531223">
+      <screen x="0" y="23" width="1536" height="937" />
+    </state>
+    <state x="104" y="123" width="1336" height="737" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1536.937@0.23.1536.937" timestamp="1602860531223" />
+    <state x="453" y="246" width="598" height="490" key="find.popup" timestamp="1602861067615">
+      <screen x="0" y="23" width="1536" height="937" />
+    </state>
+    <state x="453" y="246" width="598" height="490" key="find.popup/0.23.1536.937@0.23.1536.937" timestamp="1602861067615" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
