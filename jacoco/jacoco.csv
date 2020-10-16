@@ -5,7 +5,7 @@ com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,Uni
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ImageOrientation,0,134,0,9,0,24,0,12,0,4
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ImageException,0,16,0,0,0,8,0,4,0,4
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,BuildInfo,12,113,2,4,4,31,2,11,0,10
-com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ImageReader,190,837,93,137,56,248,82,46,1,12
+com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ImageReader,147,882,88,144,46,275,81,48,1,12
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ThumbnailFormat,0,123,0,19,0,29,0,16,0,5
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ImageFormat,0,54,0,0,0,6,0,1,0,1
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ImageMetadata,0,199,0,0,0,85,0,57,0,57

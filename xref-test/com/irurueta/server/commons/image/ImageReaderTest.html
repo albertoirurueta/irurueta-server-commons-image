@@ -122,9 +122,9 @@
 <a class="jxr_linenumber" name="L114" href="#L114">114</a>         assertEquals(metadata.getMaker(), <span class="jxr_string">"Canon"</span>);
 <a class="jxr_linenumber" name="L115" href="#L115">115</a>         assertEquals(metadata.getModel(), <span class="jxr_string">"Canon PowerShot SX200 IS"</span>);
 <a class="jxr_linenumber" name="L116" href="#L116">116</a>         assertEquals(metadata.getFocalLength(), 5.0, 0.001);
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>         assertNull(metadata.getFocalPlaneXResolution());
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>         assertNull(metadata.getFocalPlaneYResolution());
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>         assertNull(metadata.getFocalPlaneResolutionUnit());
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>         assertNotNull(metadata.getFocalPlaneXResolution());
+<a class="jxr_linenumber" name="L118" href="#L118">118</a>         assertNotNull(metadata.getFocalPlaneYResolution());
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>         assertEquals(metadata.getFocalPlaneResolutionUnit(), Unit.INCHES);
 <a class="jxr_linenumber" name="L120" href="#L120">120</a>         assertEquals(metadata.getOrientation().getValue(), 1);
 <a class="jxr_linenumber" name="L121" href="#L121">121</a>         assertNull(metadata.getLocation());
 <a class="jxr_linenumber" name="L122" href="#L122">122</a>         
