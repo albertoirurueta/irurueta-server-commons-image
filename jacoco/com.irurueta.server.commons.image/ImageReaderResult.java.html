@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageReaderResult.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ImageReaderResult.java</span></div><h1>ImageReaderResult.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageReaderResult.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ImageReaderResult.java</span></div><h1>ImageReaderResult.java</h1><pre class="source lang-java linenums">/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -21,7 +21,7 @@ package com.irurueta.server.commons.image;
  * This structure contains information such as image EXIF metadata, image 
  * format, file length, CRC, MD5, etc.
  */
-public class ImageReaderResult {
+<span class="fc" id="L24">public class ImageReaderResult {</span>
     /**
      * Indicates if a file contains a valid recognized image and is not 
      * corrupted.
@@ -63,19 +63,14 @@ public class ImageReaderResult {
      * Detected image format. Supported formats are: JPG, PNG, GIF, BMP.
      */
 <span class="fc" id="L65">    private ImageFormat mImageFormat = ImageFormat.UNKNOWN;</span>
-    
-    /**
-     * Constructor.
-     */
-<span class="fc" id="L70">    public ImageReaderResult() { }</span>
-    
+
     /**
      * Indicates if a file contains a valid recognized image and is not 
      * corrupted.
      * @return true if file is valid, false otherwise.
      */
     public boolean isValid() {
-<span class="fc" id="L78">        return mValid;</span>
+<span class="fc" id="L73">        return mValid;</span>
     }
     
     /**
@@ -83,9 +78,9 @@ public class ImageReaderResult {
      * corrupted.
      * @param valid true if file is valid, false otherwise.
      */
-    public void setValid(boolean valid) {
-<span class="fc" id="L87">        mValid = valid;</span>
-<span class="fc" id="L88">    }</span>
+    public void setValid(final boolean valid) {
+<span class="fc" id="L82">        mValid = valid;</span>
+<span class="fc" id="L83">    }</span>
     
     /**
      * Returns CRC hash value of image file.
@@ -94,7 +89,7 @@ public class ImageReaderResult {
      * @return CRC hash value of image file.
      */
     public Long getCrc() {
-<span class="fc" id="L97">        return mCrc;</span>
+<span class="fc" id="L92">        return mCrc;</span>
     }
     
     /**
@@ -103,9 +98,9 @@ public class ImageReaderResult {
      * network.
      * @param crc CRC hash value of image file to be set.
      */
-    public void setCrc(Long crc) {
-<span class="fc" id="L107">        mCrc = crc;</span>
-<span class="fc" id="L108">    }</span>
+    public void setCrc(final Long crc) {
+<span class="fc" id="L102">        mCrc = crc;</span>
+<span class="fc" id="L103">    }</span>
     
     /**
      * Returns MD5 hash value of image file.
@@ -115,7 +110,7 @@ public class ImageReaderResult {
      * @return MD5 hash value of image file.
      */
     public String getMd5() {
-<span class="fc" id="L118">        return mMd5;</span>
+<span class="fc" id="L113">        return mMd5;</span>
     }
     
     /**
@@ -125,25 +120,25 @@ public class ImageReaderResult {
      * more expensive.
      * @param md5 MD5 hash value of image file to be set.
      */
-    public void setMd5(String md5) {
-<span class="fc" id="L129">        this.mMd5 = md5;</span>
-<span class="fc" id="L130">    }</span>
+    public void setMd5(final String md5) {
+<span class="fc" id="L124">        this.mMd5 = md5;</span>
+<span class="fc" id="L125">    }</span>
     
     /**
      * Returns image file length in bytes.
      * @return image file length in bytes.
      */
     public long getFileLength() {
-<span class="fc" id="L137">        return mFileLength;</span>
+<span class="fc" id="L132">        return mFileLength;</span>
     }
     
     /**
      * Sets image file length in bytes.
      * @param fileLength image file length in bytes.
      */
-    public void setFileLength(long fileLength) {
-<span class="fc" id="L145">        mFileLength = fileLength;</span>
-<span class="fc" id="L146">    }</span>
+    public void setFileLength(final long fileLength) {
+<span class="fc" id="L140">        mFileLength = fileLength;</span>
+<span class="fc" id="L141">    }</span>
     
     /**
      * Returns timestamp when image file was last modified as the number of
@@ -151,7 +146,7 @@ public class ImageReaderResult {
      * @return timestamp when image file was last modified.
      */
     public long getLastModified() {
-<span class="fc" id="L154">        return mLastModified;</span>
+<span class="fc" id="L149">        return mLastModified;</span>
     }
     
     /**
@@ -159,9 +154,9 @@ public class ImageReaderResult {
      * milliseconds passed since epoch time (January 1st, 1970).
      * @param lastModified timestamp when image file was last modified.
      */
-    public void setLastModified(long lastModified) {
-<span class="fc" id="L163">        mLastModified = lastModified;</span>
-<span class="fc" id="L164">    }</span>
+    public void setLastModified(final long lastModified) {
+<span class="fc" id="L158">        mLastModified = lastModified;</span>
+<span class="fc" id="L159">    }</span>
     
     /**
      * Returns MIME content type assigned to image file depending on detected 
@@ -169,7 +164,7 @@ public class ImageReaderResult {
      * @return MIME content type assigned to image.
      */
     public String getContentType() {
-<span class="fc" id="L172">        return mContentType;</span>
+<span class="fc" id="L167">        return mContentType;</span>
     }
     
     /**
@@ -177,9 +172,9 @@ public class ImageReaderResult {
      * image format (i.e. image/jpeg or image/png).
      * @param contentType MIME content type to be assigned to image.
      */
-    public void setContentType(String contentType) {
-<span class="fc" id="L181">        mContentType = contentType;</span>
-<span class="fc" id="L182">    }</span>
+    public void setContentType(final String contentType) {
+<span class="fc" id="L176">        mContentType = contentType;</span>
+<span class="fc" id="L177">    }</span>
     
     /**
      * Returns image metadata such as image size, and EXIF tags such as GPS 
@@ -187,7 +182,7 @@ public class ImageReaderResult {
      * @return image metadata.
      */
     public ImageMetadata getMetadata() {
-<span class="fc" id="L190">        return mMetadata;</span>
+<span class="fc" id="L185">        return mMetadata;</span>
     }
     
     /**
@@ -195,24 +190,24 @@ public class ImageReaderResult {
      * location.
      * @param metadata image metadata to be set.
      */
-    public void setMetadata(ImageMetadata metadata) {
-<span class="fc" id="L199">        mMetadata = metadata;</span>
-<span class="fc" id="L200">    }</span>
+    public void setMetadata(final ImageMetadata metadata) {
+<span class="fc" id="L194">        mMetadata = metadata;</span>
+<span class="fc" id="L195">    }</span>
     
     /**
      * Returns detected image format. Supported formats are: JPG, PNG, GIF, BMP
      * @return detected image format.
      */
     public ImageFormat getImageFormat() {
-<span class="fc" id="L207">        return mImageFormat;</span>
+<span class="fc" id="L202">        return mImageFormat;</span>
     }
     
     /**
      * Sets detected image format. Supported formats are: JPG, PNG, GIF, BMP.
      * @param imageFormat detected image format.
      */
-    public void setImageFormat(ImageFormat imageFormat) {
-<span class="fc" id="L215">        mImageFormat = imageFormat;</span>
-<span class="fc" id="L216">    }    </span>
+    public void setImageFormat(final ImageFormat imageFormat) {
+<span class="fc" id="L210">        mImageFormat = imageFormat;</span>
+<span class="fc" id="L211">    }    </span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

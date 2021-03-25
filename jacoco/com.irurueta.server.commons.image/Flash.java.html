@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Flash.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">Flash.java</span></div><h1>Flash.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Flash.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">Flash.java</span></div><h1>Flash.java</h1><pre class="source lang-java linenums">/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -138,13 +138,13 @@ package com.irurueta.server.commons.image;
     /**
      * Integer value representing flash mode.
      */
-    private int mValue;
+    private final int mValue;
     
     /**
      * Constructor.
      * @param value integer value representing flash mode.
      */
-<span class="fc" id="L147">    Flash(int value) {</span>
+<span class="fc" id="L147">    Flash(final int value) {</span>
 <span class="fc" id="L148">        mValue = value;</span>
 <span class="fc" id="L149">    }</span>
     
@@ -183,7 +183,7 @@ package com.irurueta.server.commons.image;
             case 0x0049: 
                 //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE
             case 0x004D: 
-                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED;
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
             case 0x004F: 
                 //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
             case 0x0059: 
@@ -260,7 +260,7 @@ package com.irurueta.server.commons.image;
      * @param value integer representation of flash mode.
      * @return flash mode.
      */
-    public static Flash fromValue(int value) {
+    public static Flash fromValue(final int value) {
 <span class="fc bfc" id="L264" title="All 23 branches covered.">        switch (value) {</span>
             case 0x0000:
 <span class="fc" id="L266">                return FLASH_DID_NOT_FIRE;</span>

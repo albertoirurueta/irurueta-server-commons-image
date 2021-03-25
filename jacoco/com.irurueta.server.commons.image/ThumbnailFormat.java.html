@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThumbnailFormat.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ThumbnailFormat.java</span></div><h1>ThumbnailFormat.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ThumbnailFormat.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ThumbnailFormat.java</span></div><h1>ThumbnailFormat.java</h1><pre class="source lang-java linenums">/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -47,13 +47,13 @@ package com.irurueta.server.commons.image;
     /**
      * String representation or file extension of format.
      */
-    private String mValue;
+    private final String mValue;
     
     /**
      * Constructor.
      * @param value string representation or file extension of format.
      */
-<span class="fc" id="L56">    ThumbnailFormat(String value) {</span>
+<span class="fc" id="L56">    ThumbnailFormat(final String value) {</span>
 <span class="fc" id="L57">        mValue = value;</span>
 <span class="fc" id="L58">    }</span>
     
@@ -71,7 +71,7 @@ package com.irurueta.server.commons.image;
      * @param value string representation or file extension.
      * @return thumbnail format.
      */
-    public static ThumbnailFormat fromValue(String value) {
+    public static ThumbnailFormat fromValue(final String value) {
 <span class="fc bfc" id="L75" title="All 2 branches covered.">        if (value == null) {</span>
 <span class="fc" id="L76">            return UNKNOWN;</span>
         }
@@ -94,7 +94,7 @@ package com.irurueta.server.commons.image;
      * @param format image format.
      * @return thumbnail format.
      */
-    public static ThumbnailFormat fromImageFormat(ImageFormat format) {
+    public static ThumbnailFormat fromImageFormat(final ImageFormat format) {
 <span class="fc bfc" id="L98" title="All 2 branches covered.">        if (format == null) {</span>
 <span class="fc" id="L99">            return ThumbnailFormat.UNKNOWN;</span>
         }

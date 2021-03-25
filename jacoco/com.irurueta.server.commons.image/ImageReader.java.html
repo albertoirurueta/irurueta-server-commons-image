@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageReader.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ImageReader.java</span></div><h1>ImageReader.java</h1><pre class="source lang-java linenums">/**
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ImageReader.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">com.irurueta:irurueta-server-commons-image</a> &gt; <a href="index.source.html" class="el_package">com.irurueta.server.commons.image</a> &gt; <span class="el_source">ImageReader.java</span></div><h1>ImageReader.java</h1><pre class="source lang-java linenums">/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
@@ -46,686 +46,700 @@ public class ImageReader {
      * Constant indicating if CRC is computed by default.
      */
     public static final boolean DEFAULT_COMPUTE_CRC = true;
-    
+
     /**
      * Constant indicating if MD5 hash is computed by default.
      */
     public static final boolean DEFAULT_COMPUTE_MD5 = true;
-    
+
     /**
      * Buffer size to compute CRC and MD5.
      */
     public static final int BUFFER_SIZE = 1024;
-    
+
     /**
      * Reference to singleton instance of this class.
      */
     private static SoftReference&lt;ImageReader&gt; mReference;
-    
+
     /**
      * Indicates if CRC will be computed when reading image metadata.
      */
 <span class="fc" id="L68">    private volatile boolean mComputeCrc = DEFAULT_COMPUTE_CRC;</span>
-    
+
     /**
      * Indicates if MD5 will be computed when reading image metadata.
      */
 <span class="fc" id="L73">    private volatile boolean mComputeMd5 = DEFAULT_COMPUTE_MD5;</span>
-        
+
     /**
      * Constructor.
      */
-<span class="fc" id="L78">    private ImageReader() { }</span>
-    
+<span class="fc" id="L78">    private ImageReader() {</span>
+<span class="fc" id="L79">    }</span>
+
     /**
      * Factory method. Creates or returns singleton instance.
+     *
      * @return singleton instance.
      */
     public static synchronized ImageReader getInstance() {
         ImageReader reader;
-<span class="pc bpc" id="L86" title="1 of 4 branches missed.">        if (mReference == null || (reader = mReference.get()) == null) {</span>
-<span class="fc" id="L87">            reader = new ImageReader();</span>
-<span class="fc" id="L88">            mReference = new SoftReference&lt;&gt;(reader);</span>
+<span class="pc bpc" id="L88" title="1 of 4 branches missed.">        if (mReference == null || (reader = mReference.get()) == null) {</span>
+<span class="fc" id="L89">            reader = new ImageReader();</span>
+<span class="fc" id="L90">            mReference = new SoftReference&lt;&gt;(reader);</span>
         }
-<span class="fc" id="L90">        return reader;</span>
+<span class="fc" id="L92">        return reader;</span>
     }
-    
+
     /**
      * Indicates if CRC computation is enabled.
+     *
      * @return true if CRC computation is enabled, false otherwise.
      */
     public synchronized boolean isComputeCrcEnabled() {
-<span class="fc" id="L98">        return mComputeCrc;</span>
+<span class="fc" id="L101">        return mComputeCrc;</span>
     }
-    
+
     /**
      * Specifies whether CRC computation is enabled.
-     * @param computeCrc true if CRC computation must be enabled, false 
-     * otherwise.
+     *
+     * @param computeCrc true if CRC computation must be enabled, false
+     *                   otherwise.
      */
-    public synchronized void setComputeCrcEnabled(boolean computeCrc) {
-<span class="fc" id="L107">        this.mComputeCrc = computeCrc;</span>
-<span class="fc" id="L108">    }</span>
-    
+    public synchronized void setComputeCrcEnabled(final boolean computeCrc) {
+<span class="fc" id="L111">        this.mComputeCrc = computeCrc;</span>
+<span class="fc" id="L112">    }</span>
+
     /**
      * Indicates if MD5 hash computation is enabled.
+     *
      * @return true if MD5 computation is enabled, false otherwise.
      */
     public synchronized boolean isComputeMd5Enabled() {
-<span class="fc" id="L115">        return mComputeMd5;</span>
+<span class="fc" id="L120">        return mComputeMd5;</span>
     }
-    
+
     /**
      * Specifies whether MD5 hash computation is enabled.
-     * @param computeMd5 true if MD5 computation must be enabled, false 
-     * otherwise.
+     *
+     * @param computeMd5 true if MD5 computation must be enabled, false
+     *                   otherwise.
      */
-    public synchronized void setComputeMd5Enabled(boolean computeMd5) {
-<span class="fc" id="L124">        this.mComputeMd5 = computeMd5;</span>
-<span class="fc" id="L125">    }</span>
-    
+    public synchronized void setComputeMd5Enabled(final boolean computeMd5) {
+<span class="fc" id="L130">        this.mComputeMd5 = computeMd5;</span>
+<span class="fc" id="L131">    }</span>
+
     /**
      * Reads image metadata from provided image file.
+     *
      * @param f file containing an image in one of the supported formats (jpg,
-     * png, gif or bmp).
+     *          png, gif or bmp).
      * @return result containing image metadata and image file information.
-     * @throws InvalidImageException throws if file is corrupted, contains 
-     * invalid data, is not an image or format is not supported.
-     * @throws IOException if an I/O error occurs.
+     * @throws InvalidImageException throws if file is corrupted, contains
+     *                               invalid data, is not an image or format is not supported.
+     * @throws IOException           if an I/O error occurs.
      */
-    public ImageReaderResult readImage(File f) throws InvalidImageException, 
+    public ImageReaderResult readImage(final File f) throws InvalidImageException,
             IOException {
         try {
-<span class="fc" id="L139">            ImageReaderResult result = new ImageReaderResult();</span>
-<span class="fc" id="L140">            ImageInfo imageInfo = Imaging.getImageInfo(f);</span>
-<span class="fc" id="L141">            result.setValid(internalCheckValid(imageInfo));</span>
-<span class="fc" id="L142">            result.setFileLength(f.length());</span>
-<span class="fc" id="L143">            result.setLastModified(f.lastModified());</span>
-            
-            //Read metadata
-<span class="fc" id="L146">            result.setContentType(imageInfo.getMimeType());</span>
-<span class="fc" id="L147">            result.setImageFormat(getImageFormat(imageInfo));</span>
-            
-<span class="fc" id="L149">            ImageMetadata metadata = new ImageMetadata();</span>
-<span class="fc" id="L150">            result.setMetadata(metadata);</span>
-            
-            //if file is JPEG read its exif data
-<span class="fc bfc" id="L153" title="All 2 branches covered.">            if (imageInfo.getFormat() ==</span>
+<span class="fc" id="L146">            final ImageReaderResult result = new ImageReaderResult();</span>
+<span class="fc" id="L147">            final ImageInfo imageInfo = Imaging.getImageInfo(f);</span>
+<span class="fc" id="L148">            result.setValid(internalCheckValid(imageInfo));</span>
+<span class="fc" id="L149">            result.setFileLength(f.length());</span>
+<span class="fc" id="L150">            result.setLastModified(f.lastModified());</span>
+
+            // Read metadata
+<span class="fc" id="L153">            result.setContentType(imageInfo.getMimeType());</span>
+<span class="fc" id="L154">            result.setImageFormat(getImageFormat(imageInfo));</span>
+
+<span class="fc" id="L156">            final ImageMetadata metadata = new ImageMetadata();</span>
+<span class="fc" id="L157">            result.setMetadata(metadata);</span>
+
+            // if file is JPEG read its exif data
+<span class="fc bfc" id="L160" title="All 2 branches covered.">            if (imageInfo.getFormat() ==</span>
                     ImageFormats.JPEG) {
-<span class="fc" id="L155">                internalReadExif(f, imageInfo, metadata);</span>
+<span class="fc" id="L162">                internalReadExif(f, imageInfo, metadata);</span>
             } else {
-                //if not, at least set image size so we can generate thumbnails
-<span class="fc" id="L158">                metadata.setWidth(imageInfo.getWidth());</span>
-<span class="fc" id="L159">                metadata.setHeight(imageInfo.getHeight());</span>
-            }            
-        
-<span class="fc" id="L162">            computeCRCandMd5(f, result);</span>
-<span class="fc" id="L163">            return result;</span>
-<span class="nc" id="L164">        } catch (ImageReadException e) {</span>
-<span class="nc" id="L165">            throw new InvalidImageException(e);</span>
+                // if not, at least set image size so we can generate thumbnails
+<span class="fc" id="L165">                metadata.setWidth(imageInfo.getWidth());</span>
+<span class="fc" id="L166">                metadata.setHeight(imageInfo.getHeight());</span>
+            }
+
+<span class="fc" id="L169">            computeCRCandMd5(f, result);</span>
+<span class="fc" id="L170">            return result;</span>
+<span class="nc" id="L171">        } catch (final ImageReadException e) {</span>
+<span class="nc" id="L172">            throw new InvalidImageException(e);</span>
         }
     }
-    
+
     /**
      * Check if valid is one of the supported image formats.
+     *
      * @param f an image file.
      * @return true if file appears to be valid, false otherwise.
      * @throws InvalidImageException if image file is corrupted.
-     * @throws IOException if an I/O error occurs.
+     * @throws IOException           if an I/O error occurs.
      */
-    public static boolean checkValidFile(File f) throws InvalidImageException, 
+    public static boolean checkValidFile(final File f) throws InvalidImageException,
             IOException {
         try {
-<span class="nc" id="L179">            ImageInfo imageInfo = Imaging.getImageInfo(f);</span>
-<span class="nc" id="L180">            return internalCheckValid(imageInfo);</span>
-<span class="nc" id="L181">        } catch (IOException e) {</span>
-<span class="nc" id="L182">            throw e;</span>
-<span class="nc" id="L183">        } catch (Throwable t) {</span>
-<span class="nc" id="L184">            throw new InvalidImageException(t);</span>
+<span class="nc" id="L187">            final ImageInfo imageInfo = Imaging.getImageInfo(f);</span>
+<span class="nc" id="L188">            return internalCheckValid(imageInfo);</span>
+<span class="nc" id="L189">        } catch (final IOException e) {</span>
+<span class="nc" id="L190">            throw e;</span>
+<span class="nc" id="L191">        } catch (Exception e) {</span>
+<span class="nc" id="L192">            throw new InvalidImageException(e);</span>
         }
     }
-    
+
     /**
      * Computes CRC and MD5 hashes for provided file and the results get stored
      * in provided result instance.
-     * @param f file to compute CRC and MD5 hashes.
+     *
+     * @param f      file to compute CRC and MD5 hashes.
      * @param result instance where CRC and MD5 will be stored.
      * @throws IOException if an I/O error occurs.
      */
-    private void computeCRCandMd5(File f, ImageReaderResult result) 
+    private void computeCRCandMd5(final File f, final ImageReaderResult result)
             throws IOException {
-<span class="pc bpc" id="L197" title="2 of 4 branches missed.">        if (f == null || result == null) {</span>
-<span class="nc" id="L198">            return;</span>
+<span class="pc bpc" id="L206" title="2 of 4 branches missed.">        if (f == null || result == null) {</span>
+<span class="nc" id="L207">            return;</span>
         }
-        
-<span class="fc" id="L201">        try (InputStream stream = new FileInputStream(f)) {</span>
-<span class="fc" id="L202">            CRC32 crc = null;</span>
-<span class="pc bpc" id="L203" title="1 of 2 branches missed.">            if (mComputeCrc) {</span>
-<span class="fc" id="L204">                crc = new CRC32();</span>
+
+<span class="fc" id="L210">        try (final InputStream stream = new FileInputStream(f)) {</span>
+<span class="fc" id="L211">            CRC32 crc = null;</span>
+<span class="pc bpc" id="L212" title="1 of 2 branches missed.">            if (mComputeCrc) {</span>
+<span class="fc" id="L213">                crc = new CRC32();</span>
             }
 
-<span class="fc" id="L207">            MessageDigest digest = null;</span>
-<span class="pc bpc" id="L208" title="1 of 2 branches missed.">            if (mComputeMd5) {</span>
+<span class="fc" id="L216">            MessageDigest digest = null;</span>
+<span class="pc bpc" id="L217" title="1 of 2 branches missed.">            if (mComputeMd5) {</span>
                 try {
-<span class="fc" id="L210">                    digest = MessageDigest.getInstance(&quot;MD5&quot;);</span>
-<span class="fc" id="L211">                    digest.reset();</span>
-<span class="nc" id="L212">                } catch (NoSuchAlgorithmException ignore) {</span>
-<span class="fc" id="L213">                }</span>
+<span class="fc" id="L219">                    digest = MessageDigest.getInstance(&quot;MD5&quot;);</span>
+<span class="fc" id="L220">                    digest.reset();</span>
+<span class="nc" id="L221">                } catch (final NoSuchAlgorithmException e) {</span>
+<span class="nc" id="L222">                    throw new IOException(e);</span>
+<span class="fc" id="L223">                }</span>
             }
 
-            
-<span class="fc" id="L217">            byte [] buffer = new byte[BUFFER_SIZE];</span>
+
+<span class="fc" id="L227">            final byte[] buffer = new byte[BUFFER_SIZE];</span>
             int n;
-<span class="fc bfc" id="L219" title="All 2 branches covered.">            while ((n = stream.read(buffer)) &gt; 0) {</span>
-<span class="pc bpc" id="L220" title="1 of 2 branches missed.">                if (crc != null) {</span>
-<span class="fc" id="L221">                    crc.update(buffer, 0, n);</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">            while ((n = stream.read(buffer)) &gt; 0) {</span>
+<span class="pc bpc" id="L230" title="1 of 2 branches missed.">                if (crc != null) {</span>
+<span class="fc" id="L231">                    crc.update(buffer, 0, n);</span>
                 }
-<span class="pc bpc" id="L223" title="1 of 2 branches missed.">                if (digest != null) {</span>
-<span class="fc" id="L224">                    digest.update(buffer, 0, n);</span>
+<span class="pc bpc" id="L233" title="1 of 2 branches missed.">                if (digest != null) {</span>
+<span class="fc" id="L234">                    digest.update(buffer, 0, n);</span>
                 }
             }
-            
-<span class="pc bpc" id="L228" title="1 of 2 branches missed.">            if (crc != null) {</span>
-<span class="fc" id="L229">                result.setCrc(crc.getValue());</span>
+
+<span class="pc bpc" id="L238" title="1 of 2 branches missed.">            if (crc != null) {</span>
+<span class="fc" id="L239">                result.setCrc(crc.getValue());</span>
             }
-<span class="pc bpc" id="L231" title="1 of 2 branches missed.">            if (digest != null) {</span>
-<span class="fc" id="L232">                result.setMd5(Base64.encodeBase64String(digest.digest()));</span>
-            }            
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">            if (digest != null) {</span>
+<span class="fc" id="L242">                result.setMd5(Base64.encodeBase64String(digest.digest()));</span>
+            }
         }
-<span class="fc" id="L235">    }</span>
-                
+<span class="fc" id="L245">    }</span>
+
     /**
      * Determines image format for a given image file.
+     *
      * @param imageInfo structure containing metadata of image file being read.
      * @return detected image format.
      */
     private com.irurueta.server.commons.image.ImageFormat getImageFormat(
-            ImageInfo imageInfo) {
-<span class="fc" id="L244">        org.apache.commons.imaging.ImageFormat format = imageInfo.getFormat();</span>
-<span class="fc bfc" id="L245" title="All 2 branches covered.">        if (format == ImageFormats.JPEG) {</span>
-<span class="fc" id="L246">            return com.irurueta.server.commons.image.ImageFormat.JPEG;</span>
-<span class="fc bfc" id="L247" title="All 2 branches covered.">        } else if (format == ImageFormats.PNG) {</span>
-<span class="fc" id="L248">            return com.irurueta.server.commons.image.ImageFormat.PNG;</span>
-<span class="pc bpc" id="L249" title="1 of 2 branches missed.">        } else if (format == ImageFormats.GIF) {</span>
-<span class="nc" id="L250">            return com.irurueta.server.commons.image.ImageFormat.GIF;</span>
-<span class="pc bpc" id="L251" title="1 of 2 branches missed.">        } else if (format == ImageFormats.BMP) {</span>
-<span class="fc" id="L252">            return com.irurueta.server.commons.image.ImageFormat.BMP;</span>
+            final ImageInfo imageInfo) {
+<span class="fc" id="L255">        final org.apache.commons.imaging.ImageFormat format = imageInfo.getFormat();</span>
+<span class="fc bfc" id="L256" title="All 2 branches covered.">        if (format == ImageFormats.JPEG) {</span>
+<span class="fc" id="L257">            return com.irurueta.server.commons.image.ImageFormat.JPEG;</span>
+<span class="fc bfc" id="L258" title="All 2 branches covered.">        } else if (format == ImageFormats.PNG) {</span>
+<span class="fc" id="L259">            return com.irurueta.server.commons.image.ImageFormat.PNG;</span>
+<span class="pc bpc" id="L260" title="1 of 2 branches missed.">        } else if (format == ImageFormats.GIF) {</span>
+<span class="nc" id="L261">            return com.irurueta.server.commons.image.ImageFormat.GIF;</span>
+<span class="pc bpc" id="L262" title="1 of 2 branches missed.">        } else if (format == ImageFormats.BMP) {</span>
+<span class="fc" id="L263">            return com.irurueta.server.commons.image.ImageFormat.BMP;</span>
         } else {
-<span class="nc" id="L254">            return com.irurueta.server.commons.image.ImageFormat.UNKNOWN;</span>
+<span class="nc" id="L265">            return com.irurueta.server.commons.image.ImageFormat.UNKNOWN;</span>
         }
     }
-    
+
     /**
-     * Indicates if image file corresponds to one of the supported image 
+     * Indicates if image file corresponds to one of the supported image
      * formats.
+     *
      * @param imageInfo structure containing metadata of image file being read.
      * @return if image file has one of the supported formats.
      */
-    private static boolean internalCheckValid(ImageInfo imageInfo) {
-<span class="fc" id="L265">        org.apache.commons.imaging.ImageFormat format = imageInfo.getFormat();</span>
-<span class="pc bpc" id="L266" title="2 of 8 branches missed.">        return format == ImageFormats.JPEG ||</span>
+    private static boolean internalCheckValid(final ImageInfo imageInfo) {
+<span class="fc" id="L277">        final org.apache.commons.imaging.ImageFormat format = imageInfo.getFormat();</span>
+<span class="pc bpc" id="L278" title="2 of 8 branches missed.">        return format == ImageFormats.JPEG ||</span>
                 format == ImageFormats.PNG ||
                 format == ImageFormats.GIF ||
                 format == ImageFormats.BMP;
-    }   
-    
+    }
+
     /**
      * Internal method in charge of reading image metadata and EXIF tags.
-     * @param f image file.
+     *
+     * @param f         image file.
      * @param imageInfo structure containing metadata of image file being read.
-     * @param result structure where resulting image metadata will be stored.
-     * @throws InvalidImageException if image file is corrupted or not 
-     * supported.
-     * @throws IOException if an I/O error occurs.
+     * @param result    structure where resulting image metadata will be stored.
+     * @throws InvalidImageException if image file is corrupted or not
+     *                               supported.
+     * @throws IOException           if an I/O error occurs.
      */
-    private void internalReadExif(File f, ImageInfo imageInfo, 
-            ImageMetadata result) throws InvalidImageException, IOException {
-        
+    private void internalReadExif(final File f, final ImageInfo imageInfo,
+                                  final ImageMetadata result) throws InvalidImageException, IOException {
+
         try {
-            //store image size
-<span class="fc" id="L286">            result.setWidth(imageInfo.getWidth());</span>
-<span class="fc" id="L287">            result.setHeight(imageInfo.getHeight());</span>
-            
-<span class="fc" id="L289">            JpegImageMetadata metadata = </span>
-<span class="fc" id="L290">                    (JpegImageMetadata)Imaging.getMetadata(f);</span>
-<span class="fc bfc" id="L291" title="All 2 branches covered.">            if (metadata == null) {</span>
-<span class="fc" id="L292">                return;</span>
+            // store image size
+<span class="fc" id="L299">            result.setWidth(imageInfo.getWidth());</span>
+<span class="fc" id="L300">            result.setHeight(imageInfo.getHeight());</span>
+
+<span class="fc" id="L302">            final JpegImageMetadata metadata =</span>
+<span class="fc" id="L303">                    (JpegImageMetadata) Imaging.getMetadata(f);</span>
+<span class="fc bfc" id="L304" title="All 2 branches covered.">            if (metadata == null) {</span>
+<span class="fc" id="L305">                return;</span>
             }
-            
-            //Get maker
-<span class="fc" id="L296">            TiffField makerField = metadata.findEXIFValue(</span>
+
+            // Get maker
+<span class="fc" id="L309">            final TiffField makerField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_MAKE);
-<span class="fc" id="L298">            String maker = null;</span>
-<span class="fc bfc" id="L299" title="All 2 branches covered.">            if (makerField != null) {</span>
-<span class="fc" id="L300">                maker = makerField.getValueDescription();</span>
+<span class="fc" id="L311">            String maker = null;</span>
+<span class="fc bfc" id="L312" title="All 2 branches covered.">            if (makerField != null) {</span>
+<span class="fc" id="L313">                maker = makerField.getValueDescription();</span>
             }
-<span class="fc bfc" id="L302" title="All 2 branches covered.">            if (maker != null) {</span>
-<span class="fc" id="L303">                result.setMaker(trim(maker));</span>
+<span class="fc bfc" id="L315" title="All 2 branches covered.">            if (maker != null) {</span>
+<span class="fc" id="L316">                result.setMaker(trim(maker));</span>
             }
-                
-            //Get model
-<span class="fc" id="L307">            TiffField modelField = metadata.findEXIFValue(</span>
+
+            // Get model
+<span class="fc" id="L320">            final TiffField modelField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_MODEL);
-<span class="fc" id="L309">            String model = null;</span>
-<span class="fc bfc" id="L310" title="All 2 branches covered.">            if (modelField != null) {</span>
-<span class="fc" id="L311">                model = modelField.getValueDescription();</span>
+<span class="fc" id="L322">            String model = null;</span>
+<span class="fc bfc" id="L323" title="All 2 branches covered.">            if (modelField != null) {</span>
+<span class="fc" id="L324">                model = modelField.getValueDescription();</span>
             }
-<span class="fc bfc" id="L313" title="All 2 branches covered.">            if (model != null) {</span>
-<span class="fc" id="L314">                result.setModel(trim(model));</span>
+<span class="fc bfc" id="L326" title="All 2 branches covered.">            if (model != null) {</span>
+<span class="fc" id="L327">                result.setModel(trim(model));</span>
             }
-            
-            //Focal length
-<span class="fc" id="L318">            TiffField focalLengthField = metadata.findEXIFValue(</span>
+
+            // Focal length
+<span class="fc" id="L331">            final TiffField focalLengthField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_FOCAL_LENGTH);
-<span class="fc bfc" id="L320" title="All 2 branches covered.">            if (focalLengthField != null &amp;&amp; </span>
-<span class="pc bpc" id="L321" title="1 of 2 branches missed.">                    focalLengthField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L322">                RationalNumber number = </span>
-<span class="fc" id="L323">                        (RationalNumber)focalLengthField.getValue();</span>
-<span class="pc bpc" id="L324" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L325">                    result.setFocalLength(number.doubleValue());</span>
+<span class="fc bfc" id="L333" title="All 2 branches covered.">            if (focalLengthField != null &amp;&amp;</span>
+<span class="pc bpc" id="L334" title="1 of 2 branches missed.">                    focalLengthField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L335">                final RationalNumber number =</span>
+<span class="fc" id="L336">                        (RationalNumber) focalLengthField.getValue();</span>
+<span class="pc bpc" id="L337" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L338">                    result.setFocalLength(number.doubleValue());</span>
                 }
             }
-            
-            //Focal plane x resolution
-<span class="fc" id="L330">            TiffField focalPlaneXResolutionField = metadata.findEXIFValue(</span>
+
+            // Focal plane x resolution
+<span class="fc" id="L343">            final TiffField focalPlaneXResolutionField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_FOCAL_PLANE_XRESOLUTION_EXIF_IFD);
-<span class="fc bfc" id="L332" title="All 2 branches covered.">            if (focalPlaneXResolutionField != null &amp;&amp;</span>
-<span class="pc bpc" id="L333" title="1 of 2 branches missed.">                    focalPlaneXResolutionField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L334">                RationalNumber number =</span>
-<span class="fc" id="L335">                        (RationalNumber)focalPlaneXResolutionField.getValue();</span>
-<span class="pc bpc" id="L336" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L337">                    result.setFocalPlaneXResolution(number.doubleValue());</span>
+<span class="fc bfc" id="L345" title="All 2 branches covered.">            if (focalPlaneXResolutionField != null &amp;&amp;</span>
+<span class="pc bpc" id="L346" title="1 of 2 branches missed.">                    focalPlaneXResolutionField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L347">                final RationalNumber number =</span>
+<span class="fc" id="L348">                        (RationalNumber) focalPlaneXResolutionField.getValue();</span>
+<span class="pc bpc" id="L349" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L350">                    result.setFocalPlaneXResolution(number.doubleValue());</span>
                 }
             }
 
-            //Focal plane y resolution
-<span class="fc" id="L342">            TiffField focalPlaneYResolutionField = metadata.findEXIFValue(</span>
+            // Focal plane y resolution
+<span class="fc" id="L355">            final TiffField focalPlaneYResolutionField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_FOCAL_PLANE_YRESOLUTION_EXIF_IFD);
-<span class="fc bfc" id="L344" title="All 2 branches covered.">            if (focalPlaneYResolutionField != null &amp;&amp;</span>
-<span class="pc bpc" id="L345" title="1 of 2 branches missed.">                    focalPlaneYResolutionField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L346">                RationalNumber number =</span>
-<span class="fc" id="L347">                        (RationalNumber)focalPlaneYResolutionField.getValue();</span>
-<span class="pc bpc" id="L348" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L349">                    result.setFocalPlaneYResolution(number.doubleValue());</span>
+<span class="fc bfc" id="L357" title="All 2 branches covered.">            if (focalPlaneYResolutionField != null &amp;&amp;</span>
+<span class="pc bpc" id="L358" title="1 of 2 branches missed.">                    focalPlaneYResolutionField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L359">                final RationalNumber number =</span>
+<span class="fc" id="L360">                        (RationalNumber) focalPlaneYResolutionField.getValue();</span>
+<span class="pc bpc" id="L361" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L362">                    result.setFocalPlaneYResolution(number.doubleValue());</span>
                 }
             }
-            
-            //Focal plane resolution unit
-<span class="fc" id="L354">            TiffField focalPlaneResolutionUnitField = metadata.findEXIFValue(</span>
+
+            // Focal plane resolution unit
+<span class="fc" id="L367">            final TiffField focalPlaneResolutionUnitField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_FOCAL_PLANE_RESOLUTION_UNIT_EXIF_IFD);
-<span class="fc bfc" id="L356" title="All 2 branches covered.">            if (focalPlaneResolutionUnitField != null &amp;&amp; </span>
-<span class="pc bpc" id="L357" title="1 of 2 branches missed.">                    focalPlaneResolutionUnitField.getFieldType() instanceof FieldTypeShort) {</span>
-<span class="fc" id="L358">                Short number =</span>
-<span class="fc" id="L359">                        (Short)focalPlaneResolutionUnitField.getValue();</span>
-<span class="pc bpc" id="L360" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L361">                    result.setFocalPlaneResolutionUnit(Unit.fromValue(number));</span>
+<span class="fc bfc" id="L369" title="All 2 branches covered.">            if (focalPlaneResolutionUnitField != null &amp;&amp;</span>
+<span class="pc bpc" id="L370" title="1 of 2 branches missed.">                    focalPlaneResolutionUnitField.getFieldType() instanceof FieldTypeShort) {</span>
+<span class="fc" id="L371">                final Short number =</span>
+<span class="fc" id="L372">                        (Short) focalPlaneResolutionUnitField.getValue();</span>
+<span class="pc bpc" id="L373" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L374">                    result.setFocalPlaneResolutionUnit(Unit.fromValue(number));</span>
                 }
             }
-            
-            //Orientation
-<span class="fc" id="L366">            TiffField orientationField = metadata.findEXIFValue(</span>
+
+            // Orientation
+<span class="fc" id="L379">            final TiffField orientationField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_ORIENTATION);
-<span class="pc bpc" id="L368" title="1 of 2 branches missed.">            if (orientationField != null &amp;&amp;</span>
-<span class="pc bpc" id="L369" title="1 of 2 branches missed.">                    orientationField.getFieldType() instanceof FieldTypeShort) {</span>
-<span class="fc" id="L370">                Short number = (Short)orientationField.getValue();</span>
-<span class="pc bpc" id="L371" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L372">                    result.setOrientation(ImageOrientation.fromValue(number));</span>
+<span class="pc bpc" id="L381" title="1 of 2 branches missed.">            if (orientationField != null &amp;&amp;</span>
+<span class="pc bpc" id="L382" title="1 of 2 branches missed.">                    orientationField.getFieldType() instanceof FieldTypeShort) {</span>
+<span class="fc" id="L383">                final Short number = (Short) orientationField.getValue();</span>
+<span class="pc bpc" id="L384" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L385">                    result.setOrientation(ImageOrientation.fromValue(number));</span>
                 }
             }
-            
-            //gps latitude
-<span class="fc" id="L377">            Double latitude = null;</span>
-<span class="fc" id="L378">            TiffField gpsLatitudeField = metadata.findEXIFValue(</span>
+
+            // gps latitude
+<span class="fc" id="L390">            Double latitude = null;</span>
+<span class="fc" id="L391">            final TiffField gpsLatitudeField = metadata.findEXIFValue(</span>
                     GpsTagConstants.GPS_TAG_GPS_LATITUDE);
-<span class="fc bfc" id="L380" title="All 2 branches covered.">            if (gpsLatitudeField != null &amp;&amp;</span>
-<span class="pc bpc" id="L381" title="1 of 2 branches missed.">                    gpsLatitudeField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L382">                RationalNumber[] gpsLatitude =</span>
-<span class="fc" id="L383">                        (RationalNumber[])gpsLatitudeField.getValue();</span>
-                
-<span class="pc bpc" id="L385" title="2 of 4 branches missed.">                if (gpsLatitude != null &amp;&amp; gpsLatitude.length &gt;= 3) {</span>
-<span class="fc" id="L386">                    RationalNumber gpsLatitudeDegrees = gpsLatitude[0];</span>
-<span class="fc" id="L387">                    RationalNumber gpsLatitudeMinutes = gpsLatitude[1];</span>
-<span class="fc" id="L388">                    RationalNumber gpsLatitudeSeconds = gpsLatitude[2];</span>
+<span class="fc bfc" id="L393" title="All 2 branches covered.">            if (gpsLatitudeField != null &amp;&amp;</span>
+<span class="pc bpc" id="L394" title="1 of 2 branches missed.">                    gpsLatitudeField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L395">                final RationalNumber[] gpsLatitude =</span>
+<span class="fc" id="L396">                        (RationalNumber[]) gpsLatitudeField.getValue();</span>
 
-                    //obtain latitude ref
-<span class="fc" id="L391">                    TiffField gpsLatitudeRefField = metadata.findEXIFValue(</span>
+<span class="pc bpc" id="L398" title="2 of 4 branches missed.">                if (gpsLatitude != null &amp;&amp; gpsLatitude.length &gt;= 3) {</span>
+<span class="fc" id="L399">                    final RationalNumber gpsLatitudeDegrees = gpsLatitude[0];</span>
+<span class="fc" id="L400">                    final RationalNumber gpsLatitudeMinutes = gpsLatitude[1];</span>
+<span class="fc" id="L401">                    final RationalNumber gpsLatitudeSeconds = gpsLatitude[2];</span>
+
+                    // obtain latitude ref
+<span class="fc" id="L404">                    final TiffField gpsLatitudeRefField = metadata.findEXIFValue(</span>
                             GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF);
-                    //set north by default
-<span class="fc" id="L394">                    String gpsLatitudeRef = GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH;</span>
-<span class="pc bpc" id="L395" title="1 of 2 branches missed.">                    if (gpsLatitudeRefField != null) {</span>
-<span class="fc" id="L396">                        gpsLatitudeRef = (String)gpsLatitudeRefField.getValue();</span>
+                    // set north by default
+<span class="fc" id="L407">                    String gpsLatitudeRef = GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH;</span>
+<span class="pc bpc" id="L408" title="1 of 2 branches missed.">                    if (gpsLatitudeRefField != null) {</span>
+<span class="fc" id="L409">                        gpsLatitudeRef = (String) gpsLatitudeRefField.getValue();</span>
                     }
-<span class="fc" id="L398">                    double tmp = gpsLatitudeDegrees.doubleValue() + </span>
-<span class="fc" id="L399">                            gpsLatitudeMinutes.doubleValue() / 60.0 +</span>
-<span class="fc" id="L400">                            gpsLatitudeSeconds.doubleValue() / 3600.0;</span>
-<span class="pc bpc" id="L401" title="1 of 2 branches missed.">                    if (!gpsLatitudeRef.toUpperCase().contains(</span>
+<span class="fc" id="L411">                    double tmp = gpsLatitudeDegrees.doubleValue() +</span>
+<span class="fc" id="L412">                            gpsLatitudeMinutes.doubleValue() / 60.0 +</span>
+<span class="fc" id="L413">                            gpsLatitudeSeconds.doubleValue() / 3600.0;</span>
+<span class="pc bpc" id="L414" title="1 of 2 branches missed.">                    if (!gpsLatitudeRef.toUpperCase().contains(</span>
                             GpsTagConstants.GPS_TAG_GPS_LATITUDE_REF_VALUE_NORTH.
-<span class="fc" id="L403">                            toUpperCase())) {</span>
-<span class="nc" id="L404">                        tmp *= -1.0;</span>
+<span class="fc" id="L416">                                    toUpperCase())) {</span>
+<span class="nc" id="L417">                        tmp *= -1.0;</span>
                     }
-<span class="fc" id="L406">                    latitude = tmp;</span>
+<span class="fc" id="L419">                    latitude = tmp;</span>
                 }
             }
-            
-            //gps longitude
-<span class="fc" id="L411">            Double longitude = null;</span>
-<span class="fc" id="L412">            TiffField gpsLongitudeField = metadata.findEXIFValue(</span>
+
+            // gps longitude
+<span class="fc" id="L424">            Double longitude = null;</span>
+<span class="fc" id="L425">            final TiffField gpsLongitudeField = metadata.findEXIFValue(</span>
                     GpsTagConstants.GPS_TAG_GPS_LONGITUDE);
-<span class="fc bfc" id="L414" title="All 2 branches covered.">            if (gpsLongitudeField != null &amp;&amp;</span>
-<span class="pc bpc" id="L415" title="1 of 2 branches missed.">                    gpsLongitudeField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L416">                RationalNumber[] gpsLongitude = (RationalNumber[])</span>
-<span class="fc" id="L417">                        gpsLongitudeField.getValue();</span>
-                            
-<span class="pc bpc" id="L419" title="2 of 4 branches missed.">                if (gpsLongitude != null &amp;&amp; gpsLongitude.length &gt;= 3) {</span>
-<span class="fc" id="L420">                    RationalNumber gpsLongitudeDegrees = gpsLongitude[0];</span>
-<span class="fc" id="L421">                    RationalNumber gpsLongitudeMinutes = gpsLongitude[1];</span>
-<span class="fc" id="L422">                    RationalNumber gpsLongitudeSeconds = gpsLongitude[2];</span>
+<span class="fc bfc" id="L427" title="All 2 branches covered.">            if (gpsLongitudeField != null &amp;&amp;</span>
+<span class="pc bpc" id="L428" title="1 of 2 branches missed.">                    gpsLongitudeField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L429">                final RationalNumber[] gpsLongitude = (RationalNumber[])</span>
+<span class="fc" id="L430">                        gpsLongitudeField.getValue();</span>
 
-                    //obtain longitude ref
-<span class="fc" id="L425">                    TiffField gpsLongitudeRefField = metadata.findEXIFValue(</span>
-                        GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF);
-                    //set east by default
-<span class="fc" id="L428">                    String gpsLongitudeRef = GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST;</span>
-<span class="pc bpc" id="L429" title="1 of 2 branches missed.">                    if (gpsLongitudeRefField != null) {</span>
-<span class="fc" id="L430">                        gpsLongitudeRef = (String)gpsLongitudeRefField.</span>
-<span class="fc" id="L431">                                getValue();                    </span>
+<span class="pc bpc" id="L432" title="2 of 4 branches missed.">                if (gpsLongitude != null &amp;&amp; gpsLongitude.length &gt;= 3) {</span>
+<span class="fc" id="L433">                    final RationalNumber gpsLongitudeDegrees = gpsLongitude[0];</span>
+<span class="fc" id="L434">                    final RationalNumber gpsLongitudeMinutes = gpsLongitude[1];</span>
+<span class="fc" id="L435">                    final RationalNumber gpsLongitudeSeconds = gpsLongitude[2];</span>
+
+                    // obtain longitude ref
+<span class="fc" id="L438">                    final TiffField gpsLongitudeRefField = metadata.findEXIFValue(</span>
+                            GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF);
+                    // set east by default
+<span class="fc" id="L441">                    String gpsLongitudeRef = GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST;</span>
+<span class="pc bpc" id="L442" title="1 of 2 branches missed.">                    if (gpsLongitudeRefField != null) {</span>
+<span class="fc" id="L443">                        gpsLongitudeRef = (String) gpsLongitudeRefField.</span>
+<span class="fc" id="L444">                                getValue();</span>
                     }
-<span class="fc" id="L433">                    double tmp = gpsLongitudeDegrees.doubleValue() +</span>
-<span class="fc" id="L434">                                gpsLongitudeMinutes.doubleValue() / 60.0 +</span>
-<span class="fc" id="L435">                                gpsLongitudeSeconds.doubleValue() / 3600.0;</span>
-<span class="pc bpc" id="L436" title="1 of 2 branches missed.">                    if (!gpsLongitudeRef.toUpperCase().contains(</span>
+<span class="fc" id="L446">                    double tmp = gpsLongitudeDegrees.doubleValue() +</span>
+<span class="fc" id="L447">                            gpsLongitudeMinutes.doubleValue() / 60.0 +</span>
+<span class="fc" id="L448">                            gpsLongitudeSeconds.doubleValue() / 3600.0;</span>
+<span class="pc bpc" id="L449" title="1 of 2 branches missed.">                    if (!gpsLongitudeRef.toUpperCase().contains(</span>
                             GpsTagConstants.GPS_TAG_GPS_LONGITUDE_REF_VALUE_EAST.
-<span class="fc" id="L438">                            toUpperCase())) {</span>
-<span class="nc" id="L439">                        tmp *= -1.0;</span>
-                    }                
-<span class="fc" id="L441">                    longitude = tmp;</span>
-                }
-            }
-            
-            //gps altitude
-<span class="fc" id="L446">            Double altitude = null;</span>
-<span class="fc" id="L447">            TiffField gpsAltitudeField = metadata.findEXIFValue(</span>
-                    GpsTagConstants.GPS_TAG_GPS_ALTITUDE);
-<span class="fc bfc" id="L449" title="All 2 branches covered.">            if (gpsAltitudeField != null &amp;&amp;</span>
-<span class="pc bpc" id="L450" title="1 of 2 branches missed.">                    gpsAltitudeField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L451">                RationalNumber number = </span>
-<span class="fc" id="L452">                        (RationalNumber)gpsAltitudeField.getValue();</span>
-<span class="pc bpc" id="L453" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L454">                    double tmp = number.doubleValue();</span>
-
-                    //check if above or under sea level
-<span class="fc" id="L457">                    TiffField gpsAltitudeRefField = metadata.findEXIFValue(</span>
-                            GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF);
-<span class="fc" id="L459">                    Short above = GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL;</span>
-<span class="pc bpc" id="L460" title="1 of 2 branches missed.">                    if (gpsAltitudeRefField != null &amp;&amp;</span>
-<span class="pc bpc" id="L461" title="1 of 2 branches missed.">                            gpsAltitudeRefField.getFieldType() instanceof FieldTypeShort) {</span>
-<span class="nc" id="L462">                        above = (Short)gpsAltitudeRefField.getValue();</span>
-                    }   
-<span class="pc bpc" id="L464" title="1 of 2 branches missed.">                    if (above != GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL) {</span>
-                        //below sea level
-<span class="nc" id="L466">                        tmp *= -1.0;</span>
+<span class="fc" id="L451">                                    toUpperCase())) {</span>
+<span class="nc" id="L452">                        tmp *= -1.0;</span>
                     }
-<span class="fc" id="L468">                    altitude = tmp;</span>
+<span class="fc" id="L454">                    longitude = tmp;</span>
                 }
             }
-            
-<span class="fc" id="L472">            GPSCoordinates coordinates = null;</span>
-<span class="pc bpc" id="L473" title="1 of 6 branches missed.">            if (latitude != null &amp;&amp; longitude != null &amp;&amp; altitude != null) {</span>
-<span class="fc" id="L474">                coordinates = new GPSCoordinates(latitude, longitude, altitude);</span>
-<span class="pc bpc" id="L475" title="1 of 4 branches missed.">            } else if (latitude != null &amp;&amp; longitude != null) { // altitude == null</span>
-<span class="fc" id="L476">                coordinates = new GPSCoordinates(latitude, longitude);</span>
+
+            // gps altitude
+<span class="fc" id="L459">            Double altitude = null;</span>
+<span class="fc" id="L460">            final TiffField gpsAltitudeField = metadata.findEXIFValue(</span>
+                    GpsTagConstants.GPS_TAG_GPS_ALTITUDE);
+<span class="fc bfc" id="L462" title="All 2 branches covered.">            if (gpsAltitudeField != null &amp;&amp;</span>
+<span class="pc bpc" id="L463" title="1 of 2 branches missed.">                    gpsAltitudeField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L464">                final RationalNumber number =</span>
+<span class="fc" id="L465">                        (RationalNumber) gpsAltitudeField.getValue();</span>
+<span class="pc bpc" id="L466" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L467">                    double tmp = number.doubleValue();</span>
+
+                    // check if above or under sea level
+<span class="fc" id="L470">                    final TiffField gpsAltitudeRefField = metadata.findEXIFValue(</span>
+                            GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF);
+<span class="fc" id="L472">                    Short above = GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL;</span>
+<span class="pc bpc" id="L473" title="1 of 2 branches missed.">                    if (gpsAltitudeRefField != null &amp;&amp;</span>
+<span class="pc bpc" id="L474" title="1 of 2 branches missed.">                            gpsAltitudeRefField.getFieldType() instanceof FieldTypeShort) {</span>
+<span class="nc" id="L475">                        above = (Short) gpsAltitudeRefField.getValue();</span>
+                    }
+<span class="pc bpc" id="L477" title="1 of 2 branches missed.">                    if (above != GpsTagConstants.GPS_TAG_GPS_ALTITUDE_REF_VALUE_ABOVE_SEA_LEVEL) {</span>
+                        // below sea level
+<span class="nc" id="L479">                        tmp *= -1.0;</span>
+                    }
+<span class="fc" id="L481">                    altitude = tmp;</span>
+                }
             }
-            
-<span class="fc bfc" id="L479" title="All 2 branches covered.">            if (coordinates != null) {</span>
-<span class="fc" id="L480">                result.setLocation(coordinates);</span>
+
+<span class="fc" id="L485">            GPSCoordinates coordinates = null;</span>
+<span class="pc bpc" id="L486" title="1 of 6 branches missed.">            if (latitude != null &amp;&amp; longitude != null &amp;&amp; altitude != null) {</span>
+<span class="fc" id="L487">                coordinates = new GPSCoordinates(latitude, longitude, altitude);</span>
+<span class="pc bpc" id="L488" title="1 of 4 branches missed.">            } else if (latitude != null &amp;&amp; longitude != null) { // altitude == null</span>
+<span class="fc" id="L489">                coordinates = new GPSCoordinates(latitude, longitude);</span>
             }
-            
-<span class="pc bpc" id="L483" title="1 of 2 branches missed.">            if (result.getOrientation() != null) {</span>
-                //if orientation is available as exif data, check if width and
-                //height need to be exchanged
-<span class="fc bfc" id="L486" title="All 2 branches covered.">                switch (result.getOrientation()) {</span>
-                    case RIGHT_TOP: 
-                        //orientation == 6 (clockwise 270º)
-                    case LEFT_BOTTOM: 
-                        //orientation == 8 (clockwise 90º)
-                        //width and height must be exchanged
-<span class="fc" id="L492">                        result.setWidth(imageInfo.getHeight());</span>
-<span class="fc" id="L493">                        result.setHeight(imageInfo.getWidth());</span>
-<span class="fc" id="L494">                        break;                  </span>
+
+<span class="fc bfc" id="L492" title="All 2 branches covered.">            if (coordinates != null) {</span>
+<span class="fc" id="L493">                result.setLocation(coordinates);</span>
+            }
+
+<span class="pc bpc" id="L496" title="1 of 2 branches missed.">            if (result.getOrientation() != null) {</span>
+                // if orientation is available as exif data, check if width and
+                // height need to be exchanged
+<span class="fc bfc" id="L499" title="All 2 branches covered.">                switch (result.getOrientation()) {</span>
+                    case RIGHT_TOP:
+                        // orientation == 6 (clockwise 270º)
+                    case LEFT_BOTTOM:
+                        // orientation == 8 (clockwise 90º)
+                        // width and height must be exchanged
+<span class="fc" id="L505">                        result.setWidth(imageInfo.getHeight());</span>
+<span class="fc" id="L506">                        result.setHeight(imageInfo.getWidth());</span>
+<span class="fc" id="L507">                        break;</span>
                     default:
                         break;
                 }
-            }  
-            
-            //Get artist
-<span class="fc" id="L501">            TiffField artistField = metadata.findEXIFValue(</span>
+            }
+
+            // Get artist
+<span class="fc" id="L514">            final TiffField artistField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_ARTIST);
-<span class="fc" id="L503">            String artist = null;</span>
-<span class="pc bpc" id="L504" title="1 of 2 branches missed.">            if (artistField != null) {</span>
-<span class="nc" id="L505">                artist = artistField.getValueDescription();</span>
+<span class="fc" id="L516">            String artist = null;</span>
+<span class="pc bpc" id="L517" title="1 of 2 branches missed.">            if (artistField != null) {</span>
+<span class="nc" id="L518">                artist = artistField.getValueDescription();</span>
             }
-<span class="pc bpc" id="L507" title="1 of 2 branches missed.">            if (artist != null) {</span>
-<span class="nc" id="L508">                result.setArtist(trim(artist));</span>
+<span class="pc bpc" id="L520" title="1 of 2 branches missed.">            if (artist != null) {</span>
+<span class="nc" id="L521">                result.setArtist(trim(artist));</span>
             }
-            
-            //Get copyright
-<span class="fc" id="L512">            TiffField copyrightField = metadata.findEXIFValue(</span>
+
+            // Get copyright
+<span class="fc" id="L525">            final TiffField copyrightField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_COPYRIGHT);
-<span class="fc" id="L514">            String copyright = null;</span>
-<span class="pc bpc" id="L515" title="1 of 2 branches missed.">            if (copyrightField != null) {</span>
-<span class="nc" id="L516">                copyright = copyrightField.getValueDescription();</span>
+<span class="fc" id="L527">            String copyright = null;</span>
+<span class="pc bpc" id="L528" title="1 of 2 branches missed.">            if (copyrightField != null) {</span>
+<span class="nc" id="L529">                copyright = copyrightField.getValueDescription();</span>
             }
-<span class="pc bpc" id="L518" title="1 of 2 branches missed.">            if (copyright != null) {</span>
-<span class="nc" id="L519">                result.setCopyright(trim(copyright));</span>
+<span class="pc bpc" id="L531" title="1 of 2 branches missed.">            if (copyright != null) {</span>
+<span class="nc" id="L532">                result.setCopyright(trim(copyright));</span>
             }
-            
-            //Get document name
-<span class="fc" id="L523">            TiffField documentNameField = metadata.findEXIFValue(</span>
+
+            // Get document name
+<span class="fc" id="L536">            final TiffField documentNameField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_DOCUMENT_NAME);
-<span class="fc" id="L525">            String documentName = null;</span>
-<span class="pc bpc" id="L526" title="3 of 4 branches missed.">            if (documentNameField != null &amp;&amp; artistField != null) {</span>
-<span class="nc" id="L527">                documentName = artistField.getValueDescription();</span>
+<span class="fc" id="L538">            String documentName = null;</span>
+<span class="pc bpc" id="L539" title="3 of 4 branches missed.">            if (documentNameField != null &amp;&amp; artistField != null) {</span>
+<span class="nc" id="L540">                documentName = artistField.getValueDescription();</span>
             }
-<span class="pc bpc" id="L529" title="1 of 2 branches missed.">            if (documentName != null) {</span>
-<span class="nc" id="L530">                result.setDocumentName(trim(documentName));</span>
+<span class="pc bpc" id="L542" title="1 of 2 branches missed.">            if (documentName != null) {</span>
+<span class="nc" id="L543">                result.setDocumentName(trim(documentName));</span>
             }
-            
-            //Get host computer
-<span class="fc" id="L534">            TiffField hostComputerField = metadata.findEXIFValue(</span>
+
+            // Get host computer
+<span class="fc" id="L547">            final TiffField hostComputerField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_HOST_COMPUTER);
-<span class="fc" id="L536">            String hostComputer = null;</span>
-<span class="fc bfc" id="L537" title="All 2 branches covered.">            if (hostComputerField != null) {</span>
-<span class="fc" id="L538">                hostComputer = hostComputerField.getValueDescription();</span>
+<span class="fc" id="L549">            String hostComputer = null;</span>
+<span class="fc bfc" id="L550" title="All 2 branches covered.">            if (hostComputerField != null) {</span>
+<span class="fc" id="L551">                hostComputer = hostComputerField.getValueDescription();</span>
             }
-<span class="fc bfc" id="L540" title="All 2 branches covered.">            if (hostComputer != null) {</span>
-<span class="fc" id="L541">                result.setHostComputer(trim(hostComputer));</span>
+<span class="fc bfc" id="L553" title="All 2 branches covered.">            if (hostComputer != null) {</span>
+<span class="fc" id="L554">                result.setHostComputer(trim(hostComputer));</span>
             }
-            
-            //Get image description
-<span class="fc" id="L545">            TiffField imageDescriptionField = metadata.findEXIFValue(</span>
+
+            // Get image description
+<span class="fc" id="L558">            final TiffField imageDescriptionField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_IMAGE_DESCRIPTION);
-<span class="fc" id="L547">            String imageDescription = null;</span>
-<span class="fc bfc" id="L548" title="All 2 branches covered.">            if (imageDescriptionField != null) {</span>
-<span class="fc" id="L549">                imageDescription = imageDescriptionField.getValueDescription();</span>
+<span class="fc" id="L560">            String imageDescription = null;</span>
+<span class="fc bfc" id="L561" title="All 2 branches covered.">            if (imageDescriptionField != null) {</span>
+<span class="fc" id="L562">                imageDescription = imageDescriptionField.getValueDescription();</span>
             }
-<span class="fc bfc" id="L551" title="All 2 branches covered.">            if (imageDescription != null) {</span>
-<span class="fc" id="L552">                result.setImageDescription(trim(imageDescription));</span>
+<span class="fc bfc" id="L564" title="All 2 branches covered.">            if (imageDescription != null) {</span>
+<span class="fc" id="L565">                result.setImageDescription(trim(imageDescription));</span>
             }
-            
-            //Get software
-<span class="fc" id="L556">            TiffField softwareField = metadata.findEXIFValue(</span>
+
+            // Get software
+<span class="fc" id="L569">            final TiffField softwareField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_SOFTWARE);
-<span class="fc" id="L558">            String software = null;</span>
-<span class="fc bfc" id="L559" title="All 2 branches covered.">            if (softwareField != null) {</span>
-<span class="fc" id="L560">                software = softwareField.getValueDescription();</span>
+<span class="fc" id="L571">            String software = null;</span>
+<span class="fc bfc" id="L572" title="All 2 branches covered.">            if (softwareField != null) {</span>
+<span class="fc" id="L573">                software = softwareField.getValueDescription();</span>
             }
-<span class="fc bfc" id="L562" title="All 2 branches covered.">            if (software != null) {</span>
-<span class="fc" id="L563">                result.setSoftware(trim(software));</span>
+<span class="fc bfc" id="L575" title="All 2 branches covered.">            if (software != null) {</span>
+<span class="fc" id="L576">                result.setSoftware(trim(software));</span>
             }
-            
-            //Get target printer
-<span class="fc" id="L567">            TiffField targetPrinterField = metadata.findEXIFValue(</span>
+
+            // Get target printer
+<span class="fc" id="L580">            final TiffField targetPrinterField = metadata.findEXIFValue(</span>
                     TiffTagConstants.TIFF_TAG_TARGET_PRINTER);
-<span class="fc" id="L569">            String targetPrinter = null;</span>
-<span class="pc bpc" id="L570" title="1 of 2 branches missed.">            if (targetPrinterField != null) {</span>
-<span class="nc" id="L571">                targetPrinter = targetPrinterField.getValueDescription();</span>
+<span class="fc" id="L582">            String targetPrinter = null;</span>
+<span class="pc bpc" id="L583" title="1 of 2 branches missed.">            if (targetPrinterField != null) {</span>
+<span class="nc" id="L584">                targetPrinter = targetPrinterField.getValueDescription();</span>
             }
-<span class="pc bpc" id="L573" title="1 of 2 branches missed.">            if (targetPrinter != null) {</span>
-<span class="nc" id="L574">                result.setTargetPrinter(trim(targetPrinter));</span>
+<span class="pc bpc" id="L586" title="1 of 2 branches missed.">            if (targetPrinter != null) {</span>
+<span class="nc" id="L587">                result.setTargetPrinter(trim(targetPrinter));</span>
             }
-            
-            //Get camera serial number
-<span class="fc" id="L578">            TiffField cameraSerialNumberField = metadata.findEXIFValue(</span>
+
+            // Get camera serial number
+<span class="fc" id="L591">            final TiffField cameraSerialNumberField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_BODY_SERIAL_NUMBER);
-<span class="fc" id="L580">            String cameraSerialNumber = null;</span>
-<span class="pc bpc" id="L581" title="1 of 2 branches missed.">            if (cameraSerialNumberField != null) {</span>
-<span class="nc" id="L582">                cameraSerialNumber = </span>
-<span class="nc" id="L583">                        cameraSerialNumberField.getValueDescription();</span>
+<span class="fc" id="L593">            String cameraSerialNumber = null;</span>
+<span class="pc bpc" id="L594" title="1 of 2 branches missed.">            if (cameraSerialNumberField != null) {</span>
+<span class="nc" id="L595">                cameraSerialNumber =</span>
+<span class="nc" id="L596">                        cameraSerialNumberField.getValueDescription();</span>
             }
-<span class="pc bpc" id="L585" title="1 of 2 branches missed.">            if (cameraSerialNumber != null) {</span>
-<span class="nc" id="L586">                result.setCameraSerialNumber(trim(cameraSerialNumber));</span>
+<span class="pc bpc" id="L598" title="1 of 2 branches missed.">            if (cameraSerialNumber != null) {</span>
+<span class="nc" id="L599">                result.setCameraSerialNumber(trim(cameraSerialNumber));</span>
             }
 
             // TODO: get lens serial number
-            
-            //Get digital zoom ratio
-<span class="fc" id="L592">            TiffField digitalZoomRatioField = metadata.findEXIFValue(</span>
+
+            // Get digital zoom ratio
+<span class="fc" id="L605">            final TiffField digitalZoomRatioField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_DIGITAL_ZOOM_RATIO);
-<span class="fc bfc" id="L594" title="All 2 branches covered.">            if (digitalZoomRatioField != null &amp;&amp; </span>
-<span class="pc bpc" id="L595" title="1 of 2 branches missed.">                    digitalZoomRatioField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L596">                RationalNumber number = </span>
-<span class="fc" id="L597">                        (RationalNumber)digitalZoomRatioField.getValue();</span>
-<span class="pc bpc" id="L598" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L599">                    result.setDigitalZoomRatio(number.doubleValue());</span>
+<span class="fc bfc" id="L607" title="All 2 branches covered.">            if (digitalZoomRatioField != null &amp;&amp;</span>
+<span class="pc bpc" id="L608" title="1 of 2 branches missed.">                    digitalZoomRatioField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L609">                final RationalNumber number =</span>
+<span class="fc" id="L610">                        (RationalNumber) digitalZoomRatioField.getValue();</span>
+<span class="pc bpc" id="L611" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L612">                    result.setDigitalZoomRatio(number.doubleValue());</span>
                 }
             }
-            
-            //Get exposure time
-<span class="fc" id="L604">            TiffField exposureTimeField = metadata.findEXIFValue(</span>
+
+            // Get exposure time
+<span class="fc" id="L617">            final TiffField exposureTimeField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_EXPOSURE_TIME);
-<span class="fc bfc" id="L606" title="All 2 branches covered.">            if (exposureTimeField != null &amp;&amp;</span>
-<span class="pc bpc" id="L607" title="1 of 2 branches missed.">                    exposureTimeField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L608">                RationalNumber number =</span>
-<span class="fc" id="L609">                        (RationalNumber)exposureTimeField.getValue();</span>
-<span class="pc bpc" id="L610" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L611">                    result.setExposureTime(number.doubleValue());</span>
+<span class="fc bfc" id="L619" title="All 2 branches covered.">            if (exposureTimeField != null &amp;&amp;</span>
+<span class="pc bpc" id="L620" title="1 of 2 branches missed.">                    exposureTimeField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L621">                final RationalNumber number =</span>
+<span class="fc" id="L622">                        (RationalNumber) exposureTimeField.getValue();</span>
+<span class="pc bpc" id="L623" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L624">                    result.setExposureTime(number.doubleValue());</span>
                 }
             }
-            
-            //Get flash
-<span class="fc" id="L616">            TiffField flashField = metadata.findEXIFValue(</span>
+
+            // Get flash
+<span class="fc" id="L629">            final TiffField flashField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_FLASH);
-<span class="fc bfc" id="L618" title="All 2 branches covered.">            if (flashField != null &amp;&amp;</span>
-<span class="pc bpc" id="L619" title="1 of 2 branches missed.">                    flashField.getFieldType() instanceof FieldTypeShort) {</span>
-<span class="fc" id="L620">                Short number = (Short)flashField.getValue();</span>
-<span class="pc bpc" id="L621" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L622">                    result.setFlash(Flash.fromValue(number));</span>
+<span class="fc bfc" id="L631" title="All 2 branches covered.">            if (flashField != null &amp;&amp;</span>
+<span class="pc bpc" id="L632" title="1 of 2 branches missed.">                    flashField.getFieldType() instanceof FieldTypeShort) {</span>
+<span class="fc" id="L633">                final Short number = (Short) flashField.getValue();</span>
+<span class="pc bpc" id="L634" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L635">                    result.setFlash(Flash.fromValue(number));</span>
                 }
             }
-            
-            //Get flash energy
-<span class="fc" id="L627">            TiffField flashEnergyField = metadata.findEXIFValue(</span>
+
+            // Get flash energy
+<span class="fc" id="L640">            final TiffField flashEnergyField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_FLASH_ENERGY_EXIF_IFD);
-<span class="pc bpc" id="L629" title="1 of 2 branches missed.">            if (flashEnergyField != null &amp;&amp;</span>
-<span class="nc bnc" id="L630" title="All 2 branches missed.">                    flashEnergyField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="nc" id="L631">                RationalNumber number =</span>
-<span class="nc" id="L632">                        (RationalNumber)flashEnergyField.getValue();</span>
-<span class="nc bnc" id="L633" title="All 2 branches missed.">                if (number != null) {</span>
-<span class="nc" id="L634">                    result.setFlashEnergy(number.doubleValue());</span>
+<span class="pc bpc" id="L642" title="1 of 2 branches missed.">            if (flashEnergyField != null &amp;&amp;</span>
+<span class="nc bnc" id="L643" title="All 2 branches missed.">                    flashEnergyField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="nc" id="L644">                final RationalNumber number =</span>
+<span class="nc" id="L645">                        (RationalNumber) flashEnergyField.getValue();</span>
+<span class="nc bnc" id="L646" title="All 2 branches missed.">                if (number != null) {</span>
+<span class="nc" id="L647">                    result.setFlashEnergy(number.doubleValue());</span>
                 }
             }
-            
-            //Get F number
-<span class="fc" id="L639">            TiffField fNumberField = metadata.findEXIFValue(</span>
+
+            // Get F number
+<span class="fc" id="L652">            final TiffField fNumberField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_FNUMBER);
-<span class="fc bfc" id="L641" title="All 2 branches covered.">            if (fNumberField != null &amp;&amp; </span>
-<span class="pc bpc" id="L642" title="1 of 2 branches missed.">                    fNumberField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L643">                RationalNumber number = (RationalNumber)fNumberField.getValue();</span>
-<span class="pc bpc" id="L644" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L645">                    result.setFNumber(number.doubleValue());</span>
+<span class="fc bfc" id="L654" title="All 2 branches covered.">            if (fNumberField != null &amp;&amp;</span>
+<span class="pc bpc" id="L655" title="1 of 2 branches missed.">                    fNumberField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L656">                final RationalNumber number = (RationalNumber) fNumberField.getValue();</span>
+<span class="pc bpc" id="L657" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L658">                    result.setFNumber(number.doubleValue());</span>
                 }
             }
-            
-            //Get focal length in 35mm film
-<span class="fc" id="L650">            TiffField focalLength35mmFormatField = metadata.findEXIFValue(</span>
+
+            // Get focal length in 35mm film
+<span class="fc" id="L663">            final TiffField focalLength35mmFormatField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_FOCAL_LENGTH_IN_35MM_FORMAT);
-<span class="pc bpc" id="L652" title="1 of 2 branches missed.">            if (focalLength35mmFormatField != null &amp;&amp;</span>
-<span class="nc bnc" id="L653" title="All 2 branches missed.">                    focalLength35mmFormatField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="nc" id="L654">                RationalNumber number = </span>
-<span class="nc" id="L655">                        (RationalNumber)focalLength35mmFormatField.getValue();</span>
-<span class="nc bnc" id="L656" title="All 2 branches missed.">                if (number != null) {</span>
-<span class="nc" id="L657">                    result.setFocalLengthIn35mmFilm(number.doubleValue());</span>
+<span class="pc bpc" id="L665" title="1 of 2 branches missed.">            if (focalLength35mmFormatField != null &amp;&amp;</span>
+<span class="nc bnc" id="L666" title="All 2 branches missed.">                    focalLength35mmFormatField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="nc" id="L667">                final RationalNumber number =</span>
+<span class="nc" id="L668">                        (RationalNumber) focalLength35mmFormatField.getValue();</span>
+<span class="nc bnc" id="L669" title="All 2 branches missed.">                if (number != null) {</span>
+<span class="nc" id="L670">                    result.setFocalLengthIn35mmFilm(number.doubleValue());</span>
                 }
             }
-            
-            //Get unique camera model
-<span class="fc" id="L662">            TiffField uniqueCameraModelField = metadata.findEXIFValue(</span>
+
+            // Get unique camera model
+<span class="fc" id="L675">            final TiffField uniqueCameraModelField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_MODEL_2);
-<span class="fc" id="L664">            String uniqueCameraModel = null;</span>
-<span class="pc bpc" id="L665" title="3 of 4 branches missed.">            if (uniqueCameraModelField != null &amp;&amp; modelField != null) {</span>
-<span class="nc" id="L666">                uniqueCameraModel = modelField.getValueDescription();</span>
+<span class="fc" id="L677">            String uniqueCameraModel = null;</span>
+<span class="pc bpc" id="L678" title="3 of 4 branches missed.">            if (uniqueCameraModelField != null &amp;&amp; modelField != null) {</span>
+<span class="nc" id="L679">                uniqueCameraModel = modelField.getValueDescription();</span>
             }
-<span class="pc bpc" id="L668" title="1 of 2 branches missed.">            if (uniqueCameraModel != null) {</span>
-<span class="nc" id="L669">                result.setUniqueCameraModel(trim(uniqueCameraModel));</span>
+<span class="pc bpc" id="L681" title="1 of 2 branches missed.">            if (uniqueCameraModel != null) {</span>
+<span class="nc" id="L682">                result.setUniqueCameraModel(trim(uniqueCameraModel));</span>
             }
-            
-            //Get subject distance
-<span class="fc" id="L673">            TiffField subjectDistanceField = metadata.findEXIFValue(</span>
+
+            // Get subject distance
+<span class="fc" id="L686">            final TiffField subjectDistanceField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_SUBJECT_DISTANCE);
-<span class="pc bpc" id="L675" title="1 of 2 branches missed.">            if (subjectDistanceField != null &amp;&amp;</span>
-<span class="nc bnc" id="L676" title="All 2 branches missed.">                    subjectDistanceField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="nc" id="L677">                RationalNumber number = </span>
-<span class="nc" id="L678">                        (RationalNumber)subjectDistanceField.getValue();</span>
-<span class="nc bnc" id="L679" title="All 2 branches missed.">                if (number != null) {</span>
-<span class="nc" id="L680">                    result.setSubjectDistance(number.doubleValue());</span>
+<span class="pc bpc" id="L688" title="1 of 2 branches missed.">            if (subjectDistanceField != null &amp;&amp;</span>
+<span class="nc bnc" id="L689" title="All 2 branches missed.">                    subjectDistanceField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="nc" id="L690">                final RationalNumber number =</span>
+<span class="nc" id="L691">                        (RationalNumber) subjectDistanceField.getValue();</span>
+<span class="nc bnc" id="L692" title="All 2 branches missed.">                if (number != null) {</span>
+<span class="nc" id="L693">                    result.setSubjectDistance(number.doubleValue());</span>
                 }
             }
-            
-            //Get shutter speed value
-<span class="fc" id="L685">            TiffField shutterSpeedField = metadata.findEXIFValue(</span>
+
+            // Get shutter speed value
+<span class="fc" id="L698">            final TiffField shutterSpeedField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_SHUTTER_SPEED_VALUE);
-<span class="fc bfc" id="L687" title="All 2 branches covered.">            if (shutterSpeedField != null &amp;&amp;</span>
-<span class="pc bpc" id="L688" title="1 of 2 branches missed.">                    shutterSpeedField.getFieldType() instanceof FieldTypeRational) {</span>
-<span class="fc" id="L689">                RationalNumber number =</span>
-<span class="fc" id="L690">                        (RationalNumber)shutterSpeedField.getValue();</span>
-<span class="pc bpc" id="L691" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L692">                    result.setShutterSpeedValue(number.doubleValue());</span>
+<span class="fc bfc" id="L700" title="All 2 branches covered.">            if (shutterSpeedField != null &amp;&amp;</span>
+<span class="pc bpc" id="L701" title="1 of 2 branches missed.">                    shutterSpeedField.getFieldType() instanceof FieldTypeRational) {</span>
+<span class="fc" id="L702">                final RationalNumber number =</span>
+<span class="fc" id="L703">                        (RationalNumber) shutterSpeedField.getValue();</span>
+<span class="pc bpc" id="L704" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L705">                    result.setShutterSpeedValue(number.doubleValue());</span>
                 }
             }
-            
-            //Get ISO
-<span class="fc" id="L697">            TiffField isoField = metadata.findEXIFValue(</span>
+
+            // Get ISO
+<span class="fc" id="L710">            final TiffField isoField = metadata.findEXIFValue(</span>
                     ExifTagConstants.EXIF_TAG_ISO);
-<span class="fc bfc" id="L699" title="All 2 branches covered.">            if (isoField != null &amp;&amp;</span>
-<span class="pc bpc" id="L700" title="1 of 2 branches missed.">                    isoField.getFieldType() instanceof FieldTypeShort) {</span>
-<span class="fc" id="L701">                Short number = (Short)isoField.getValue();</span>
-<span class="pc bpc" id="L702" title="1 of 2 branches missed.">                if (number != null) {</span>
-<span class="fc" id="L703">                    result.setISO(number.intValue());</span>
+<span class="fc bfc" id="L712" title="All 2 branches covered.">            if (isoField != null &amp;&amp;</span>
+<span class="pc bpc" id="L713" title="1 of 2 branches missed.">                    isoField.getFieldType() instanceof FieldTypeShort) {</span>
+<span class="fc" id="L714">                final Short number = (Short) isoField.getValue();</span>
+<span class="pc bpc" id="L715" title="1 of 2 branches missed.">                if (number != null) {</span>
+<span class="fc" id="L716">                    result.setISO(number.intValue());</span>
                 }
-            }            
-            
-<span class="nc" id="L707">        } catch (ImageReadException e) {</span>
-<span class="nc" id="L708">            throw new InvalidImageException(e);</span>
-<span class="fc" id="L709">        }</span>
-<span class="fc" id="L710">    }</span>
-    
+            }
+
+<span class="nc" id="L720">        } catch (final ImageReadException e) {</span>
+<span class="nc" id="L721">            throw new InvalidImageException(e);</span>
+<span class="fc" id="L722">        }</span>
+<span class="fc" id="L723">    }</span>
+
     /**
      * Trims leading and ending apostrophes from provided string.
+     *
      * @param s string to be processed.
      * @return trimmed string.
      */
-    private String trim(String s) {
-<span class="fc" id="L718">        String result = null;</span>
-<span class="pc bpc" id="L719" title="1 of 2 branches missed.">        if (s != null) {</span>
-<span class="fc" id="L720">            result = s;</span>
-<span class="pc bpc" id="L721" title="1 of 2 branches missed.">            if (s.startsWith(&quot;'&quot;)) {</span>
-<span class="fc" id="L722">                result = result.substring(1);</span>
+    private String trim(final String s) {
+<span class="fc" id="L732">        String result = null;</span>
+<span class="pc bpc" id="L733" title="1 of 2 branches missed.">        if (s != null) {</span>
+<span class="fc" id="L734">            result = s;</span>
+<span class="pc bpc" id="L735" title="1 of 2 branches missed.">            if (s.startsWith(&quot;'&quot;)) {</span>
+<span class="fc" id="L736">                result = result.substring(1);</span>
             }
-<span class="pc bpc" id="L724" title="1 of 2 branches missed.">            if (s.endsWith(&quot;'&quot;)) {</span>
-<span class="fc" id="L725">                result = result.substring(0, result.length() - 1);</span>
+<span class="pc bpc" id="L738" title="1 of 2 branches missed.">            if (s.endsWith(&quot;'&quot;)) {</span>
+<span class="fc" id="L739">                result = result.substring(0, result.length() - 1);</span>
             }
         }
-<span class="fc" id="L728">        return result;</span>
+<span class="fc" id="L742">        return result;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
