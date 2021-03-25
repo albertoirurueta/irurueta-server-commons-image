@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,7 +30,7 @@ public class InvalidImageException extends ImageException {
      * Constructor with message.
      * @param message message describing the cause of the exception.
      */    
-    public InvalidImageException(String message) {
+    public InvalidImageException(final String message) {
         super(message);
     }
 
@@ -40,7 +40,7 @@ public class InvalidImageException extends ImageException {
      * @param cause originating exception that caused this exception. This can
      * be used to obtain stack traces.
      */    
-    public InvalidImageException(String message, Throwable cause) {
+    public InvalidImageException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
@@ -49,7 +49,7 @@ public class InvalidImageException extends ImageException {
      * @param cause originating exception that caused this exception. This can
      * be used to obtain stack traces.
      */    
-    public InvalidImageException(Throwable cause) {
+    public InvalidImageException(final Throwable cause) {
         super(cause);
     }        
 }

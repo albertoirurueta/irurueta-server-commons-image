@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -63,12 +63,7 @@ public class ImageReaderResult {
      * Detected image format. Supported formats are: JPG, PNG, GIF, BMP.
      */
     private ImageFormat mImageFormat = ImageFormat.UNKNOWN;
-    
-    /**
-     * Constructor.
-     */
-    public ImageReaderResult() { }
-    
+
     /**
      * Indicates if a file contains a valid recognized image and is not 
      * corrupted.
@@ -83,7 +78,7 @@ public class ImageReaderResult {
      * corrupted.
      * @param valid true if file is valid, false otherwise.
      */
-    public void setValid(boolean valid) {
+    public void setValid(final boolean valid) {
         mValid = valid;
     }
     
@@ -103,7 +98,7 @@ public class ImageReaderResult {
      * network.
      * @param crc CRC hash value of image file to be set.
      */
-    public void setCrc(Long crc) {
+    public void setCrc(final Long crc) {
         mCrc = crc;
     }
     
@@ -125,7 +120,7 @@ public class ImageReaderResult {
      * more expensive.
      * @param md5 MD5 hash value of image file to be set.
      */
-    public void setMd5(String md5) {
+    public void setMd5(final String md5) {
         this.mMd5 = md5;
     }
     
@@ -141,7 +136,7 @@ public class ImageReaderResult {
      * Sets image file length in bytes.
      * @param fileLength image file length in bytes.
      */
-    public void setFileLength(long fileLength) {
+    public void setFileLength(final long fileLength) {
         mFileLength = fileLength;
     }
     
@@ -159,7 +154,7 @@ public class ImageReaderResult {
      * milliseconds passed since epoch time (January 1st, 1970).
      * @param lastModified timestamp when image file was last modified.
      */
-    public void setLastModified(long lastModified) {
+    public void setLastModified(final long lastModified) {
         mLastModified = lastModified;
     }
     
@@ -177,7 +172,7 @@ public class ImageReaderResult {
      * image format (i.e. image/jpeg or image/png).
      * @param contentType MIME content type to be assigned to image.
      */
-    public void setContentType(String contentType) {
+    public void setContentType(final String contentType) {
         mContentType = contentType;
     }
     
@@ -195,7 +190,7 @@ public class ImageReaderResult {
      * location.
      * @param metadata image metadata to be set.
      */
-    public void setMetadata(ImageMetadata metadata) {
+    public void setMetadata(final ImageMetadata metadata) {
         mMetadata = metadata;
     }
     
@@ -211,7 +206,7 @@ public class ImageReaderResult {
      * Sets detected image format. Supported formats are: JPG, PNG, GIF, BMP.
      * @param imageFormat detected image format.
      */
-    public void setImageFormat(ImageFormat imageFormat) {
+    public void setImageFormat(final ImageFormat imageFormat) {
         mImageFormat = imageFormat;
     }    
 }

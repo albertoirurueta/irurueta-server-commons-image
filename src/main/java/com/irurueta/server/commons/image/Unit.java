@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,13 +42,13 @@ public enum Unit {
     /**
      * Integer representation of units.
      */
-    private int mValue;
+    private final int mValue;
     
     /**
      * Constructor.
      * @param value integer representation of units.
      */
-    Unit(int value) {
+    Unit(final int value) {
         mValue = value;
     }
     
@@ -65,7 +65,7 @@ public enum Unit {
      * @param value integer representation.
      * @return unit.
      */
-    public static Unit fromValue(int value) {
+    public static Unit fromValue(final int value) {
         switch (value) {
             case 1:
                 return NOT_AVAILABLE;

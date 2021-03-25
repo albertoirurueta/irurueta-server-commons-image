@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -109,8 +109,7 @@ public class ThumbnailCreator {
      * generate thumbnails at the same time.
      * @throws IllegalArgumentException if provided value is less than 1.
      */
-    public synchronized void setMaxConcurrentThreads(int maxConcurrentThreads) 
-            throws IllegalArgumentException {
+    public synchronized void setMaxConcurrentThreads(final int maxConcurrentThreads) {
         if (maxConcurrentThreads < MIN_CONCURRENT_THREADS) {
             throw new IllegalArgumentException();
         }
@@ -160,10 +159,13 @@ public class ThumbnailCreator {
      * actual image size.
      * @throws IOException  if an I/O error occurs.
      */
-    public void generateAndSaveThumbnail(File inputImageFile, 
-            ImageOrientation inputOrientation,
-            File generatedThumbnailFile, int width, int height, 
-            ThumbnailFormat format) throws IllegalArgumentException, 
+    @SuppressWarnings("SuspiciousNameCombination")
+    public void generateAndSaveThumbnail(
+            final File inputImageFile,
+            final ImageOrientation inputOrientation,
+            final File generatedThumbnailFile,
+            final int width, final int height,
+            final ThumbnailFormat format) throws IllegalArgumentException,
             IOException {
         
         if (width <= MIN_SIZE || height <= MIN_SIZE) {
@@ -175,30 +177,32 @@ public class ThumbnailCreator {
                 while (mNumThreads >= mMaxConcurrentThreads) {
                     wait();
                 }
-            } catch (InterruptedException e) { }
+            } catch (final InterruptedException ignore) {
+                // no action required
+            }
             mNumThreads++;
         }
         
         try {
-            //default (orientation == 1)
+            // default (orientation == 1)
             boolean exchangeSize = false;
             int quadrants = 0;
             if (inputOrientation != null) {
-                //take into account only orientations below, other orientations
-                //will be ignored
+                // take into account only orientations below, other orientations
+                // will be ignored
                 switch (inputOrientation) {
                     case LEFT_BOTTOM: 
-                        //orientaton == 8 (counterclockwise 90º)
+                        // orientaton == 8 (counterclockwise 90º)
                         exchangeSize = true;
                         quadrants = -1;
                         break;
                     case BOTTOM_RIGHT: 
-                        //orientaton == 3 (clockwise 180º)
+                        // orientaton == 3 (clockwise 180º)
                         exchangeSize = false;
                         quadrants = -2;
                         break;
                     case RIGHT_TOP: 
-                        //orientaton == 6 (clockwise 90º)
+                        // orientaton == 6 (clockwise 90º)
                         exchangeSize = true;
                         quadrants = -3;
                         break;
@@ -212,14 +216,14 @@ public class ThumbnailCreator {
                 bufferedImageType = BufferedImage.TYPE_INT_ARGB;
             }
         
-            BufferedImage inputImage = ImageIO.read(inputImageFile);
+            final BufferedImage inputImage = ImageIO.read(inputImageFile);
             if (inputImage == null) {
                 throw new IOException();
             }
             
         
-            Image tempImage;
-            BufferedImage resizedImage;  
+            final Image tempImage;
+            final BufferedImage resizedImage;
             Graphics2D graphics2D;
             if (exchangeSize) {
                 if (width > inputImage.getHeight() || 
@@ -227,7 +231,7 @@ public class ThumbnailCreator {
                     throw new IllegalArgumentException();
                 }
             
-                //scale image
+                // scale image
                 tempImage = inputImage.getScaledInstance(height, width, 
                         Image.SCALE_AREA_AVERAGING);
                 resizedImage = new BufferedImage(height, width,                     
@@ -242,7 +246,7 @@ public class ThumbnailCreator {
                     throw new IllegalArgumentException();
                 }
             
-                //scale image
+                // scale image
                 tempImage = inputImage.getScaledInstance(width, height,
                         Image.SCALE_AREA_AVERAGING);
                 resizedImage = new BufferedImage(width, height,                     
@@ -253,8 +257,9 @@ public class ThumbnailCreator {
             }
         
         
-            double centerX, centerY;
-            int resizedHeight;
+            final double centerX;
+            final double centerY;
+            final int resizedHeight;
             if (exchangeSize) {
                 centerX = (double)height / 2.0;
                 centerY = (double)width / 2.0;            
@@ -267,35 +272,35 @@ public class ThumbnailCreator {
                                 
             BufferedImage thumbnailImage = resizedImage;
             if (quadrants != 0) {
-                //set rotation transformationby the desired number of quadrants
-                AffineTransform rotateT = new AffineTransform();
+                // set rotation transformation by the desired number of quadrants
+                final AffineTransform rotateT = new AffineTransform();
                 rotateT.rotate(0.5 * Math.PI * (double)quadrants,
                         centerX, centerY);
             
-                //find proper translations to ensure that rotation doesn't cut 
-                //off any image data            
+                // find proper translations to ensure that rotation doesn't cut
+                // off any image data
                 if (quadrants != -2) {
-                    AffineTransform rotateT2 = new AffineTransform();
+                    final AffineTransform rotateT2 = new AffineTransform();
                     rotateT2.rotate(-1.5 * Math.PI, centerX, centerY);
                     Point2D p2din = new Point2D.Double(0.0, 0.0);
                     Point2D p2dout = rotateT2.transform(p2din, null);
-                    double ytrans = p2dout.getY();
+                    final double ytrans = p2dout.getY();
             
                     p2din = new Point2D.Double(0.0, resizedHeight);
                     p2dout = rotateT2.transform(p2din, null);
-                    double xtrans = p2dout.getX();
+                    final double xtrans = p2dout.getX();
             
-                    AffineTransform translateT = new AffineTransform();
+                    final AffineTransform translateT = new AffineTransform();
                     translateT.translate(-xtrans, -ytrans);
                                                 
                     rotateT.preConcatenate(translateT);        
                 }
             
-                //instantiate image that will contain the thumbnail
+                // instantiate image that will contain the thumbnail
                 thumbnailImage = new BufferedImage(width, height, 
                        bufferedImageType);
                 graphics2D = thumbnailImage.createGraphics();  
-                //transform filtered image with scaling and rotation
+                // transform filtered image with scaling and rotation
                 graphics2D.drawImage(resizedImage, rotateT, null);
                 graphics2D.dispose();
             }
@@ -303,12 +308,12 @@ public class ThumbnailCreator {
         
             if (!ImageIO.write(thumbnailImage, format.getValue(), 
                     generatedThumbnailFile)) {
-                //if format is not supported
+                // if format is not supported
                 throw new IOException(); 
             }
         } finally {
-            //decrease counter of threads no matter if thumbnail generation 
-            //fails
+            // decrease counter of threads no matter if thumbnail generation
+            // fails
             synchronized (this) {
                 mNumThreads--;
                 this.notifyAll();

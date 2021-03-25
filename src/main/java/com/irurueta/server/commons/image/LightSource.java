@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -127,7 +127,7 @@ public enum LightSource {
     /**
      * Integer representation of a light source.
      */
-    private int mValue;
+    private final int mValue;
     
     /**
      * Constructor.
@@ -151,7 +151,7 @@ public enum LightSource {
      * @param value integer representation of a light source.
      * @return a light source instance.
      */
-    public static LightSource fromValue(int value) {
+    public static LightSource fromValue(final int value) {
         switch (value) {
             case 0:
                 return UNKNOWN;

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -28,7 +28,6 @@ import java.util.logging.Logger;
 /**
  * Contains build data for this library.
  */
-@SuppressWarnings("WeakerAccess")
 public class BuildInfo {
     /**
      * This class logger.
@@ -128,17 +127,17 @@ public class BuildInfo {
      * Constructor.
      */
     private BuildInfo() {
-        //loads properties file data
+        // loads properties file data
         InputStream stream = null;
         try {
             stream = com.irurueta.server.commons.BuildInfo.class.getResourceAsStream(BUILD_INFO_PROPERTIES);
 
-            Properties props = new Properties();
+            final Properties props = new Properties();
             props.load(stream);
 
-            String buildTimestampString = props.getProperty(
+            final String buildTimestampString = props.getProperty(
                     BUILD_TIMESTAMP_KEY);
-            SimpleDateFormat format = new SimpleDateFormat(TIMESTAMP_FORMAT, 
+            final SimpleDateFormat format = new SimpleDateFormat(TIMESTAMP_FORMAT,
                     Locale.ENGLISH);
             mBuildTimestamp = format.parse(buildTimestampString);
 
@@ -154,9 +153,9 @@ public class BuildInfo {
             if (stream != null) {
                 try {
                     stream.close();
-                } catch (IOException ignore) {
+                } catch (final IOException e) {
                     LOGGER.log(Level.WARNING, "Could not properly close stream",
-                            ignore);
+                            e);
                 }
             }
         }

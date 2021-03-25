@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -199,12 +199,7 @@ public class ImageMetadata {
      * Indicates the ISO speed.
      */
     private Integer mISO;
-    
-    /**
-     * Constructor.
-     */
-    public ImageMetadata() { }
-        
+
     /**
      * Return image width in pixels.
      * @return image width in pixels.
@@ -217,7 +212,7 @@ public class ImageMetadata {
      * Sets image width in pixels.
      * @param width image width in pixels.
      */
-    public void setWidth(int width) {
+    public void setWidth(final int width) {
         mWidth = width;
     }
         
@@ -233,7 +228,7 @@ public class ImageMetadata {
      * Sets image height in pixels.
      * @param height image height in pixels.
      */
-    public void setHeight(int height) {
+    public void setHeight(final int height) {
         mHeight = height;
     }
 
@@ -251,7 +246,7 @@ public class ImageMetadata {
      * available if the original file contained this metadata.
      * @param maker maker of camera that took this image.
      */
-    public void setMaker(String maker) {
+    public void setMaker(final String maker) {
         mMaker = maker;
     }
 
@@ -269,7 +264,7 @@ public class ImageMetadata {
      * available if the original file contained this metadata.
      * @param model model of camera that took this image.
      */
-    public void setModel(String model) {
+    public void setModel(final String model) {
         mModel = model;
     }
         
@@ -286,7 +281,7 @@ public class ImageMetadata {
      * Sets focal length of the camera lens (in inches or centimeters).
      * @param focalLength focal length of the camera lens to be set.
      */
-    public void setFocalLength(Double focalLength) {
+    public void setFocalLength(final Double focalLength) {
         mFocalLength = focalLength;
     }
 
@@ -308,7 +303,7 @@ public class ImageMetadata {
      * actual physical size.
      * @param focalPlaneXResolution image resolution in x coordinates direction.
      */
-    public void setFocalPlaneXResolution(Double focalPlaneXResolution) {
+    public void setFocalPlaneXResolution(final Double focalPlaneXResolution) {
         mFocalPlaneXResolution = focalPlaneXResolution;
     }
     
@@ -330,7 +325,7 @@ public class ImageMetadata {
      * actual physical size.
      * @param focalPlaneYResolution image resolution in y coordinates direction.
      */
-    public void setFocalPlaneYResolution(Double focalPlaneYResolution) {
+    public void setFocalPlaneYResolution(final Double focalPlaneYResolution) {
         mFocalPlaneYResolution = focalPlaneYResolution;
     }
         
@@ -358,7 +353,7 @@ public class ImageMetadata {
      * - focal resolution units are unknown.
      * @param focalPlaneResolutionUnit resolution unit.
      */
-    public void setFocalPlaneResolutionUnit(Unit focalPlaneResolutionUnit) {
+    public void setFocalPlaneResolutionUnit(final Unit focalPlaneResolutionUnit) {
         mFocalPlaneResolutionUnit = focalPlaneResolutionUnit;
     }
 
@@ -404,7 +399,7 @@ public class ImageMetadata {
      * - left bottom orientation (image has to be rotated 90º counterclockwise).
      * @param orientation orientation to be set.
      */
-    public void setOrientation(ImageOrientation orientation) {
+    public void setOrientation(final ImageOrientation orientation) {
         mOrientation = orientation;
     }
     
@@ -422,7 +417,7 @@ public class ImageMetadata {
      * Sets location data of picture.
      * @param location image location.
      */
-    public void setLocation(GPSCoordinates location) {
+    public void setLocation(final GPSCoordinates location) {
         mLocation = location;
     }    
     
@@ -438,7 +433,7 @@ public class ImageMetadata {
      * Sets name of the camera owner, artist or creator.
      * @param artist name of the camera owner, artist or creator.
      */
-    public void setArtist(String artist) {
+    public void setArtist(final String artist) {
         mArtist = artist;
     }
     
@@ -456,7 +451,7 @@ public class ImageMetadata {
      * copyrights.
      * @param copyright copyright information.
      */
-    public void setCopyright(String copyright) {
+    public void setCopyright(final String copyright) {
         mCopyright = copyright;
     }
     
@@ -473,7 +468,7 @@ public class ImageMetadata {
      * @param documentName the name of the document from which this image was
      * scanned.
      */
-    public void setDocumentName(String documentName) {
+    public void setDocumentName(final String documentName) {
         mDocumentName = documentName;
     }
     
@@ -490,7 +485,7 @@ public class ImageMetadata {
      * @param hostComputer information about the host computer used to generate
      * the image.
      */
-    public void setHostComputer(String hostComputer) {
+    public void setHostComputer(final String hostComputer) {
         mHostComputer = hostComputer;
     }
     
@@ -506,7 +501,7 @@ public class ImageMetadata {
      * Sets title of the image.
      * @param imageDescription title of the image.
      */
-    public void setImageDescription(String imageDescription) {
+    public void setImageDescription(final String imageDescription) {
         mImageDescription = imageDescription;
     }
     
@@ -526,7 +521,7 @@ public class ImageMetadata {
      * @param software name and version of the software or firmware of the 
      * camera or image input device used to generate the image.
      */
-    public void setSoftware(String software) {
+    public void setSoftware(final String software) {
         mSoftware = software;
     }
     
@@ -544,7 +539,7 @@ public class ImageMetadata {
      * intended.
      * @param targetPrinter a description of the printing environment.
      */
-    public void setTargetPrinter(String targetPrinter) {
+    public void setTargetPrinter(final String targetPrinter) {
         mTargetPrinter = targetPrinter;
     }
     
@@ -563,7 +558,7 @@ public class ImageMetadata {
      * @param cameraSerialNumber serial number of the camera or camera body that
      * captured the image.
      */
-    public void setCameraSerialNumber(String cameraSerialNumber) {
+    public void setCameraSerialNumber(final String cameraSerialNumber) {
         mCameraSerialNumber = cameraSerialNumber;
     }
     
@@ -582,7 +577,7 @@ public class ImageMetadata {
      * the recorded value is 0, this indicates the digital zoom was not used.
      * @param digitalZoomRatio the digital zoom ratio when the image was shot.
      */
-    public void setDigitalZoomRatio(Double digitalZoomRatio) {
+    public void setDigitalZoomRatio(final Double digitalZoomRatio) {
         mDigitalZoomRatio = digitalZoomRatio;
     }
     
@@ -598,7 +593,7 @@ public class ImageMetadata {
      * Sets exposure time, given in seconds.
      * @param exposureTime exposure time, given in seconds.
      */
-    public void setExposureTime(Double exposureTime) {
+    public void setExposureTime(final Double exposureTime) {
         mExposureTime = exposureTime;
     }
     
@@ -614,7 +609,7 @@ public class ImageMetadata {
      * Sets status of flash when the image was shot.
      * @param flash status of flash when the image was shot.
      */
-    public void setFlash(Flash flash) {
+    public void setFlash(final Flash flash) {
         mFlash = flash;
     }
     
@@ -632,7 +627,7 @@ public class ImageMetadata {
      * Second).
      * @param flashEnergy flash energy expressed in BCPS.
      */
-    public void setFlashEnergy(Double flashEnergy) {
+    public void setFlashEnergy(final Double flashEnergy) {
         mFlashEnergy = flashEnergy;
     }
     
@@ -648,7 +643,7 @@ public class ImageMetadata {
      * Sets the F number.
      * @param fNumber the F number.
      */
-    public void setFNumber(Double fNumber) {
+    public void setFNumber(final Double fNumber) {
         mFNumber = fNumber;
     }
     
@@ -667,7 +662,7 @@ public class ImageMetadata {
      * @param focalLengthIn35mmFilm the equivalent focal length assuming a 35mm
      * film camera.
      */
-    public void setFocalLengthIn35mmFilm(Double focalLengthIn35mmFilm) {
+    public void setFocalLengthIn35mmFilm(final Double focalLengthIn35mmFilm) {
         mFocalLengthIn35mmFilm = focalLengthIn35mmFilm;
     }
     
@@ -686,7 +681,7 @@ public class ImageMetadata {
      * @param uniqueCameraModel a unique, non-localized name for the camera 
      * model.
      */
-    public void setUniqueCameraModel(String uniqueCameraModel) {
+    public void setUniqueCameraModel(final String uniqueCameraModel) {
         mUniqueCameraModel = uniqueCameraModel;
     }
 
@@ -702,7 +697,7 @@ public class ImageMetadata {
      * Sets the distance to the subject, given in meters.
      * @param subjectDistance distance to the subject, given in meters.
      */
-    public void setSubjectDistance(Double subjectDistance) {
+    public void setSubjectDistance(final Double subjectDistance) {
         mSubjectDistance = subjectDistance;
     }
 
@@ -722,7 +717,7 @@ public class ImageMetadata {
      * @see #getExposureTime() to get the same value expressed in seconds.
      * @param shutterSpeedValue shutter speed expressed as APEX.
      */
-    public void setShutterSpeedValue(Double shutterSpeedValue) {
+    public void setShutterSpeedValue(final Double shutterSpeedValue) {
         mShutterSpeedValue = shutterSpeedValue;
     }
     
@@ -736,9 +731,9 @@ public class ImageMetadata {
 
     /**
      * Sets the ISO speed.
-     * @param ISO the ISO speed.
+     * @param iso the ISO speed.
      */
-    public void setISO(Integer ISO) {
-        mISO = ISO;
+    public void setISO(final Integer iso) {
+        mISO = iso;
     }    
 }

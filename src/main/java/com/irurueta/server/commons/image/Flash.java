@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -138,13 +138,13 @@ public enum Flash {
     /**
      * Integer value representing flash mode.
      */
-    private int mValue;
+    private final int mValue;
     
     /**
      * Constructor.
      * @param value integer value representing flash mode.
      */
-    Flash(int value) {
+    Flash(final int value) {
         mValue = value;
     }
     
@@ -183,7 +183,7 @@ public enum Flash {
             case 0x0049: 
                 //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE
             case 0x004D: 
-                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED;
+                //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
             case 0x004F: 
                 //FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
             case 0x0059: 
@@ -260,7 +260,7 @@ public enum Flash {
      * @param value integer representation of flash mode.
      * @return flash mode.
      */
-    public static Flash fromValue(int value) {
+    public static Flash fromValue(final int value) {
         switch (value) {
             case 0x0000:
                 return FLASH_DID_NOT_FIRE;

@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -47,13 +47,13 @@ public enum ThumbnailFormat {
     /**
      * String representation or file extension of format.
      */
-    private String mValue;
+    private final String mValue;
     
     /**
      * Constructor.
      * @param value string representation or file extension of format.
      */
-    ThumbnailFormat(String value) {
+    ThumbnailFormat(final String value) {
         mValue = value;
     }
     
@@ -71,7 +71,7 @@ public enum ThumbnailFormat {
      * @param value string representation or file extension.
      * @return thumbnail format.
      */
-    public static ThumbnailFormat fromValue(String value) {
+    public static ThumbnailFormat fromValue(final String value) {
         if (value == null) {
             return UNKNOWN;
         }
@@ -94,7 +94,7 @@ public enum ThumbnailFormat {
      * @param format image format.
      * @return thumbnail format.
      */
-    public static ThumbnailFormat fromImageFormat(ImageFormat format) {
+    public static ThumbnailFormat fromImageFormat(final ImageFormat format) {
         if (format == null) {
             return ThumbnailFormat.UNKNOWN;
         }

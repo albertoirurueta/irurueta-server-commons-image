@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -54,7 +54,7 @@ public class GPSCoordinates {
      * @param longitude longitude expressed in degrees. Note: minutes and 
      * seconds must be expressed as a decimal fraction of a degree.
      */
-    public GPSCoordinates(double latitude, double longitude) {
+    public GPSCoordinates(final double latitude, final double longitude) {
         mLatitude = latitude;
         mLongitude = longitude;
     }
@@ -67,8 +67,8 @@ public class GPSCoordinates {
      * seconds must be expressed as a decimal fraction of a degree.
      * @param altitude altitude expressed in meters.
      */
-    public GPSCoordinates(double latitude, double longitude, 
-            double altitude) {
+    public GPSCoordinates(final double latitude, final double longitude,
+            final double altitude) {
         mLatitude = latitude;
         mLongitude = longitude;
         mAltitude = altitude;
@@ -91,7 +91,7 @@ public class GPSCoordinates {
      * @param latitude latitude to be set expressed in degrees or null if 
      * unknown.
      */
-    public void setLatitude(double latitude) {
+    public void setLatitude(final double latitude) {
         mLatitude = latitude;
     }
     
@@ -120,7 +120,7 @@ public class GPSCoordinates {
      * @param longitude longitude to be set expressed in degrees or null if 
      * unknown.
      */
-    public void setLongitude(double longitude) {
+    public void setLongitude(final double longitude) {
         mLongitude = longitude;
     }
     
@@ -146,7 +146,7 @@ public class GPSCoordinates {
      * Sets altitude expressed in meters. Null indicates that value is unknown.
      * @param altitude altitude expressed in meters or null if unknown.
      */
-    public void setAltitude(Double altitude) {
+    public void setAltitude(final Double altitude) {
         mAltitude = altitude;
     }        
     
