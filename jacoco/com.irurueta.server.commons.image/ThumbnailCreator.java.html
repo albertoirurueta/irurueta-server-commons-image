@@ -199,127 +199,126 @@ public class ThumbnailCreator {
 <span class="fc" id="L199">                        break;</span>
                     case BOTTOM_RIGHT:
                         // orientaton == 3 (clockwise 180º)
-<span class="fc" id="L202">                        exchangeSize = false;</span>
-<span class="fc" id="L203">                        quadrants = -2;</span>
-<span class="fc" id="L204">                        break;</span>
+<span class="fc" id="L202">                        quadrants = -2;</span>
+<span class="fc" id="L203">                        break;</span>
                     case RIGHT_TOP:
                         // orientaton == 6 (clockwise 90º)
-<span class="fc" id="L207">                        exchangeSize = true;</span>
-<span class="fc" id="L208">                        quadrants = -3;</span>
-<span class="fc" id="L209">                        break;</span>
+<span class="fc" id="L206">                        exchangeSize = true;</span>
+<span class="fc" id="L207">                        quadrants = -3;</span>
+<span class="fc" id="L208">                        break;</span>
                     default:
                         break;
                 }
             }
 
-<span class="fc" id="L215">            int bufferedImageType = BufferedImage.TYPE_INT_RGB;</span>
-<span class="fc bfc" id="L216" title="All 2 branches covered.">            if (format == ThumbnailFormat.PNG) {</span>
-<span class="fc" id="L217">                bufferedImageType = BufferedImage.TYPE_INT_ARGB;</span>
+<span class="fc" id="L214">            int bufferedImageType = BufferedImage.TYPE_INT_RGB;</span>
+<span class="fc bfc" id="L215" title="All 2 branches covered.">            if (format == ThumbnailFormat.PNG) {</span>
+<span class="fc" id="L216">                bufferedImageType = BufferedImage.TYPE_INT_ARGB;</span>
             }
 
-<span class="fc" id="L220">            final BufferedImage inputImage = ImageIO.read(inputImageFile);</span>
-<span class="pc bpc" id="L221" title="1 of 2 branches missed.">            if (inputImage == null) {</span>
-<span class="nc" id="L222">                throw new IOException();</span>
+<span class="fc" id="L219">            final BufferedImage inputImage = ImageIO.read(inputImageFile);</span>
+<span class="pc bpc" id="L220" title="1 of 2 branches missed.">            if (inputImage == null) {</span>
+<span class="nc" id="L221">                throw new IOException();</span>
             }
 
 
             final Image tempImage;
             final BufferedImage resizedImage;
             Graphics2D graphics2D;
-<span class="fc bfc" id="L229" title="All 2 branches covered.">            if (exchangeSize) {</span>
-<span class="fc bfc" id="L230" title="All 2 branches covered.">                if (width &gt; inputImage.getHeight() ||</span>
-<span class="pc bpc" id="L231" title="1 of 2 branches missed.">                        height &gt; inputImage.getWidth()) {</span>
-<span class="fc" id="L232">                    throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L228" title="All 2 branches covered.">            if (exchangeSize) {</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">                if (width &gt; inputImage.getHeight() ||</span>
+<span class="pc bpc" id="L230" title="1 of 2 branches missed.">                        height &gt; inputImage.getWidth()) {</span>
+<span class="fc" id="L231">                    throw new IllegalArgumentException();</span>
                 }
 
                 // scale image
-<span class="fc" id="L236">                tempImage = inputImage.getScaledInstance(height, width,</span>
+<span class="fc" id="L235">                tempImage = inputImage.getScaledInstance(height, width,</span>
                         Image.SCALE_AREA_AVERAGING);
-<span class="fc" id="L238">                resizedImage = new BufferedImage(height, width,</span>
+<span class="fc" id="L237">                resizedImage = new BufferedImage(height, width,</span>
                         bufferedImageType);
-<span class="fc" id="L240">                graphics2D = resizedImage.createGraphics();</span>
-<span class="fc" id="L241">                graphics2D.drawImage(tempImage, 0, 0, height, width, null);</span>
-<span class="fc" id="L242">                graphics2D.dispose();</span>
+<span class="fc" id="L239">                graphics2D = resizedImage.createGraphics();</span>
+<span class="fc" id="L240">                graphics2D.drawImage(tempImage, 0, 0, height, width, null);</span>
+<span class="fc" id="L241">                graphics2D.dispose();</span>
 
             } else {
-<span class="fc bfc" id="L245" title="All 2 branches covered.">                if (width &gt; inputImage.getWidth() ||</span>
-<span class="pc bpc" id="L246" title="1 of 2 branches missed.">                        height &gt; inputImage.getHeight()) {</span>
-<span class="fc" id="L247">                    throw new IllegalArgumentException();</span>
+<span class="fc bfc" id="L244" title="All 2 branches covered.">                if (width &gt; inputImage.getWidth() ||</span>
+<span class="pc bpc" id="L245" title="1 of 2 branches missed.">                        height &gt; inputImage.getHeight()) {</span>
+<span class="fc" id="L246">                    throw new IllegalArgumentException();</span>
                 }
 
                 // scale image
-<span class="fc" id="L251">                tempImage = inputImage.getScaledInstance(width, height,</span>
+<span class="fc" id="L250">                tempImage = inputImage.getScaledInstance(width, height,</span>
                         Image.SCALE_AREA_AVERAGING);
-<span class="fc" id="L253">                resizedImage = new BufferedImage(width, height,</span>
+<span class="fc" id="L252">                resizedImage = new BufferedImage(width, height,</span>
                         bufferedImageType);
-<span class="fc" id="L255">                graphics2D = resizedImage.createGraphics();</span>
-<span class="fc" id="L256">                graphics2D.drawImage(tempImage, 0, 0, width, height, null);</span>
-<span class="fc" id="L257">                graphics2D.dispose();</span>
+<span class="fc" id="L254">                graphics2D = resizedImage.createGraphics();</span>
+<span class="fc" id="L255">                graphics2D.drawImage(tempImage, 0, 0, width, height, null);</span>
+<span class="fc" id="L256">                graphics2D.dispose();</span>
             }
 
 
             final double centerX;
             final double centerY;
             final int resizedHeight;
-<span class="fc bfc" id="L264" title="All 2 branches covered.">            if (exchangeSize) {</span>
-<span class="fc" id="L265">                centerX = (double) height / 2.0;</span>
-<span class="fc" id="L266">                centerY = (double) width / 2.0;</span>
-<span class="fc" id="L267">                resizedHeight = width;</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">            if (exchangeSize) {</span>
+<span class="fc" id="L264">                centerX = (double) height / 2.0;</span>
+<span class="fc" id="L265">                centerY = (double) width / 2.0;</span>
+<span class="fc" id="L266">                resizedHeight = width;</span>
             } else {
-<span class="fc" id="L269">                centerX = (double) width / 2.0;</span>
-<span class="fc" id="L270">                centerY = (double) height / 2.0;</span>
-<span class="fc" id="L271">                resizedHeight = height;</span>
+<span class="fc" id="L268">                centerX = (double) width / 2.0;</span>
+<span class="fc" id="L269">                centerY = (double) height / 2.0;</span>
+<span class="fc" id="L270">                resizedHeight = height;</span>
             }
 
-<span class="fc" id="L274">            BufferedImage thumbnailImage = resizedImage;</span>
-<span class="fc bfc" id="L275" title="All 2 branches covered.">            if (quadrants != 0) {</span>
+<span class="fc" id="L273">            BufferedImage thumbnailImage = resizedImage;</span>
+<span class="fc bfc" id="L274" title="All 2 branches covered.">            if (quadrants != 0) {</span>
                 // set rotation transformation by the desired number of quadrants
-<span class="fc" id="L277">                final AffineTransform rotateT = new AffineTransform();</span>
-<span class="fc" id="L278">                rotateT.rotate(0.5 * Math.PI * (double) quadrants,</span>
+<span class="fc" id="L276">                final AffineTransform rotateT = new AffineTransform();</span>
+<span class="fc" id="L277">                rotateT.rotate(0.5 * Math.PI * (double) quadrants,</span>
                         centerX, centerY);
 
                 // find proper translations to ensure that rotation doesn't cut
                 // off any image data
-<span class="fc bfc" id="L283" title="All 2 branches covered.">                if (quadrants != -2) {</span>
-<span class="fc" id="L284">                    final AffineTransform rotateT2 = new AffineTransform();</span>
-<span class="fc" id="L285">                    rotateT2.rotate(-1.5 * Math.PI, centerX, centerY);</span>
-<span class="fc" id="L286">                    Point2D p2din = new Point2D.Double(0.0, 0.0);</span>
-<span class="fc" id="L287">                    Point2D p2dout = rotateT2.transform(p2din, null);</span>
-<span class="fc" id="L288">                    final double ytrans = p2dout.getY();</span>
+<span class="fc bfc" id="L282" title="All 2 branches covered.">                if (quadrants != -2) {</span>
+<span class="fc" id="L283">                    final AffineTransform rotateT2 = new AffineTransform();</span>
+<span class="fc" id="L284">                    rotateT2.rotate(-1.5 * Math.PI, centerX, centerY);</span>
+<span class="fc" id="L285">                    Point2D p2din = new Point2D.Double(0.0, 0.0);</span>
+<span class="fc" id="L286">                    Point2D p2dout = rotateT2.transform(p2din, null);</span>
+<span class="fc" id="L287">                    final double ytrans = p2dout.getY();</span>
 
-<span class="fc" id="L290">                    p2din = new Point2D.Double(0.0, resizedHeight);</span>
-<span class="fc" id="L291">                    p2dout = rotateT2.transform(p2din, null);</span>
-<span class="fc" id="L292">                    final double xtrans = p2dout.getX();</span>
+<span class="fc" id="L289">                    p2din = new Point2D.Double(0.0, resizedHeight);</span>
+<span class="fc" id="L290">                    p2dout = rotateT2.transform(p2din, null);</span>
+<span class="fc" id="L291">                    final double xtrans = p2dout.getX();</span>
 
-<span class="fc" id="L294">                    final AffineTransform translateT = new AffineTransform();</span>
-<span class="fc" id="L295">                    translateT.translate(-xtrans, -ytrans);</span>
+<span class="fc" id="L293">                    final AffineTransform translateT = new AffineTransform();</span>
+<span class="fc" id="L294">                    translateT.translate(-xtrans, -ytrans);</span>
 
-<span class="fc" id="L297">                    rotateT.preConcatenate(translateT);</span>
+<span class="fc" id="L296">                    rotateT.preConcatenate(translateT);</span>
                 }
 
                 // instantiate image that will contain the thumbnail
-<span class="fc" id="L301">                thumbnailImage = new BufferedImage(width, height,</span>
+<span class="fc" id="L300">                thumbnailImage = new BufferedImage(width, height,</span>
                         bufferedImageType);
-<span class="fc" id="L303">                graphics2D = thumbnailImage.createGraphics();</span>
+<span class="fc" id="L302">                graphics2D = thumbnailImage.createGraphics();</span>
                 // transform filtered image with scaling and rotation
-<span class="fc" id="L305">                graphics2D.drawImage(resizedImage, rotateT, null);</span>
-<span class="fc" id="L306">                graphics2D.dispose();</span>
+<span class="fc" id="L304">                graphics2D.drawImage(resizedImage, rotateT, null);</span>
+<span class="fc" id="L305">                graphics2D.dispose();</span>
             }
 
 
-<span class="pc bpc" id="L310" title="1 of 2 branches missed.">            if (!ImageIO.write(thumbnailImage, format.getValue(),</span>
+<span class="pc bpc" id="L309" title="1 of 2 branches missed.">            if (!ImageIO.write(thumbnailImage, format.getValue(),</span>
                     generatedThumbnailFile)) {
                 // if format is not supported
-<span class="nc" id="L313">                throw new IOException();</span>
+<span class="nc" id="L312">                throw new IOException();</span>
             }
         } finally {
             // decrease counter of threads no matter if thumbnail generation
             // fails
-<span class="fc" id="L318">            synchronized (this) {</span>
-<span class="fc" id="L319">                mNumThreads--;</span>
-<span class="fc" id="L320">                this.notifyAll();</span>
-<span class="fc" id="L321">            }</span>
+<span class="fc" id="L317">            synchronized (this) {</span>
+<span class="fc" id="L318">                mNumThreads--;</span>
+<span class="fc" id="L319">                this.notifyAll();</span>
+<span class="fc" id="L320">            }</span>
         }
-<span class="fc" id="L323">    }</span>
+<span class="fc" id="L322">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

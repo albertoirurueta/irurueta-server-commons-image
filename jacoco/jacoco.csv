@@ -12,4 +12,4 @@ com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,Ima
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,LightSource,0,290,0,21,0,48,0,24,0,4
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ImageReaderResult,0,62,0,0,0,26,0,17,0,17
 com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,GPSCoordinates,0,73,0,6,0,23,0,15,0,12
-com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ThumbnailCreator,22,313,9,31,7,83,9,17,1,4
+com.irurueta:irurueta-server-commons-image,com.irurueta.server.commons.image,ThumbnailCreator,22,311,9,31,7,82,9,17,1,4
