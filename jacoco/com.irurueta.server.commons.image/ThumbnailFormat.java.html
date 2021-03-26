@@ -23,94 +23,98 @@ package com.irurueta.server.commons.image;
      * JPEG format.
      */
 <span class="fc" id="L25">    JPEG(&quot;jpeg&quot;),</span>
-    
+
     /**
      * PNG format.
      */
 <span class="fc" id="L30">    PNG(&quot;png&quot;),</span>
-    
+
     /**
      * GIF format.
      */
 <span class="fc" id="L35">    GIF(&quot;gif&quot;),</span>
-    
+
     /**
      * BMP format.
      */
 <span class="fc" id="L40">    BMP(&quot;bmp&quot;),</span>
-    
+
     /**
      * Unknown format.
      */
 <span class="fc" id="L45">    UNKNOWN(&quot;unknown&quot;);</span>
-    
+
     /**
      * String representation or file extension of format.
      */
     private final String mValue;
-    
+
     /**
      * Constructor.
+     *
      * @param value string representation or file extension of format.
      */
-<span class="fc" id="L56">    ThumbnailFormat(final String value) {</span>
-<span class="fc" id="L57">        mValue = value;</span>
-<span class="fc" id="L58">    }</span>
-    
+<span class="fc" id="L57">    ThumbnailFormat(final String value) {</span>
+<span class="fc" id="L58">        mValue = value;</span>
+<span class="fc" id="L59">    }</span>
+
     /**
      * Returns string representation or file extension of format.
+     *
      * @return string representation or file extension of format.
      */
     public String getValue() {
-<span class="fc" id="L65">        return mValue;</span>
+<span class="fc" id="L67">        return mValue;</span>
     }
-    
+
     /**
      * Obtains thumbnail format from provided string representation or file
      * extension.
+     *
      * @param value string representation or file extension.
      * @return thumbnail format.
      */
     public static ThumbnailFormat fromValue(final String value) {
-<span class="fc bfc" id="L75" title="All 2 branches covered.">        if (value == null) {</span>
-<span class="fc" id="L76">            return UNKNOWN;</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (value == null) {</span>
+<span class="fc" id="L79">            return UNKNOWN;</span>
         }
-        
-<span class="fc bfc" id="L79" title="All 4 branches covered.">        if (value.equalsIgnoreCase(&quot;jpeg&quot;) || value.equalsIgnoreCase(&quot;jpg&quot;)) {</span>
-<span class="fc" id="L80">            return JPEG;</span>
-<span class="fc bfc" id="L81" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;png&quot;)) {</span>
-<span class="fc" id="L82">            return PNG;</span>
-<span class="fc bfc" id="L83" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;gif&quot;)) {</span>
-<span class="fc" id="L84">            return GIF;</span>
-<span class="fc bfc" id="L85" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;bmp&quot;)) {</span>
-<span class="fc" id="L86">            return BMP;</span>
+
+<span class="fc bfc" id="L82" title="All 4 branches covered.">        if (value.equalsIgnoreCase(&quot;jpeg&quot;) || value.equalsIgnoreCase(&quot;jpg&quot;)) {</span>
+<span class="fc" id="L83">            return JPEG;</span>
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;png&quot;)) {</span>
+<span class="fc" id="L85">            return PNG;</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;gif&quot;)) {</span>
+<span class="fc" id="L87">            return GIF;</span>
+<span class="fc bfc" id="L88" title="All 2 branches covered.">        } else if (value.equalsIgnoreCase(&quot;bmp&quot;)) {</span>
+<span class="fc" id="L89">            return BMP;</span>
         } else {
-<span class="fc" id="L88">            return UNKNOWN;</span>
+<span class="fc" id="L91">            return UNKNOWN;</span>
         }
     }
-    
+
     /**
      * Obtains thumbnail format from provided image format.
+     *
      * @param format image format.
      * @return thumbnail format.
      */
     public static ThumbnailFormat fromImageFormat(final ImageFormat format) {
-<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (format == null) {</span>
-<span class="fc" id="L99">            return ThumbnailFormat.UNKNOWN;</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (format == null) {</span>
+<span class="fc" id="L103">            return ThumbnailFormat.UNKNOWN;</span>
         }
-        
-<span class="fc bfc" id="L102" title="All 5 branches covered.">        switch (format) {</span>
+
+<span class="fc bfc" id="L106" title="All 5 branches covered.">        switch (format) {</span>
             case JPEG:
-<span class="fc" id="L104">                return ThumbnailFormat.JPEG;</span>
+<span class="fc" id="L108">                return ThumbnailFormat.JPEG;</span>
             case PNG:
-<span class="fc" id="L106">                return ThumbnailFormat.PNG;</span>
+<span class="fc" id="L110">                return ThumbnailFormat.PNG;</span>
             case GIF:
-<span class="fc" id="L108">                return ThumbnailFormat.GIF;</span>
+<span class="fc" id="L112">                return ThumbnailFormat.GIF;</span>
             case BMP:
-<span class="fc" id="L110">                return ThumbnailFormat.BMP;</span>
+<span class="fc" id="L114">                return ThumbnailFormat.BMP;</span>
             case UNKNOWN:
             default:
-<span class="fc" id="L113">                return ThumbnailFormat.UNKNOWN;</span>
+<span class="fc" id="L117">                return ThumbnailFormat.UNKNOWN;</span>
         }
     }
 }

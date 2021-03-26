@@ -32,94 +32,97 @@ package com.irurueta.server.commons.image;
      * Rotation is not known.
      */
 <span class="fc" id="L34">    UNKNOWN(0),</span>
-    
+
     /**
      * Top left orientation.
      */
 <span class="fc" id="L39">    TOP_LEFT(1),</span>
-    
+
     /**
      * Top right orientation.
      */
 <span class="fc" id="L44">    TOP_RIGHT(2),</span>
-    
+
     /**
      * Bottom right orientation (image has to be rotated 180º).
      */
 <span class="fc" id="L49">    BOTTOM_RIGHT(3),</span>
-    
+
     /**
      * Bottom left orientation.
      */
 <span class="fc" id="L54">    BOTTOM_LEFT(4),</span>
-    
+
     /**
      * Left top orientation.
      */
 <span class="fc" id="L59">    LEFT_TOP(5),</span>
-    
+
     /**
      * Right top orientation (image has to be rotated 90º clockwise).
      */
 <span class="fc" id="L64">    RIGHT_TOP(6),</span>
-    
+
     /**
      * Right bottom orientation.
      */
 <span class="fc" id="L69">    RIGHT_BOTTOM(7),</span>
-    
+
     /**
      * Left bottom orientation (image has to be rotated 90º counterclockwise).
      */
 <span class="fc" id="L74">    LEFT_BOTTOM(8);</span>
-    
+
     /**
      * Integer representation of image orientation.
      */
-    private int mValue;
-    
+    private final int mValue;
+
     /**
      * Constructor.
+     *
      * @param value integer representation of image orientation.
      */
-<span class="fc" id="L85">    ImageOrientation(int value) {</span>
-<span class="fc" id="L86">        mValue = value;</span>
-<span class="fc" id="L87">    }</span>
-    
+<span class="fc" id="L86">    ImageOrientation(int value) {</span>
+<span class="fc" id="L87">        mValue = value;</span>
+<span class="fc" id="L88">    }</span>
+
     /**
      * Returns integer representation of image orientation.
+     *
      * @return integer representation of image orientation.
      */
     public int getValue() {
-<span class="fc" id="L94">        return mValue;</span>
+<span class="fc" id="L96">        return mValue;</span>
     }
-    
+
     /**
      * Obtains image orientation from provided integer representation.
+     *
      * @param value integer representation of image orientation.
      * @return image orientation.
      */
-    public static ImageOrientation fromValue(int value) {
-<span class="fc bfc" id="L103" title="All 9 branches covered.">        switch (value) {</span>
+    public static ImageOrientation fromValue(final int value) {
+<span class="fc bfc" id="L106" title="All 9 branches covered.">        switch (value) {</span>
             case 1:
-<span class="fc" id="L105">                return TOP_LEFT;</span>
+<span class="fc" id="L108">                return TOP_LEFT;</span>
             case 2:
-<span class="fc" id="L107">                return TOP_RIGHT;</span>
+<span class="fc" id="L110">                return TOP_RIGHT;</span>
             case 3:
-<span class="fc" id="L109">                return BOTTOM_RIGHT;</span>
+<span class="fc" id="L112">                return BOTTOM_RIGHT;</span>
             case 4:
-<span class="fc" id="L111">                return BOTTOM_LEFT;</span>
+<span class="fc" id="L114">                return BOTTOM_LEFT;</span>
             case 5:
-<span class="fc" id="L113">                return LEFT_TOP;</span>
+<span class="fc" id="L116">                return LEFT_TOP;</span>
             case 6:
-<span class="fc" id="L115">                return RIGHT_TOP;</span>
+<span class="fc" id="L118">                return RIGHT_TOP;</span>
             case 7:
-<span class="fc" id="L117">                return RIGHT_BOTTOM;</span>
+<span class="fc" id="L120">                return RIGHT_BOTTOM;</span>
             case 8:
-<span class="fc" id="L119">                return LEFT_BOTTOM;</span>
+<span class="fc" id="L122">                return LEFT_BOTTOM;</span>
             case 0:
             default:
-<span class="fc" id="L122">                return UNKNOWN;</span>
+<span class="fc" id="L125">                return UNKNOWN;</span>
         }
     }
 }

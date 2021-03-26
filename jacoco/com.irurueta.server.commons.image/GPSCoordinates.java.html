@@ -20,142 +20,154 @@ package com.irurueta.server.commons.image;
  * altitude) expressed in degrees and meters respectively.
  */
 public class GPSCoordinates {
-    
+
     /**
      * Latitude of location expressed in degrees.
-     * Note: minutes and seconds must be expressed as a decimal fraction of a 
+     * Note: minutes and seconds must be expressed as a decimal fraction of a
      * degree.
-     */    
+     */
     private Double mLatitude;
-    
+
     /**
      * Longitude of location expressed in degrees.
-     * Note: minutes and seconds must be expressed a decimal fraction of a 
+     * Note: minutes and seconds must be expressed a decimal fraction of a
      * degree.
      */
     private Double mLongitude;
-    
+
     /**
      * Altitude of location expressed in meters.
      * Zero indicates sea level. Positive values indicate an altitude above
      * sea level and negative values indicate an altitude below sea level.
      */
     private Double mAltitude;
-    
+
     /**
      * Constructor.
      */
-<span class="fc" id="L48">    protected GPSCoordinates() { }</span>
-    
+<span class="fc" id="L48">    protected GPSCoordinates() {</span>
+<span class="fc" id="L49">    }</span>
+
     /**
      * Constructor.
-     * @param latitude latitude expressed in degrees. Note: minutes and seconds
-     * must be expressed as a decimal fraction of a degree.
-     * @param longitude longitude expressed in degrees. Note: minutes and 
-     * seconds must be expressed as a decimal fraction of a degree.
+     *
+     * @param latitude  latitude expressed in degrees. Note: minutes and seconds
+     *                  must be expressed as a decimal fraction of a degree.
+     * @param longitude longitude expressed in degrees. Note: minutes and
+     *                  seconds must be expressed as a decimal fraction of a degree.
      */
-<span class="fc" id="L57">    public GPSCoordinates(final double latitude, final double longitude) {</span>
-<span class="fc" id="L58">        mLatitude = latitude;</span>
-<span class="fc" id="L59">        mLongitude = longitude;</span>
-<span class="fc" id="L60">    }</span>
-    
+<span class="fc" id="L59">    public GPSCoordinates(final double latitude, final double longitude) {</span>
+<span class="fc" id="L60">        mLatitude = latitude;</span>
+<span class="fc" id="L61">        mLongitude = longitude;</span>
+<span class="fc" id="L62">    }</span>
+
     /**
      * Constructor.
-     * @param latitude latitude expressed in degrees. Note: minutes and seconds
-     * must be expressed as a decimal fraction of a degree.
-     * @param longitude longitude expressed in degrees. Note: minutes and 
-     * seconds must be expressed as a decimal fraction of a degree.
-     * @param altitude altitude expressed in meters.
+     *
+     * @param latitude  latitude expressed in degrees. Note: minutes and seconds
+     *                  must be expressed as a decimal fraction of a degree.
+     * @param longitude longitude expressed in degrees. Note: minutes and
+     *                  seconds must be expressed as a decimal fraction of a degree.
+     * @param altitude  altitude expressed in meters.
      */
     public GPSCoordinates(final double latitude, final double longitude,
-<span class="fc" id="L71">            final double altitude) {</span>
-<span class="fc" id="L72">        mLatitude = latitude;</span>
-<span class="fc" id="L73">        mLongitude = longitude;</span>
-<span class="fc" id="L74">        mAltitude = altitude;</span>
-<span class="fc" id="L75">    }</span>
-        
+<span class="fc" id="L74">                          final double altitude) {</span>
+<span class="fc" id="L75">        mLatitude = latitude;</span>
+<span class="fc" id="L76">        mLongitude = longitude;</span>
+<span class="fc" id="L77">        mAltitude = altitude;</span>
+<span class="fc" id="L78">    }</span>
+
     /**
-     * Returns latitude expressed in degrees, or null if value is unknown. 
-     * Note: minutes and seconds must be expressed as a decimal fraction of a 
+     * Returns latitude expressed in degrees, or null if value is unknown.
+     * Note: minutes and seconds must be expressed as a decimal fraction of a
      * degree.
+     *
      * @return latitude expressed in degrees or null if unknown.
      */
     public Double getLatitude() {
-<span class="fc" id="L84">        return mLatitude;</span>
+<span class="fc" id="L88">        return mLatitude;</span>
     }
-    
+
     /**
      * Sets latitude expressed in degrees. Null indicates that value is unknown
-     * Note: minutes and seconds must be expressed as a decimal fraction of a 
+     * Note: minutes and seconds must be expressed as a decimal fraction of a
      * degree.
-     * @param latitude latitude to be set expressed in degrees or null if 
-     * unknown.
+     *
+     * @param latitude latitude to be set expressed in degrees or null if
+     *                 unknown.
      */
     public void setLatitude(final double latitude) {
-<span class="fc" id="L95">        mLatitude = latitude;</span>
-<span class="fc" id="L96">    }</span>
-    
+<span class="fc" id="L100">        mLatitude = latitude;</span>
+<span class="fc" id="L101">    }</span>
+
     /**
      * Indicates whether latitude coordinate is available.
+     *
      * @return true if available, false otherwise.
      */
     public boolean isLatitudeAvailable() {
-<span class="fc bfc" id="L103" title="All 2 branches covered.">        return mLatitude != null;</span>
+<span class="fc bfc" id="L109" title="All 2 branches covered.">        return mLatitude != null;</span>
     }
-            
+
     /**
-     * Returns longitude expressed in degrees, or null if value is unknown. 
+     * Returns longitude expressed in degrees, or null if value is unknown.
      * Note: minutes and seconds must be expressed as a decimal
+     *
      * @return longitude expressed in degrees or null if unknown.
      */
     public Double getLongitude() {
-<span class="fc" id="L112">        return mLongitude;</span>
+<span class="fc" id="L119">        return mLongitude;</span>
     }
-    
+
     /**
-     * Sets longitude expressed in degrees. Null indicates that value is 
+     * Sets longitude expressed in degrees. Null indicates that value is
      * unknown.
-     * Note: minutes and seconds must be expressed as a decimal faction of a 
+     * Note: minutes and seconds must be expressed as a decimal faction of a
      * degree.
-     * @param longitude longitude to be set expressed in degrees or null if 
-     * unknown.
+     *
+     * @param longitude longitude to be set expressed in degrees or null if
+     *                  unknown.
      */
     public void setLongitude(final double longitude) {
-<span class="fc" id="L124">        mLongitude = longitude;</span>
-<span class="fc" id="L125">    }</span>
-    
+<span class="fc" id="L132">        mLongitude = longitude;</span>
+<span class="fc" id="L133">    }</span>
+
     /**
      * Indicates whether longitude coordinate is available.
+     *
      * @return true if available, false otherwise.
      */
     public boolean isLongitudeAvailable() {
-<span class="fc bfc" id="L132" title="All 2 branches covered.">        return mLongitude != null;</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        return mLongitude != null;</span>
     }
-            
+
     /**
      * Returns altitude expressed in meters, or null if value is unknown.
      * Zero indicates sea level. Positive values indicate an altitude above
      * sea level and negative values indicate an altitude below sea level.
+     *
      * @return altitude expressed in meters or null if unknown.
      */
     public Double getAltitude() {
-<span class="fc" id="L142">        return mAltitude;</span>
+<span class="fc" id="L152">        return mAltitude;</span>
     }
-    
+
     /**
      * Sets altitude expressed in meters. Null indicates that value is unknown.
+     *
      * @param altitude altitude expressed in meters or null if unknown.
      */
     public void setAltitude(final Double altitude) {
-<span class="fc" id="L150">        mAltitude = altitude;</span>
-<span class="fc" id="L151">    }        </span>
-    
+<span class="fc" id="L161">        mAltitude = altitude;</span>
+<span class="fc" id="L162">    }</span>
+
     /**
      * Indicates whether longitude coordinate is available.
+     *
      * @return true if available, false otherwise.
      */
     public boolean isAltitudeAvailable() {
-<span class="fc bfc" id="L158" title="All 2 branches covered.">        return mAltitude != null;</span>
+<span class="fc bfc" id="L170" title="All 2 branches covered.">        return mAltitude != null;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

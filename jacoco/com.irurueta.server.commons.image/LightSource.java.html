@@ -23,179 +23,182 @@ package com.irurueta.server.commons.image;
      * Light source is unknown.
      */
 <span class="fc" id="L25">    UNKNOWN(0),</span>
-    
+
     /**
      * Day light source.
      */
 <span class="fc" id="L30">    DAYLIGHT(1),</span>
-    
+
     /**
      * Fluorescent light.
      */
 <span class="fc" id="L35">    FLUORESCENT(2),</span>
-    
+
     /**
      * Tungsten incandescent light.
      */
 <span class="fc" id="L40">    TUNGSTEN_INCANDESCENT_LIGHT(3),</span>
-    
+
     /**
      * Flash light.
      */
 <span class="fc" id="L45">    FLASH(4),</span>
-    
+
     /**
      * Fine weather.
      */
 <span class="fc" id="L50">    FINE_WEATHER(9),</span>
-    
+
     /**
      * Cloudy weather.
      */
 <span class="fc" id="L55">    CLOUDY_WEATHER(10),</span>
-    
+
     /**
      * Shade.
      */
 <span class="fc" id="L60">    SHADE(11),</span>
-    
+
     /**
      * Daylight fluorescent.
      */
 <span class="fc" id="L65">    DAYLIGHT_FLUORESCENT_D_5700_7100K(12),</span>
-    
+
     /**
      * Day white fluorescent.
      */
 <span class="fc" id="L70">    DAY_WHITE_FLUORESCENT_N_4600_5400K(13),</span>
-    
+
     /**
      * Cool white fluorescent.
      */
 <span class="fc" id="L75">    COOL_WHITE_FLUORESCENT_W_3900_4500K(14),</span>
-    
+
     /**
      * White fluorescent.
      */
 <span class="fc" id="L80">    WHITE_FLUORESCENT_WW_3200_3700K(15),</span>
-    
+
     /**
      * Standard light A.
      */
 <span class="fc" id="L85">    STANDARD_LIGHT_A(17),</span>
-    
+
     /**
      * Standard light B.
      */
 <span class="fc" id="L90">    STANDARD_LIGHT_B(18),</span>
-    
+
     /**
      * Standard light C.
      */
 <span class="fc" id="L95">    STANDARD_LIGHT_C(19),</span>
-    
+
     /**
      * D55.
      */
 <span class="fc" id="L100">    D55(20),</span>
-    
+
     /**
      * D65.
      */
 <span class="fc" id="L105">    D65(21),</span>
-    
+
     /**
      * D75.
      */
 <span class="fc" id="L110">    D75(22),</span>
-    
+
     /**
      * D50.
      */
 <span class="fc" id="L115">    D50(23),</span>
-    
+
     /**
      * ISO studio tungsten.
      */
 <span class="fc" id="L120">    ISO_STUDIO_TUNGSTEN(24),</span>
-    
+
     /**
      * Other unknown light source.
      */
 <span class="fc" id="L125">    OTHER_LIGHT_SOURCE(255);</span>
-    
+
     /**
      * Integer representation of a light source.
      */
     private final int mValue;
-    
+
     /**
      * Constructor.
+     *
      * @param value integer representation of a light source.
      */
-<span class="fc" id="L136">    LightSource(int value) {</span>
-<span class="fc" id="L137">        mValue = value;</span>
-<span class="fc" id="L138">    }</span>
-    
+<span class="fc" id="L137">    LightSource(int value) {</span>
+<span class="fc" id="L138">        mValue = value;</span>
+<span class="fc" id="L139">    }</span>
+
     /**
      * Returns integer representation of a light source.
+     *
      * @return integer representation of a light source.
      */
     public int getValue() {
-<span class="fc" id="L145">        return mValue;</span>
+<span class="fc" id="L147">        return mValue;</span>
     }
-    
+
     /**
-     * Builds a LightSource instance from its corresponding integer 
+     * Builds a LightSource instance from its corresponding integer
      * representation.
+     *
      * @param value integer representation of a light source.
      * @return a light source instance.
      */
     public static LightSource fromValue(final int value) {
-<span class="fc bfc" id="L155" title="All 21 branches covered.">        switch (value) {</span>
+<span class="fc bfc" id="L158" title="All 21 branches covered.">        switch (value) {</span>
             case 0:
-<span class="fc" id="L157">                return UNKNOWN;</span>
+<span class="fc" id="L160">                return UNKNOWN;</span>
             case 1:
-<span class="fc" id="L159">                return DAYLIGHT;</span>
+<span class="fc" id="L162">                return DAYLIGHT;</span>
             case 2:
-<span class="fc" id="L161">                return FLUORESCENT;</span>
+<span class="fc" id="L164">                return FLUORESCENT;</span>
             case 3:
-<span class="fc" id="L163">                return TUNGSTEN_INCANDESCENT_LIGHT;</span>
+<span class="fc" id="L166">                return TUNGSTEN_INCANDESCENT_LIGHT;</span>
             case 4:
-<span class="fc" id="L165">                return FLASH;</span>
+<span class="fc" id="L168">                return FLASH;</span>
             case 9:
-<span class="fc" id="L167">                return FINE_WEATHER;</span>
+<span class="fc" id="L170">                return FINE_WEATHER;</span>
             case 10:
-<span class="fc" id="L169">                return CLOUDY_WEATHER;</span>
+<span class="fc" id="L172">                return CLOUDY_WEATHER;</span>
             case 11:
-<span class="fc" id="L171">                return SHADE;</span>
+<span class="fc" id="L174">                return SHADE;</span>
             case 12:
-<span class="fc" id="L173">                return DAYLIGHT_FLUORESCENT_D_5700_7100K;</span>
+<span class="fc" id="L176">                return DAYLIGHT_FLUORESCENT_D_5700_7100K;</span>
             case 13:
-<span class="fc" id="L175">                return DAY_WHITE_FLUORESCENT_N_4600_5400K;</span>
+<span class="fc" id="L178">                return DAY_WHITE_FLUORESCENT_N_4600_5400K;</span>
             case 14:
-<span class="fc" id="L177">                return COOL_WHITE_FLUORESCENT_W_3900_4500K;</span>
+<span class="fc" id="L180">                return COOL_WHITE_FLUORESCENT_W_3900_4500K;</span>
             case 15:
-<span class="fc" id="L179">                return WHITE_FLUORESCENT_WW_3200_3700K;</span>
+<span class="fc" id="L182">                return WHITE_FLUORESCENT_WW_3200_3700K;</span>
             case 17:
-<span class="fc" id="L181">                return STANDARD_LIGHT_A;</span>
+<span class="fc" id="L184">                return STANDARD_LIGHT_A;</span>
             case 18:
-<span class="fc" id="L183">                return STANDARD_LIGHT_B;</span>
+<span class="fc" id="L186">                return STANDARD_LIGHT_B;</span>
             case 19:
-<span class="fc" id="L185">                return STANDARD_LIGHT_C;</span>
+<span class="fc" id="L188">                return STANDARD_LIGHT_C;</span>
             case 20:
-<span class="fc" id="L187">                return D55;</span>
+<span class="fc" id="L190">                return D55;</span>
             case 21:
-<span class="fc" id="L189">                return D65;</span>
+<span class="fc" id="L192">                return D65;</span>
             case 22:
-<span class="fc" id="L191">                return D75;</span>
+<span class="fc" id="L194">                return D75;</span>
             case 23:
-<span class="fc" id="L193">                return D50;</span>
+<span class="fc" id="L196">                return D50;</span>
             case 24:
-<span class="fc" id="L195">                return ISO_STUDIO_TUNGSTEN;</span>
+<span class="fc" id="L198">                return ISO_STUDIO_TUNGSTEN;</span>
             case 255:
             default:
-<span class="fc" id="L198">                return OTHER_LIGHT_SOURCE;</span>
+<span class="fc" id="L201">                return OTHER_LIGHT_SOURCE;</span>
         }
     }
 }

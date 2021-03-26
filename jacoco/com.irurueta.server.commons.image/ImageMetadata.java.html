@@ -24,44 +24,44 @@ package com.irurueta.server.commons.image;
      * Image width in pixels.
      */
     private int mWidth;
-    
+
     /**
      * Image height in pixels.
      */
     private int mHeight;
-    
+
     /**
      * Maker of camera that took this image. This data will only be available
      * if the original file contained this metadata.
      */
     private String mMaker;
-    
+
     /**
      * Model of camera that took this image. This data will only be available
      * if the original file contained this metadata.
      */
     private String mModel;
-    
+
     /**
-     * Focal length of the camera lens (in inches or centimeters). This data 
+     * Focal length of the camera lens (in inches or centimeters). This data
      * will only be available if the original file contained this metadata.
      */
     private Double mFocalLength;
-    
+
     /**
-     * Image resolution in x coordinates direction (in inches or centimeters). 
-     * This field is related to actual sensor size and relates pixel size to 
+     * Image resolution in x coordinates direction (in inches or centimeters).
+     * This field is related to actual sensor size and relates pixel size to
      * actual physical size.
      */
-    private Double mFocalPlaneXResolution;    
-    
+    private Double mFocalPlaneXResolution;
+
     /**
      * Image resolution in y coordinates direction (in inches or centimeters).
      * This field is related to actual sensor size and relates pixel size to
      * actual physical size.
      */
-    private Double mFocalPlaneYResolution;    
-    
+    private Double mFocalPlaneYResolution;
+
     /**
      * Resolution unit. This value indicates the resolution unit of focal plane
      * resolution fields and focal length.
@@ -71,13 +71,13 @@ package com.irurueta.server.commons.image;
      * Other values indicates that focal resolution units are unknown.
      */
     private Unit mFocalPlaneResolutionUnit;
-    
+
     /**
      * Integer indicating image orientation metadata. Orientation indicates that
      * image might need to be rotated before displaying it. This field is used
-     * because some cameras (i.e. iPhone) store images always in the same 
+     * because some cameras (i.e. iPhone) store images always in the same
      * orientation regardless the actual position of the device, but are capable
-     * of detecting whether the device was rotated and such information is 
+     * of detecting whether the device was rotated and such information is
      * stored in the image so that images get rotated when being displayed and
      * can be shown as expected.
      * The supported values of orientation are:
@@ -88,39 +88,39 @@ package com.irurueta.server.commons.image;
      * 5 = left top orientation.
      * 6 = right top orientation (image has to be rotated 90º clockwise).
      * 7 = right bottom orientation.
-     * 8 = left bottom orientation (image has to be rotated 90º 
+     * 8 = left bottom orientation (image has to be rotated 90º
      * counterclockwise).
      */
     private ImageOrientation mOrientation;
-    
+
     /**
-     * Contains location data if picture was taken with a device capable of 
+     * Contains location data if picture was taken with a device capable of
      * storing GPS coordinates. Location information might contain information
      * such as latitude, longitude, altitude and accuracy of location.
      */
-    private GPSCoordinates mLocation;        
-    
+    private GPSCoordinates mLocation;
+
     /**
      * Name of the camera owner, artist or creator.
      */
     private String mArtist;
-    
+
     /**
-     * Copyright information. Indicates both the photographer and editor 
+     * Copyright information. Indicates both the photographer and editor
      * copyrights.
      */
     private String mCopyright;
-    
+
     /**
      * The name of the document from which this image was scanned.
      */
     private String mDocumentName;
-    
+
     /**
      * Information about the host computer used to generate the image.
      */
     private String mHostComputer;
-    
+
     /**
      * Title of the image.
      */
@@ -131,70 +131,71 @@ package com.irurueta.server.commons.image;
      * device used to generate the image.
      */
     private String mSoftware;
-    
+
     /**
-     * A description of the printing environment for which this image is 
+     * A description of the printing environment for which this image is
      * intended.
      */
     private String mTargetPrinter;
-    
+
     /**
      * Serial number of the camera or camera body that captured the image.
      */
     private String mCameraSerialNumber;
-    
+
     /**
-     * Indicates the digital zoom ratio when the image was shot. If the 
+     * Indicates the digital zoom ratio when the image was shot. If the
      * numberator of the recorded value is 0, this indicates that digital zoom
      * was not used.
      */
     private Double mDigitalZoomRatio;
-    
+
     /**
      * Exposure time, given in seconds.
      */
     private Double mExposureTime;
-    
+
     /**
      * Indicates the status of flash when the image was shot.
      */
     private Flash mFlash;
-    
+
     /**
      * Amount of flash energy (BCPS - Beam Candels Power Second).
      */
     private Double mFlashEnergy;
-    
+
     /**
      * The F number.
      */
     private Double mFNumber;
-    
+
     /**
      * Indicates the equivalent focal length assuming a 35mm film camera, in mm.
      * A value of 0 means the focal length is unknown.
      */
     private Double mFocalLengthIn35mmFilm;
-    
+
     /**
-     * Defines a unique, non-localized name for the camera model that created 
+     * Defines a unique, non-localized name for the camera model that created
      * the image in the raw file.
      */
     private String mUniqueCameraModel;
-    
+
     /**
      * The distance to the subject, given in meters.
      */
     private Double mSubjectDistance;
-    
+
     /**
-     * Shutter speed expressed as APEX (Additive System of Photographic 
+     * Shutter speed expressed as APEX (Additive System of Photographic
      * Exposure).
-     * @see #mExposureTime to get the same value expressed in 
+     *
+     * @see #mExposureTime to get the same value expressed in
      * seconds.
      */
     private Double mShutterSpeedValue;
-    
+
     /**
      * Indicates the ISO speed.
      */
@@ -202,147 +203,162 @@ package com.irurueta.server.commons.image;
 
     /**
      * Return image width in pixels.
+     *
      * @return image width in pixels.
      */
     public int getWidth() {
-<span class="fc" id="L208">        return mWidth;</span>
+<span class="fc" id="L210">        return mWidth;</span>
     }
-    
+
     /**
      * Sets image width in pixels.
+     *
      * @param width image width in pixels.
      */
     public void setWidth(final int width) {
-<span class="fc" id="L216">        mWidth = width;</span>
-<span class="fc" id="L217">    }</span>
-        
+<span class="fc" id="L219">        mWidth = width;</span>
+<span class="fc" id="L220">    }</span>
+
     /**
      * Return image height in pixels.
+     *
      * @return image height in pixels.
      */
     public int getHeight() {
-<span class="fc" id="L224">        return mHeight;</span>
+<span class="fc" id="L228">        return mHeight;</span>
     }
-    
+
     /**
      * Sets image height in pixels.
+     *
      * @param height image height in pixels.
      */
     public void setHeight(final int height) {
-<span class="fc" id="L232">        mHeight = height;</span>
-<span class="fc" id="L233">    }</span>
+<span class="fc" id="L237">        mHeight = height;</span>
+<span class="fc" id="L238">    }</span>
 
     /**
-     * Returns maker of camera that took this image. This data will only be 
+     * Returns maker of camera that took this image. This data will only be
      * available if the original file contained this metadata.
+     *
      * @return maker of camera that took this image.
      */
     public String getMaker() {
-<span class="fc" id="L241">        return mMaker;</span>
+<span class="fc" id="L247">        return mMaker;</span>
     }
-    
+
     /**
      * Sets maker of camera that took this image. This data will only be
      * available if the original file contained this metadata.
+     *
      * @param maker maker of camera that took this image.
      */
     public void setMaker(final String maker) {
-<span class="fc" id="L250">        mMaker = maker;</span>
-<span class="fc" id="L251">    }</span>
+<span class="fc" id="L257">        mMaker = maker;</span>
+<span class="fc" id="L258">    }</span>
 
     /**
-     * Returns model of camera that took this image. This data will only be 
+     * Returns model of camera that took this image. This data will only be
      * available if the original file contained this metadata.
+     *
      * @return model of camera that took this image.
      */
     public String getModel() {
-<span class="fc" id="L259">        return mModel;</span>
+<span class="fc" id="L267">        return mModel;</span>
     }
-    
+
     /**
      * Sets model of camera that took this image. This data will only be
      * available if the original file contained this metadata.
+     *
      * @param model model of camera that took this image.
      */
     public void setModel(final String model) {
-<span class="fc" id="L268">        mModel = model;</span>
-<span class="fc" id="L269">    }</span>
-        
+<span class="fc" id="L277">        mModel = model;</span>
+<span class="fc" id="L278">    }</span>
+
     /**
-     * Returns focal length of the camera lens (in inches or centimeters). This 
+     * Returns focal length of the camera lens (in inches or centimeters). This
      * data will only be available if the original file contained this metadata.
+     *
      * @return focal length of the camera lens.
      */
     public Double getFocalLength() {
-<span class="fc" id="L277">        return mFocalLength;</span>
+<span class="fc" id="L287">        return mFocalLength;</span>
     }
-    
+
     /**
      * Sets focal length of the camera lens (in inches or centimeters).
+     *
      * @param focalLength focal length of the camera lens to be set.
      */
     public void setFocalLength(final Double focalLength) {
-<span class="fc" id="L285">        mFocalLength = focalLength;</span>
-<span class="fc" id="L286">    }</span>
+<span class="fc" id="L296">        mFocalLength = focalLength;</span>
+<span class="fc" id="L297">    }</span>
 
     /**
-     * Returns image resolution in x coordinates direction (in inches or 
-     * centimeters). 
-     * This field is related to actual sensor size and relates pixel size to 
+     * Returns image resolution in x coordinates direction (in inches or
+     * centimeters).
+     * This field is related to actual sensor size and relates pixel size to
      * actual physical size.
+     *
      * @return image resolution in x coordinates direction.
      */
     public Double getFocalPlaneXResolution() {
-<span class="fc" id="L296">        return mFocalPlaneXResolution;</span>
+<span class="fc" id="L308">        return mFocalPlaneXResolution;</span>
     }
-        
+
     /**
-     * Sets image resolution in x coordinates direction (in inches or 
+     * Sets image resolution in x coordinates direction (in inches or
      * centimeters).
      * This field is related to actual sensor size and relates pixel size to
      * actual physical size.
+     *
      * @param focalPlaneXResolution image resolution in x coordinates direction.
      */
     public void setFocalPlaneXResolution(final Double focalPlaneXResolution) {
-<span class="fc" id="L307">        mFocalPlaneXResolution = focalPlaneXResolution;</span>
-<span class="fc" id="L308">    }</span>
-    
+<span class="fc" id="L320">        mFocalPlaneXResolution = focalPlaneXResolution;</span>
+<span class="fc" id="L321">    }</span>
+
     /**
-     * Results image resolution in y coordinates direction (in inches or 
+     * Results image resolution in y coordinates direction (in inches or
      * centimeters).
      * This field is related to actual sensor size and relates pixel size to
      * actual physical size.
+     *
      * @return image resolution in y coordinates direction.
      */
     public Double getFocalPlaneYResolution() {
-<span class="fc" id="L318">        return mFocalPlaneYResolution;</span>
+<span class="fc" id="L332">        return mFocalPlaneYResolution;</span>
     }
-    
+
     /**
-     * Sets image resolution in y coordinates direction (in inches or 
+     * Sets image resolution in y coordinates direction (in inches or
      * centimeters).
      * This field is related to actual sensor size and relates pixel size to
      * actual physical size.
+     *
      * @param focalPlaneYResolution image resolution in y coordinates direction.
      */
     public void setFocalPlaneYResolution(final Double focalPlaneYResolution) {
-<span class="fc" id="L329">        mFocalPlaneYResolution = focalPlaneYResolution;</span>
-<span class="fc" id="L330">    }</span>
-        
+<span class="fc" id="L344">        mFocalPlaneYResolution = focalPlaneYResolution;</span>
+<span class="fc" id="L345">    }</span>
+
     /**
-     * Returns resolution unit. This value indicates the resolution unit of 
+     * Returns resolution unit. This value indicates the resolution unit of
      * focal plane resolution fields and focal length.
      * Possible values are:
      * - no units are available.
      * - focal resolution is expressed in inches.
      * - focal resolution is expressed in centimeters.
      * - focal resolution units are unknown.
+     *
      * @return resolution unit.
      */
     public Unit getFocalPlaneResolutionUnit() {
-<span class="fc" id="L343">        return mFocalPlaneResolutionUnit;</span>
+<span class="fc" id="L359">        return mFocalPlaneResolutionUnit;</span>
     }
-    
+
     /**
      * Sets resolution unit. This value indicates the resolution unit of focal
      * plane resolution fields and focal length.
@@ -351,19 +367,20 @@ package com.irurueta.server.commons.image;
      * - focal resolution is expressed in inches.
      * - focal resolution is expressed in centimeters.
      * - focal resolution units are unknown.
+     *
      * @param focalPlaneResolutionUnit resolution unit.
      */
     public void setFocalPlaneResolutionUnit(final Unit focalPlaneResolutionUnit) {
-<span class="fc" id="L357">        mFocalPlaneResolutionUnit = focalPlaneResolutionUnit;</span>
-<span class="fc" id="L358">    }</span>
+<span class="fc" id="L374">        mFocalPlaneResolutionUnit = focalPlaneResolutionUnit;</span>
+<span class="fc" id="L375">    }</span>
 
     /**
-     * Returns integer indicating image orientation metadata. Orientation 
-     * indicates that image might need to be rotated before displaying it. This 
-     * field is used because some cameras (i.e. iPhone) store images always in 
-     * the same orientation regardless the actual position of the device, but 
-     * are capable of detecting whether the device was rotated and such 
-     * information is stored in the image so that images get rotated when being 
+     * Returns integer indicating image orientation metadata. Orientation
+     * indicates that image might need to be rotated before displaying it. This
+     * field is used because some cameras (i.e. iPhone) store images always in
+     * the same orientation regardless the actual position of the device, but
+     * are capable of detecting whether the device was rotated and such
+     * information is stored in the image so that images get rotated when being
      * displayed and can be shown as expected.
      * The supported values of orientation are:
      * - Top left orientation.
@@ -374,19 +391,20 @@ package com.irurueta.server.commons.image;
      * - right top orientation (image has to be rotated 90º clockwise).
      * - right bottom orientation.
      * - left bottom orientation (image has to be rotated 90º counterclockwise).
+     *
      * @return integer indicating image orientation metadata.
      */
     public ImageOrientation getOrientation() {
-<span class="fc" id="L380">        return mOrientation;</span>
+<span class="fc" id="L398">        return mOrientation;</span>
     }
-    
+
     /**
      * Sets integer indicating image orientation metadata. Orientation indicates
-     * that image might need to be rotated before displaying it. This field is 
-     * used because some cameras (i.e. iPhone) store images always in the same 
-     * orientation regardless the actual position of the device, but are capable 
-     * of detecting whether the device was rotated and such information is 
-     * stored in the image so that images get rotated when being displayed and 
+     * that image might need to be rotated before displaying it. This field is
+     * used because some cameras (i.e. iPhone) store images always in the same
+     * orientation regardless the actual position of the device, but are capable
+     * of detecting whether the device was rotated and such information is
+     * stored in the image so that images get rotated when being displayed and
      * can be shown as expected.
      * The supported values of orientation are:
      * - Top left orientation.
@@ -397,344 +415,383 @@ package com.irurueta.server.commons.image;
      * - right top orientation (image has to be rotated 90º clockwise).
      * - right bottom orientation.
      * - left bottom orientation (image has to be rotated 90º counterclockwise).
+     *
      * @param orientation orientation to be set.
      */
     public void setOrientation(final ImageOrientation orientation) {
-<span class="fc" id="L403">        mOrientation = orientation;</span>
-<span class="fc" id="L404">    }</span>
-    
+<span class="fc" id="L422">        mOrientation = orientation;</span>
+<span class="fc" id="L423">    }</span>
+
     /**
-     * Returns location data if picture was taken with a device capable of 
+     * Returns location data if picture was taken with a device capable of
      * storing GPS coordinates. Location information might contain information
      * such as latitude, longitude, altitude and accuracy of location.
+     *
      * @return image location.
      */
     public GPSCoordinates getLocation() {
-<span class="fc" id="L413">        return mLocation;</span>
-    }        
-    
+<span class="fc" id="L433">        return mLocation;</span>
+    }
+
     /**
      * Sets location data of picture.
+     *
      * @param location image location.
      */
     public void setLocation(final GPSCoordinates location) {
-<span class="fc" id="L421">        mLocation = location;</span>
-<span class="fc" id="L422">    }    </span>
-    
+<span class="fc" id="L442">        mLocation = location;</span>
+<span class="fc" id="L443">    }</span>
+
     /**
      * Returns name of the camera owner, artist or creator.
+     *
      * @return name of the camera owner, artist or creator.
      */
     public String getArtist() {
-<span class="fc" id="L429">        return mArtist;</span>
+<span class="fc" id="L451">        return mArtist;</span>
     }
 
     /**
      * Sets name of the camera owner, artist or creator.
+     *
      * @param artist name of the camera owner, artist or creator.
      */
     public void setArtist(final String artist) {
-<span class="fc" id="L437">        mArtist = artist;</span>
-<span class="fc" id="L438">    }</span>
-    
+<span class="fc" id="L460">        mArtist = artist;</span>
+<span class="fc" id="L461">    }</span>
+
     /**
      * Returns copyright information. Indicates both the photographer and editor
      * copyrights.
+     *
      * @return copyright information.
      */
     public String getCopyright() {
-<span class="fc" id="L446">        return mCopyright;</span>
+<span class="fc" id="L470">        return mCopyright;</span>
     }
-    
+
     /**
      * Sets copyright information. Indicates both the photographer and editor
      * copyrights.
+     *
      * @param copyright copyright information.
      */
     public void setCopyright(final String copyright) {
-<span class="fc" id="L455">        mCopyright = copyright;</span>
-<span class="fc" id="L456">    }</span>
-    
+<span class="fc" id="L480">        mCopyright = copyright;</span>
+<span class="fc" id="L481">    }</span>
+
     /**
      * Return the name of the document from which this image was scanned.
+     *
      * @return the name of the document from which this image was scanned.
      */
     public String getDocumentName() {
-<span class="fc" id="L463">        return mDocumentName;</span>
+<span class="fc" id="L489">        return mDocumentName;</span>
     }
-    
+
     /**
      * Sets the name of the document from which this image was scanned.
+     *
      * @param documentName the name of the document from which this image was
-     * scanned.
+     *                     scanned.
      */
     public void setDocumentName(final String documentName) {
-<span class="fc" id="L472">        mDocumentName = documentName;</span>
-<span class="fc" id="L473">    }</span>
-    
+<span class="fc" id="L499">        mDocumentName = documentName;</span>
+<span class="fc" id="L500">    }</span>
+
     /**
      * Returns information about the host computer used to generate the image.
+     *
      * @return information about the host computer used to generate the image.
      */
     public String getHostComputer() {
-<span class="fc" id="L480">        return mHostComputer;</span>
+<span class="fc" id="L508">        return mHostComputer;</span>
     }
-    
+
     /**
      * Sets information about the host computer used to generate the image.
+     *
      * @param hostComputer information about the host computer used to generate
-     * the image.
+     *                     the image.
      */
     public void setHostComputer(final String hostComputer) {
-<span class="fc" id="L489">        mHostComputer = hostComputer;</span>
-<span class="fc" id="L490">    }</span>
-    
+<span class="fc" id="L518">        mHostComputer = hostComputer;</span>
+<span class="fc" id="L519">    }</span>
+
     /**
      * Returns title of the image.
+     *
      * @return title of the image.
      */
     public String getImageDescription() {
-<span class="fc" id="L497">        return mImageDescription;</span>
+<span class="fc" id="L527">        return mImageDescription;</span>
     }
 
     /**
      * Sets title of the image.
+     *
      * @param imageDescription title of the image.
      */
     public void setImageDescription(final String imageDescription) {
-<span class="fc" id="L505">        mImageDescription = imageDescription;</span>
-<span class="fc" id="L506">    }</span>
-    
+<span class="fc" id="L536">        mImageDescription = imageDescription;</span>
+<span class="fc" id="L537">    }</span>
+
     /**
      * Returns name and version of the software or firmware of the camera or
      * image input device used to generate the image.
+     *
      * @return name and version of the software or firmware of the camera or
      * image input device used to generate the image.
      */
     public String getSoftware() {
-<span class="fc" id="L515">        return mSoftware;</span>
+<span class="fc" id="L547">        return mSoftware;</span>
     }
-    
+
     /**
      * Sets name and version of the software or firmware of the camera or
      * image input device used to generate the image.
-     * @param software name and version of the software or firmware of the 
-     * camera or image input device used to generate the image.
+     *
+     * @param software name and version of the software or firmware of the
+     *                 camera or image input device used to generate the image.
      */
     public void setSoftware(final String software) {
-<span class="fc" id="L525">        mSoftware = software;</span>
-<span class="fc" id="L526">    }</span>
-    
+<span class="fc" id="L558">        mSoftware = software;</span>
+<span class="fc" id="L559">    }</span>
+
     /**
      * Returns a description of the printing environment for which this image is
      * intended.
+     *
      * @return a description of the printing environment.
      */
     public String getTargetPrinter() {
-<span class="fc" id="L534">        return mTargetPrinter;</span>
+<span class="fc" id="L568">        return mTargetPrinter;</span>
     }
 
     /**
      * Sets a description of the printing environment for which this image is
      * intended.
+     *
      * @param targetPrinter a description of the printing environment.
      */
     public void setTargetPrinter(final String targetPrinter) {
-<span class="fc" id="L543">        mTargetPrinter = targetPrinter;</span>
-<span class="fc" id="L544">    }</span>
-    
+<span class="fc" id="L578">        mTargetPrinter = targetPrinter;</span>
+<span class="fc" id="L579">    }</span>
+
     /**
-     * Returns serial number of the camera or camera body that captured the 
+     * Returns serial number of the camera or camera body that captured the
      * image.
-     * @return serial number of the camera or camera body that captured the 
+     *
+     * @return serial number of the camera or camera body that captured the
      * image.
      */
     public String getCameraSerialNumber() {
-<span class="fc" id="L553">        return mCameraSerialNumber;</span>
+<span class="fc" id="L589">        return mCameraSerialNumber;</span>
     }
-    
+
     /**
      * Sets serial number of the camera or camera body that captured the image.
+     *
      * @param cameraSerialNumber serial number of the camera or camera body that
-     * captured the image.
+     *                           captured the image.
      */
     public void setCameraSerialNumber(final String cameraSerialNumber) {
-<span class="fc" id="L562">        mCameraSerialNumber = cameraSerialNumber;</span>
-<span class="fc" id="L563">    }</span>
-    
+<span class="fc" id="L599">        mCameraSerialNumber = cameraSerialNumber;</span>
+<span class="fc" id="L600">    }</span>
+
     /**
      * Returns the digital zoom ratio when the image was shot. If the numerator
-     * of the recorded value is 0, this indicates that digital zoom was not 
+     * of the recorded value is 0, this indicates that digital zoom was not
      * used.
+     *
      * @return the digital zoom ratio when the image was shot.
      */
     public Double getDigitalZoomRatio() {
-<span class="fc" id="L572">        return mDigitalZoomRatio;</span>
+<span class="fc" id="L610">        return mDigitalZoomRatio;</span>
     }
 
     /**
      * Sets the digital zoom ratio when the image was shot. If the numberator of
      * the recorded value is 0, this indicates the digital zoom was not used.
+     *
      * @param digitalZoomRatio the digital zoom ratio when the image was shot.
      */
     public void setDigitalZoomRatio(final Double digitalZoomRatio) {
-<span class="fc" id="L581">        mDigitalZoomRatio = digitalZoomRatio;</span>
-<span class="fc" id="L582">    }</span>
-    
+<span class="fc" id="L620">        mDigitalZoomRatio = digitalZoomRatio;</span>
+<span class="fc" id="L621">    }</span>
+
     /**
      * Returns exposure time, given in seconds.
+     *
      * @return exposure time, given in seconds.
      */
     public Double getExposureTime() {
-<span class="fc" id="L589">        return mExposureTime;</span>
+<span class="fc" id="L629">        return mExposureTime;</span>
     }
 
     /**
      * Sets exposure time, given in seconds.
+     *
      * @param exposureTime exposure time, given in seconds.
      */
     public void setExposureTime(final Double exposureTime) {
-<span class="fc" id="L597">        mExposureTime = exposureTime;</span>
-<span class="fc" id="L598">    }</span>
-    
+<span class="fc" id="L638">        mExposureTime = exposureTime;</span>
+<span class="fc" id="L639">    }</span>
+
     /**
      * Returns status of flash when the image was shot.
+     *
      * @return status of flash when the image was shot.
      */
     public Flash getFlash() {
-<span class="fc" id="L605">        return mFlash;</span>
+<span class="fc" id="L647">        return mFlash;</span>
     }
-    
+
     /**
      * Sets status of flash when the image was shot.
+     *
      * @param flash status of flash when the image was shot.
      */
     public void setFlash(final Flash flash) {
-<span class="fc" id="L613">        mFlash = flash;</span>
-<span class="fc" id="L614">    }</span>
-    
+<span class="fc" id="L656">        mFlash = flash;</span>
+<span class="fc" id="L657">    }</span>
+
     /**
-     * Returns amount of flash energy expressed in BCPS (Beam Candels Power 
+     * Returns amount of flash energy expressed in BCPS (Beam Candels Power
      * Second).
+     *
      * @return amount of flash energy.
      */
     public Double getFlashEnergy() {
-<span class="fc" id="L622">        return mFlashEnergy;</span>
+<span class="fc" id="L666">        return mFlashEnergy;</span>
     }
-    
+
     /**
-     * Sets amount of flash energy expressed in BCPS (Beam Candels Power 
+     * Sets amount of flash energy expressed in BCPS (Beam Candels Power
      * Second).
+     *
      * @param flashEnergy flash energy expressed in BCPS.
      */
     public void setFlashEnergy(final Double flashEnergy) {
-<span class="fc" id="L631">        mFlashEnergy = flashEnergy;</span>
-<span class="fc" id="L632">    }</span>
-    
+<span class="fc" id="L676">        mFlashEnergy = flashEnergy;</span>
+<span class="fc" id="L677">    }</span>
+
     /**
      * Returns the F number.
+     *
      * @return the F number.
      */
     public Double getFNumber() {
-<span class="fc" id="L639">        return mFNumber;</span>
+<span class="fc" id="L685">        return mFNumber;</span>
     }
 
     /**
      * Sets the F number.
+     *
      * @param fNumber the F number.
      */
     public void setFNumber(final Double fNumber) {
-<span class="fc" id="L647">        mFNumber = fNumber;</span>
-<span class="fc" id="L648">    }</span>
-    
+<span class="fc" id="L694">        mFNumber = fNumber;</span>
+<span class="fc" id="L695">    }</span>
+
     /**
      * Returns the equivalent focal length assuming a 35mm film camera, in mm.
      * A value of 0 means the focal length is unknown.
+     *
      * @return the equivalent focal length assuming a 35mm film camera.
      */
     public Double getFocalLengthIn35mmFilm() {
-<span class="fc" id="L656">        return mFocalLengthIn35mmFilm;</span>
+<span class="fc" id="L704">        return mFocalLengthIn35mmFilm;</span>
     }
-    
+
     /**
      * Sets the equivalent focal length assuming a 35mm film camera, in mm.
      * A value of 0 means the focal length is unknown.
+     *
      * @param focalLengthIn35mmFilm the equivalent focal length assuming a 35mm
-     * film camera.
+     *                              film camera.
      */
     public void setFocalLengthIn35mmFilm(final Double focalLengthIn35mmFilm) {
-<span class="fc" id="L666">        mFocalLengthIn35mmFilm = focalLengthIn35mmFilm;</span>
-<span class="fc" id="L667">    }</span>
-    
+<span class="fc" id="L715">        mFocalLengthIn35mmFilm = focalLengthIn35mmFilm;</span>
+<span class="fc" id="L716">    }</span>
+
     /**
      * Returns a unique, non-localized name for the camera model that created
      * the image in the raw file.
+     *
      * @return a unique, non-localized name for the camera model.
      */
     public String getUniqueCameraModel() {
-<span class="fc" id="L675">        return mUniqueCameraModel;</span>
+<span class="fc" id="L725">        return mUniqueCameraModel;</span>
     }
 
     /**
      * Sets a unique, non-localized name for the camera model that created the
      * image in the raw file.
-     * @param uniqueCameraModel a unique, non-localized name for the camera 
-     * model.
+     *
+     * @param uniqueCameraModel a unique, non-localized name for the camera
+     *                          model.
      */
     public void setUniqueCameraModel(final String uniqueCameraModel) {
-<span class="fc" id="L685">        mUniqueCameraModel = uniqueCameraModel;</span>
-<span class="fc" id="L686">    }</span>
+<span class="fc" id="L736">        mUniqueCameraModel = uniqueCameraModel;</span>
+<span class="fc" id="L737">    }</span>
 
     /**
      * Returns the distance to the subject, given in meters.
+     *
      * @return the distance to the subject, given in meters.
      */
     public Double getSubjectDistance() {
-<span class="fc" id="L693">        return mSubjectDistance;</span>
+<span class="fc" id="L745">        return mSubjectDistance;</span>
     }
-    
+
     /**
      * Sets the distance to the subject, given in meters.
+     *
      * @param subjectDistance distance to the subject, given in meters.
      */
     public void setSubjectDistance(final Double subjectDistance) {
-<span class="fc" id="L701">        mSubjectDistance = subjectDistance;</span>
-<span class="fc" id="L702">    }</span>
+<span class="fc" id="L754">        mSubjectDistance = subjectDistance;</span>
+<span class="fc" id="L755">    }</span>
 
     /**
-     * Returns shutter speed expressed as APEX (Additive System of Photographic 
-     * Exposure). 
-     * @see #getExposureTime() to get the same value expressed in seconds
+     * Returns shutter speed expressed as APEX (Additive System of Photographic
+     * Exposure).
+     *
      * @return shutter speed expressed as APEX.
+     * @see #getExposureTime() to get the same value expressed in seconds
      */
     public Double getShutterSpeedValue() {
-<span class="fc" id="L711">        return mShutterSpeedValue;</span>
+<span class="fc" id="L765">        return mShutterSpeedValue;</span>
     }
-    
+
     /**
      * Sets shutter speed expressed as APEX (Additive System of Photographic
      * Exposure).
-     * @see #getExposureTime() to get the same value expressed in seconds.
+     *
      * @param shutterSpeedValue shutter speed expressed as APEX.
+     * @see #getExposureTime() to get the same value expressed in seconds.
      */
     public void setShutterSpeedValue(final Double shutterSpeedValue) {
-<span class="fc" id="L721">        mShutterSpeedValue = shutterSpeedValue;</span>
-<span class="fc" id="L722">    }</span>
-    
+<span class="fc" id="L776">        mShutterSpeedValue = shutterSpeedValue;</span>
+<span class="fc" id="L777">    }</span>
+
     /**
      * Returns the ISO speed.
+     *
      * @return the ISO speed.
      */
     public Integer getISO() {
-<span class="fc" id="L729">        return mISO;</span>
+<span class="fc" id="L785">        return mISO;</span>
     }
 
     /**
      * Sets the ISO speed.
+     *
      * @param iso the ISO speed.
      */
     public void setISO(final Integer iso) {
-<span class="fc" id="L737">        mISO = iso;</span>
-<span class="fc" id="L738">    }    </span>
+<span class="fc" id="L794">        mISO = iso;</span>
+<span class="fc" id="L795">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

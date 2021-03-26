@@ -18,196 +18,212 @@ package com.irurueta.server.commons.image;
 /**
  * Structure containing information about an image file that has been read using
  * and ImageReader.
- * This structure contains information such as image EXIF metadata, image 
+ * This structure contains information such as image EXIF metadata, image
  * format, file length, CRC, MD5, etc.
  */
 <span class="fc" id="L24">public class ImageReaderResult {</span>
     /**
-     * Indicates if a file contains a valid recognized image and is not 
+     * Indicates if a file contains a valid recognized image and is not
      * corrupted.
      */
     private boolean mValid;
-    
+
     /**
      * CRC hash value of image file.
      */
     private Long mCrc;
-    
+
     /**
      * MD5 hash value of image file.
      */
     private String mMd5;
-    
+
     /**
      * Image file length in bytes.
      */
     private long mFileLength;
-    
+
     /**
      * Timestamp when image file was last modified.
      */
     private long mLastModified;
-    
+
     /**
      * MIME content type assigned to image file depending on detected image
      * format (i.e. image/jpeg or image/png).
      */
     private String mContentType;
-    
+
     /**
      * Image metadata such as image size, and EXIF tags such as GPS location.
      */
-    private ImageMetadata mMetadata;    
-    
+    private ImageMetadata mMetadata;
+
     /**
      * Detected image format. Supported formats are: JPG, PNG, GIF, BMP.
      */
 <span class="fc" id="L65">    private ImageFormat mImageFormat = ImageFormat.UNKNOWN;</span>
 
     /**
-     * Indicates if a file contains a valid recognized image and is not 
+     * Indicates if a file contains a valid recognized image and is not
      * corrupted.
+     *
      * @return true if file is valid, false otherwise.
      */
     public boolean isValid() {
-<span class="fc" id="L73">        return mValid;</span>
+<span class="fc" id="L74">        return mValid;</span>
     }
-    
+
     /**
-     * Specifies if a file contains a valid recognized image and is not 
+     * Specifies if a file contains a valid recognized image and is not
      * corrupted.
+     *
      * @param valid true if file is valid, false otherwise.
      */
     public void setValid(final boolean valid) {
-<span class="fc" id="L82">        mValid = valid;</span>
-<span class="fc" id="L83">    }</span>
-    
+<span class="fc" id="L84">        mValid = valid;</span>
+<span class="fc" id="L85">    }</span>
+
     /**
      * Returns CRC hash value of image file.
-     * CRC can be used to detect data corruption when sending data over a 
+     * CRC can be used to detect data corruption when sending data over a
      * network.
+     *
      * @return CRC hash value of image file.
      */
     public Long getCrc() {
-<span class="fc" id="L92">        return mCrc;</span>
+<span class="fc" id="L95">        return mCrc;</span>
     }
-    
+
     /**
      * Sets CRC hash value of image file.
      * CRC can be used to detect data corruption when sending data over a
      * network.
+     *
      * @param crc CRC hash value of image file to be set.
      */
     public void setCrc(final Long crc) {
-<span class="fc" id="L102">        mCrc = crc;</span>
-<span class="fc" id="L103">    }</span>
-    
+<span class="fc" id="L106">        mCrc = crc;</span>
+<span class="fc" id="L107">    }</span>
+
     /**
      * Returns MD5 hash value of image file.
      * MD5 hash value can be used to detect data corruption when sending data
      * over a network. MD5 is more secure than CRC but its computation is also
      * more expensive.
+     *
      * @return MD5 hash value of image file.
      */
     public String getMd5() {
-<span class="fc" id="L113">        return mMd5;</span>
+<span class="fc" id="L118">        return mMd5;</span>
     }
-    
+
     /**
      * Sets MD5 hash value of image file.
      * MD5 hash value can be used to detect data corruption when sending data
      * over a network. MD5 is more secure than CRC but its computation is also
      * more expensive.
+     *
      * @param md5 MD5 hash value of image file to be set.
      */
     public void setMd5(final String md5) {
-<span class="fc" id="L124">        this.mMd5 = md5;</span>
-<span class="fc" id="L125">    }</span>
-    
+<span class="fc" id="L130">        this.mMd5 = md5;</span>
+<span class="fc" id="L131">    }</span>
+
     /**
      * Returns image file length in bytes.
+     *
      * @return image file length in bytes.
      */
     public long getFileLength() {
-<span class="fc" id="L132">        return mFileLength;</span>
+<span class="fc" id="L139">        return mFileLength;</span>
     }
-    
+
     /**
      * Sets image file length in bytes.
+     *
      * @param fileLength image file length in bytes.
      */
     public void setFileLength(final long fileLength) {
-<span class="fc" id="L140">        mFileLength = fileLength;</span>
-<span class="fc" id="L141">    }</span>
-    
+<span class="fc" id="L148">        mFileLength = fileLength;</span>
+<span class="fc" id="L149">    }</span>
+
     /**
      * Returns timestamp when image file was last modified as the number of
      * milliseconds passed since epoch time (January 1st, 1970).
+     *
      * @return timestamp when image file was last modified.
      */
     public long getLastModified() {
-<span class="fc" id="L149">        return mLastModified;</span>
+<span class="fc" id="L158">        return mLastModified;</span>
     }
-    
+
     /**
      * Sets timestamp when image file was last modified as the number of
      * milliseconds passed since epoch time (January 1st, 1970).
+     *
      * @param lastModified timestamp when image file was last modified.
      */
     public void setLastModified(final long lastModified) {
-<span class="fc" id="L158">        mLastModified = lastModified;</span>
-<span class="fc" id="L159">    }</span>
-    
+<span class="fc" id="L168">        mLastModified = lastModified;</span>
+<span class="fc" id="L169">    }</span>
+
     /**
-     * Returns MIME content type assigned to image file depending on detected 
+     * Returns MIME content type assigned to image file depending on detected
      * image format (i.e. image/jpeg or image/png).
+     *
      * @return MIME content type assigned to image.
      */
     public String getContentType() {
-<span class="fc" id="L167">        return mContentType;</span>
+<span class="fc" id="L178">        return mContentType;</span>
     }
-    
+
     /**
      * Sets MIME content type to be assigned to image file depending on detected
      * image format (i.e. image/jpeg or image/png).
+     *
      * @param contentType MIME content type to be assigned to image.
      */
     public void setContentType(final String contentType) {
-<span class="fc" id="L176">        mContentType = contentType;</span>
-<span class="fc" id="L177">    }</span>
-    
+<span class="fc" id="L188">        mContentType = contentType;</span>
+<span class="fc" id="L189">    }</span>
+
     /**
-     * Returns image metadata such as image size, and EXIF tags such as GPS 
+     * Returns image metadata such as image size, and EXIF tags such as GPS
      * location.
+     *
      * @return image metadata.
      */
     public ImageMetadata getMetadata() {
-<span class="fc" id="L185">        return mMetadata;</span>
+<span class="fc" id="L198">        return mMetadata;</span>
     }
-    
+
     /**
-     * Sets image metadata such as image size, and EXIF tags such as GPS 
+     * Sets image metadata such as image size, and EXIF tags such as GPS
      * location.
+     *
      * @param metadata image metadata to be set.
      */
     public void setMetadata(final ImageMetadata metadata) {
-<span class="fc" id="L194">        mMetadata = metadata;</span>
-<span class="fc" id="L195">    }</span>
-    
+<span class="fc" id="L208">        mMetadata = metadata;</span>
+<span class="fc" id="L209">    }</span>
+
     /**
      * Returns detected image format. Supported formats are: JPG, PNG, GIF, BMP
+     *
      * @return detected image format.
      */
     public ImageFormat getImageFormat() {
-<span class="fc" id="L202">        return mImageFormat;</span>
+<span class="fc" id="L217">        return mImageFormat;</span>
     }
-    
+
     /**
      * Sets detected image format. Supported formats are: JPG, PNG, GIF, BMP.
+     *
      * @param imageFormat detected image format.
      */
     public void setImageFormat(final ImageFormat imageFormat) {
-<span class="fc" id="L210">        mImageFormat = imageFormat;</span>
-<span class="fc" id="L211">    }    </span>
+<span class="fc" id="L226">        mImageFormat = imageFormat;</span>
+<span class="fc" id="L227">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>
