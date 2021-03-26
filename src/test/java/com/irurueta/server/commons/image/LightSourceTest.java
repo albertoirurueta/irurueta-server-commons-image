@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,47 +15,30 @@
  */
 package com.irurueta.server.commons.image;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class LightSourceTest {
-    
-    public LightSourceTest() {}
-    
-    @BeforeClass
-    public static void setUpClass() {}
-    
-    @AfterClass
-    public static void tearDownClass() {}
-    
-    @Before
-    public void setUp() {}
-    
-    @After
-    public void tearDown() {}
-    
+
     @Test
-    public void testFromValue(){
+    public void testFromValue() {
         assertEquals(LightSource.fromValue(0), LightSource.UNKNOWN);
         assertEquals(LightSource.fromValue(1), LightSource.DAYLIGHT);
         assertEquals(LightSource.fromValue(2), LightSource.FLUORESCENT);
-        assertEquals(LightSource.fromValue(3), 
+        assertEquals(LightSource.fromValue(3),
                 LightSource.TUNGSTEN_INCANDESCENT_LIGHT);
         assertEquals(LightSource.fromValue(4), LightSource.FLASH);
         assertEquals(LightSource.fromValue(9), LightSource.FINE_WEATHER);
         assertEquals(LightSource.fromValue(10), LightSource.CLOUDY_WEATHER);
         assertEquals(LightSource.fromValue(11), LightSource.SHADE);
-        assertEquals(LightSource.fromValue(12), 
+        assertEquals(LightSource.fromValue(12),
                 LightSource.DAYLIGHT_FLUORESCENT_D_5700_7100K);
-        assertEquals(LightSource.fromValue(13), 
+        assertEquals(LightSource.fromValue(13),
                 LightSource.DAY_WHITE_FLUORESCENT_N_4600_5400K);
-        assertEquals(LightSource.fromValue(14), 
+        assertEquals(LightSource.fromValue(14),
                 LightSource.COOL_WHITE_FLUORESCENT_W_3900_4500K);
-        assertEquals(LightSource.fromValue(15), 
+        assertEquals(LightSource.fromValue(15),
                 LightSource.WHITE_FLUORESCENT_WW_3200_3700K);
         assertEquals(LightSource.fromValue(17), LightSource.STANDARD_LIGHT_A);
         assertEquals(LightSource.fromValue(18), LightSource.STANDARD_LIGHT_B);
@@ -64,16 +47,16 @@ public class LightSourceTest {
         assertEquals(LightSource.fromValue(21), LightSource.D65);
         assertEquals(LightSource.fromValue(22), LightSource.D75);
         assertEquals(LightSource.fromValue(23), LightSource.D50);
-        assertEquals(LightSource.fromValue(24), 
+        assertEquals(LightSource.fromValue(24),
                 LightSource.ISO_STUDIO_TUNGSTEN);
-        assertEquals(LightSource.fromValue(255), 
+        assertEquals(LightSource.fromValue(255),
                 LightSource.OTHER_LIGHT_SOURCE);
-        assertEquals(LightSource.fromValue(-1), 
+        assertEquals(LightSource.fromValue(-1),
                 LightSource.OTHER_LIGHT_SOURCE);
     }
-    
+
     @Test
-    public void testGetValue(){
+    public void testGetValue() {
         assertEquals(LightSource.UNKNOWN.getValue(), 0);
         assertEquals(LightSource.DAYLIGHT.getValue(), 1);
         assertEquals(LightSource.FLUORESCENT.getValue(), 2);
@@ -82,13 +65,13 @@ public class LightSourceTest {
         assertEquals(LightSource.FINE_WEATHER.getValue(), 9);
         assertEquals(LightSource.CLOUDY_WEATHER.getValue(), 10);
         assertEquals(LightSource.SHADE.getValue(), 11);
-        assertEquals(LightSource.DAYLIGHT_FLUORESCENT_D_5700_7100K.getValue(), 
+        assertEquals(LightSource.DAYLIGHT_FLUORESCENT_D_5700_7100K.getValue(),
                 12);
         assertEquals(LightSource.DAY_WHITE_FLUORESCENT_N_4600_5400K.getValue(),
                 13);
         assertEquals(LightSource.COOL_WHITE_FLUORESCENT_W_3900_4500K.getValue(),
                 14);
-        assertEquals(LightSource.WHITE_FLUORESCENT_WW_3200_3700K.getValue(), 
+        assertEquals(LightSource.WHITE_FLUORESCENT_WW_3200_3700K.getValue(),
                 15);
         assertEquals(LightSource.STANDARD_LIGHT_A.getValue(), 17);
         assertEquals(LightSource.STANDARD_LIGHT_B.getValue(), 18);

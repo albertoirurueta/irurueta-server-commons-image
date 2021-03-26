@@ -26,22 +26,22 @@ public enum ImageFormat {
      * JPEG image format.
      */
     JPEG,
-    
+
     /**
      * PNG image format.
      */
     PNG,
-    
+
     /**
      * GIG image format.
      */
     GIF,
-    
+
     /**
      * BMP image format.
      */
     BMP,
-    
+
     /**
      * Other unknown formats.
      */

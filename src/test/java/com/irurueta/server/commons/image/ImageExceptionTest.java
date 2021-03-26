@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,41 +15,24 @@
  */
 package com.irurueta.server.commons.image;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertNotNull;
 
 public class ImageExceptionTest {
-    
-    public ImageExceptionTest() {}
-    
-    @BeforeClass
-    public static void setUpClass() {}
-    
-    @AfterClass
-    public static void tearDownClass() {}
-    
-    @Before
-    public void setUp() {}
-    
-    @After
-    public void tearDown() {}
-    
+
     @Test
-    public void testConstructor(){
-        ImageException ex;
-        assertNotNull(ex = new ImageException());
-        
-        ex = null;
-        assertNotNull(ex = new ImageException("message"));
-        
-        ex = null;
-        assertNotNull(ex = new ImageException(new Exception()));
-        
-        ex = null;
-        assertNotNull(ex = new ImageException("message", new Exception()));
+    public void testConstructor() {
+        ImageException ex = new ImageException();
+        assertNotNull(ex);
+
+        ex = new ImageException("message");
+        assertNotNull(ex);
+
+        ex = new ImageException(new Exception());
+        assertNotNull(ex);
+
+        ex = new ImageException("message", new Exception());
+        assertNotNull(ex);
     }
 }

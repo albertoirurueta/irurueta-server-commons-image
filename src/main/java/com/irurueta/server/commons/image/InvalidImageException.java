@@ -21,35 +21,38 @@ package com.irurueta.server.commons.image;
 public class InvalidImageException extends ImageException {
     /**
      * Constructor.
-     */    
+     */
     public InvalidImageException() {
         super();
     }
 
     /**
      * Constructor with message.
+     *
      * @param message message describing the cause of the exception.
-     */    
+     */
     public InvalidImageException(final String message) {
         super(message);
     }
 
     /**
      * Constructor with message and cause.
+     *
      * @param message message describing the cause of the exception.
-     * @param cause originating exception that caused this exception. This can
-     * be used to obtain stack traces.
-     */    
+     * @param cause   originating exception that caused this exception. This can
+     *                be used to obtain stack traces.
+     */
     public InvalidImageException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
     /**
      * Constructor with cause.
+     *
      * @param cause originating exception that caused this exception. This can
-     * be used to obtain stack traces.
-     */    
+     *              be used to obtain stack traces.
+     */
     public InvalidImageException(final Throwable cause) {
         super(cause);
-    }        
+    }
 }

@@ -32,74 +32,77 @@ public enum ImageOrientation {
      * Rotation is not known.
      */
     UNKNOWN(0),
-    
+
     /**
      * Top left orientation.
      */
     TOP_LEFT(1),
-    
+
     /**
      * Top right orientation.
      */
     TOP_RIGHT(2),
-    
+
     /**
      * Bottom right orientation (image has to be rotated 180º).
      */
     BOTTOM_RIGHT(3),
-    
+
     /**
      * Bottom left orientation.
      */
     BOTTOM_LEFT(4),
-    
+
     /**
      * Left top orientation.
      */
     LEFT_TOP(5),
-    
+
     /**
      * Right top orientation (image has to be rotated 90º clockwise).
      */
     RIGHT_TOP(6),
-    
+
     /**
      * Right bottom orientation.
      */
     RIGHT_BOTTOM(7),
-    
+
     /**
      * Left bottom orientation (image has to be rotated 90º counterclockwise).
      */
     LEFT_BOTTOM(8);
-    
+
     /**
      * Integer representation of image orientation.
      */
-    private int mValue;
-    
+    private final int mValue;
+
     /**
      * Constructor.
+     *
      * @param value integer representation of image orientation.
      */
     ImageOrientation(int value) {
         mValue = value;
     }
-    
+
     /**
      * Returns integer representation of image orientation.
+     *
      * @return integer representation of image orientation.
      */
     public int getValue() {
         return mValue;
     }
-    
+
     /**
      * Obtains image orientation from provided integer representation.
+     *
      * @param value integer representation of image orientation.
      * @return image orientation.
      */
-    public static ImageOrientation fromValue(int value) {
+    public static ImageOrientation fromValue(final int value) {
         switch (value) {
             case 1:
                 return TOP_LEFT;

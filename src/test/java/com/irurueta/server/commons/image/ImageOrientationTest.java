@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,49 +15,32 @@
  */
 package com.irurueta.server.commons.image;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class ImageOrientationTest {
-    
-    public ImageOrientationTest() {}
-    
-    @BeforeClass
-    public static void setUpClass() {}
-    
-    @AfterClass
-    public static void tearDownClass() {}
-    
-    @Before
-    public void setUp() {}
-    
-    @After
-    public void tearDown() {}
-    
+
     @Test
-    public void testFromValue(){
+    public void testFromValue() {
         assertEquals(ImageOrientation.fromValue(1), ImageOrientation.TOP_LEFT);
         assertEquals(ImageOrientation.fromValue(2), ImageOrientation.TOP_RIGHT);
-        assertEquals(ImageOrientation.fromValue(3), 
+        assertEquals(ImageOrientation.fromValue(3),
                 ImageOrientation.BOTTOM_RIGHT);
-        assertEquals(ImageOrientation.fromValue(4), 
+        assertEquals(ImageOrientation.fromValue(4),
                 ImageOrientation.BOTTOM_LEFT);
         assertEquals(ImageOrientation.fromValue(5), ImageOrientation.LEFT_TOP);
         assertEquals(ImageOrientation.fromValue(6), ImageOrientation.RIGHT_TOP);
-        assertEquals(ImageOrientation.fromValue(7), 
+        assertEquals(ImageOrientation.fromValue(7),
                 ImageOrientation.RIGHT_BOTTOM);
-        assertEquals(ImageOrientation.fromValue(8), 
+        assertEquals(ImageOrientation.fromValue(8),
                 ImageOrientation.LEFT_BOTTOM);
         assertEquals(ImageOrientation.fromValue(0), ImageOrientation.UNKNOWN);
-        assertEquals(ImageOrientation.fromValue(-1), ImageOrientation.UNKNOWN);                
+        assertEquals(ImageOrientation.fromValue(-1), ImageOrientation.UNKNOWN);
     }
-    
+
     @Test
-    public void testGetValue(){
+    public void testGetValue() {
         assertEquals(ImageOrientation.TOP_LEFT.getValue(), 1);
         assertEquals(ImageOrientation.TOP_RIGHT.getValue(), 2);
         assertEquals(ImageOrientation.BOTTOM_RIGHT.getValue(), 3);

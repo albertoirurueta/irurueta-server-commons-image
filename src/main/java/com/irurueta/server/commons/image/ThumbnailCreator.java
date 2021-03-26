@@ -36,24 +36,24 @@ public class ThumbnailCreator {
      * Minimum allowed image size.
      */
     public static final int MIN_SIZE = 0;
-    
+
     /**
-     * Default maximum number of concurrent threads that can generate a 
+     * Default maximum number of concurrent threads that can generate a
      * thumbnail at the same time.
      */
     public static final int DEFAULT_MAX_CONCURRENT_THREADS = 1;
-    
+
     /**
      * Minimum number of concurrent threads that can generate a thumbnail at the
      * same time.
      */
     public static final int MIN_CONCURRENT_THREADS = 1;
-    
+
     /**
      * Reference to singleton instance of thumbnail creator.
      */
     private static SoftReference<ThumbnailCreator> mReference;
-    
+
     /**
      * Maximum number of threads that can generate a thumbnail at the same time.
      * To avoid excessive memory usage, the number of concurrent thumbnails
@@ -66,12 +66,12 @@ public class ThumbnailCreator {
      * generated thumbnails, at the expense of a greater memory usage.
      */
     private int mMaxConcurrentThreads;
-    
+
     /**
      * Current number of threads generating a thumbnail.
      */
     private volatile int mNumThreads;
-    
+
     /**
      * Constructor.
      */
@@ -80,9 +80,10 @@ public class ThumbnailCreator {
         mMaxConcurrentThreads = DEFAULT_MAX_CONCURRENT_THREADS;
         mNumThreads = 0;
     }
-    
+
     /**
      * Factory method. Creates or returns the singleton instance of this class
+     *
      * @return singleton.
      */
     public static synchronized ThumbnailCreator getInstance() {
@@ -95,7 +96,7 @@ public class ThumbnailCreator {
     }
 
     /**
-     * sets maximum number of threads that can generate a thumbnail at the same 
+     * sets maximum number of threads that can generate a thumbnail at the same
      * time.
      * To avoid excessive memory usage, the number of concurrent thumbnails
      * being generated is limited to this value.
@@ -105,20 +106,21 @@ public class ThumbnailCreator {
      * can be increased (especially if the hardware architecture has multiple
      * processors). Increasing this value will result in a larger throughput of
      * generated thumbnails, at the expense of a greater memory usage.
+     *
      * @param maxConcurrentThreads maximum number of concurrent threads that can
-     * generate thumbnails at the same time.
+     *                             generate thumbnails at the same time.
      * @throws IllegalArgumentException if provided value is less than 1.
      */
     public synchronized void setMaxConcurrentThreads(final int maxConcurrentThreads) {
         if (maxConcurrentThreads < MIN_CONCURRENT_THREADS) {
             throw new IllegalArgumentException();
         }
-        
+
         this.mMaxConcurrentThreads = maxConcurrentThreads;
     }
-    
+
     /**
-     * Returns maximum number of threads that can generate a thumbnail at the 
+     * Returns maximum number of threads that can generate a thumbnail at the
      * same time.
      * To avoid excessive memory usage, the number of concurrent thumbnails
      * being generated is limited to this value.
@@ -128,13 +130,14 @@ public class ThumbnailCreator {
      * can be increased (especially if the hardware architecture has multiple
      * processors). Increasing this value will result in a larger throughput of
      * generated thumbnails, at the expense of a greater memory usage.
+     *
      * @return maximum number of threads that can generate a thumbnail at the
      * same time.
      */
     public synchronized int getMaxConcurrentThreads() {
         return mMaxConcurrentThreads;
     }
-    
+
     /**
      * Generates thumbnail of provided input file image and saves it into
      * generated thumbnail file. Information such as input image orientation can
@@ -147,17 +150,19 @@ public class ThumbnailCreator {
      * Warning: because this class is meant to be run on a server, there should
      * be limits on allowed image sizes to avoid excessive memory usage while
      * loading a very large image file.
-     * @param inputImageFile input image file.
-     * @param inputOrientation input image orientation (optional).
+     *
+     * @param inputImageFile         input image file.
+     * @param inputOrientation       input image orientation (optional).
      * @param generatedThumbnailFile file where generated thumbnail will be
-     * stored.
-     * @param width width (in pixels) of thumbnail to be generated.
-     * @param height height (in pixels) of thumbnail to be generated.
-     * @param format format of image to be generated.
+     *                               stored.
+     * @param width                  width (in pixels) of thumbnail to be generated.
+     * @param height                 height (in pixels) of thumbnail to be generated.
+     * @param format                 format of image to be generated.
      * @throws IllegalArgumentException if width or height is less than minimum
-     * allowed image size (1 pixel), or if width or height is greater than
-     * actual image size.
-     * @throws IOException  if an I/O error occurs.
+     *                                  allowed image size (1 pixel), or if width or height is greater than
+     *                                  actual image size.
+     * @throws IOException              if an I/O error occurs.
+     * @throws InterruptedException     if thread is interrupted.
      */
     @SuppressWarnings("SuspiciousNameCombination")
     public void generateAndSaveThumbnail(
@@ -166,23 +171,19 @@ public class ThumbnailCreator {
             final File generatedThumbnailFile,
             final int width, final int height,
             final ThumbnailFormat format) throws IllegalArgumentException,
-            IOException {
-        
+            IOException, InterruptedException {
+
         if (width <= MIN_SIZE || height <= MIN_SIZE) {
             throw new IllegalArgumentException();
         }
-        
+
         synchronized (this) {
-            try {
-                while (mNumThreads >= mMaxConcurrentThreads) {
-                    wait();
-                }
-            } catch (final InterruptedException ignore) {
-                // no action required
+            while (mNumThreads >= mMaxConcurrentThreads) {
+                wait();
             }
             mNumThreads++;
         }
-        
+
         try {
             // default (orientation == 1)
             boolean exchangeSize = false;
@@ -191,17 +192,17 @@ public class ThumbnailCreator {
                 // take into account only orientations below, other orientations
                 // will be ignored
                 switch (inputOrientation) {
-                    case LEFT_BOTTOM: 
+                    case LEFT_BOTTOM:
                         // orientaton == 8 (counterclockwise 90º)
                         exchangeSize = true;
                         quadrants = -1;
                         break;
-                    case BOTTOM_RIGHT: 
+                    case BOTTOM_RIGHT:
                         // orientaton == 3 (clockwise 180º)
                         exchangeSize = false;
                         quadrants = -2;
                         break;
-                    case RIGHT_TOP: 
+                    case RIGHT_TOP:
                         // orientaton == 6 (clockwise 90º)
                         exchangeSize = true;
                         quadrants = -3;
@@ -210,73 +211,73 @@ public class ThumbnailCreator {
                         break;
                 }
             }
-            
+
             int bufferedImageType = BufferedImage.TYPE_INT_RGB;
             if (format == ThumbnailFormat.PNG) {
                 bufferedImageType = BufferedImage.TYPE_INT_ARGB;
             }
-        
+
             final BufferedImage inputImage = ImageIO.read(inputImageFile);
             if (inputImage == null) {
                 throw new IOException();
             }
-            
-        
+
+
             final Image tempImage;
             final BufferedImage resizedImage;
             Graphics2D graphics2D;
             if (exchangeSize) {
-                if (width > inputImage.getHeight() || 
+                if (width > inputImage.getHeight() ||
                         height > inputImage.getWidth()) {
                     throw new IllegalArgumentException();
                 }
-            
+
                 // scale image
-                tempImage = inputImage.getScaledInstance(height, width, 
+                tempImage = inputImage.getScaledInstance(height, width,
                         Image.SCALE_AREA_AVERAGING);
-                resizedImage = new BufferedImage(height, width,                     
-                       bufferedImageType);
+                resizedImage = new BufferedImage(height, width,
+                        bufferedImageType);
                 graphics2D = resizedImage.createGraphics();
                 graphics2D.drawImage(tempImage, 0, 0, height, width, null);
                 graphics2D.dispose();
-            
+
             } else {
-                if (width > inputImage.getWidth() || 
+                if (width > inputImage.getWidth() ||
                         height > inputImage.getHeight()) {
                     throw new IllegalArgumentException();
                 }
-            
+
                 // scale image
                 tempImage = inputImage.getScaledInstance(width, height,
                         Image.SCALE_AREA_AVERAGING);
-                resizedImage = new BufferedImage(width, height,                     
-                       bufferedImageType);
+                resizedImage = new BufferedImage(width, height,
+                        bufferedImageType);
                 graphics2D = resizedImage.createGraphics();
                 graphics2D.drawImage(tempImage, 0, 0, width, height, null);
-                graphics2D.dispose();            
+                graphics2D.dispose();
             }
-        
-        
+
+
             final double centerX;
             final double centerY;
             final int resizedHeight;
             if (exchangeSize) {
-                centerX = (double)height / 2.0;
-                centerY = (double)width / 2.0;            
+                centerX = (double) height / 2.0;
+                centerY = (double) width / 2.0;
                 resizedHeight = width;
             } else {
-                centerX = (double)width / 2.0;
-                centerY = (double)height / 2.0;
+                centerX = (double) width / 2.0;
+                centerY = (double) height / 2.0;
                 resizedHeight = height;
             }
-                                
+
             BufferedImage thumbnailImage = resizedImage;
             if (quadrants != 0) {
                 // set rotation transformation by the desired number of quadrants
                 final AffineTransform rotateT = new AffineTransform();
-                rotateT.rotate(0.5 * Math.PI * (double)quadrants,
+                rotateT.rotate(0.5 * Math.PI * (double) quadrants,
                         centerX, centerY);
-            
+
                 // find proper translations to ensure that rotation doesn't cut
                 // off any image data
                 if (quadrants != -2) {
@@ -285,31 +286,31 @@ public class ThumbnailCreator {
                     Point2D p2din = new Point2D.Double(0.0, 0.0);
                     Point2D p2dout = rotateT2.transform(p2din, null);
                     final double ytrans = p2dout.getY();
-            
+
                     p2din = new Point2D.Double(0.0, resizedHeight);
                     p2dout = rotateT2.transform(p2din, null);
                     final double xtrans = p2dout.getX();
-            
+
                     final AffineTransform translateT = new AffineTransform();
                     translateT.translate(-xtrans, -ytrans);
-                                                
-                    rotateT.preConcatenate(translateT);        
+
+                    rotateT.preConcatenate(translateT);
                 }
-            
+
                 // instantiate image that will contain the thumbnail
-                thumbnailImage = new BufferedImage(width, height, 
-                       bufferedImageType);
-                graphics2D = thumbnailImage.createGraphics();  
+                thumbnailImage = new BufferedImage(width, height,
+                        bufferedImageType);
+                graphics2D = thumbnailImage.createGraphics();
                 // transform filtered image with scaling and rotation
                 graphics2D.drawImage(resizedImage, rotateT, null);
                 graphics2D.dispose();
             }
-        
-        
-            if (!ImageIO.write(thumbnailImage, format.getValue(), 
+
+
+            if (!ImageIO.write(thumbnailImage, format.getValue(),
                     generatedThumbnailFile)) {
                 // if format is not supported
-                throw new IOException(); 
+                throw new IOException();
             }
         } finally {
             // decrease counter of threads no matter if thumbnail generation
@@ -317,7 +318,7 @@ public class ThumbnailCreator {
             synchronized (this) {
                 mNumThreads--;
                 this.notifyAll();
-            }            
+            }
         }
     }
 }

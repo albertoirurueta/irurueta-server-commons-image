@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,28 +15,11 @@
  */
 package com.irurueta.server.commons.image;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class UnitTest {
-    
-    public UnitTest() { }
-    
-    @BeforeClass
-    public static void setUpClass() { }
-    
-    @AfterClass
-    public static void tearDownClass() { }
-    
-    @Before
-    public void setUp() { }
-    
-    @After
-    public void tearDown() { }
 
     @Test
     public void testFromValue() {
@@ -46,7 +29,7 @@ public class UnitTest {
         assertEquals(Unit.fromValue(0), Unit.UNKNOWN);
         assertEquals(Unit.fromValue(-1), Unit.UNKNOWN);
     }
-    
+
     @Test
     public void testGetValue() {
         assertEquals(Unit.NOT_AVAILABLE.getValue(), 1);

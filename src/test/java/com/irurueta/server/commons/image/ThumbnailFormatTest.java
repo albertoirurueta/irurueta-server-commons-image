@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,44 +15,27 @@
  */
 package com.irurueta.server.commons.image;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 
 public class ThumbnailFormatTest {
-    
-    public ThumbnailFormatTest() {}
-    
-    @BeforeClass
-    public static void setUpClass() {}
-    
-    @AfterClass
-    public static void tearDownClass() {}
-    
-    @Before
-    public void setUp() {}
-    
-    @After
-    public void tearDown() {}
-    
+
     @Test
-    public void testFromValue(){
+    public void testFromValue() {
         assertEquals(ThumbnailFormat.fromValue("jpeg"), ThumbnailFormat.JPEG);
         assertEquals(ThumbnailFormat.fromValue("jpg"), ThumbnailFormat.JPEG);
         assertEquals(ThumbnailFormat.fromValue("png"), ThumbnailFormat.PNG);
         assertEquals(ThumbnailFormat.fromValue("gif"), ThumbnailFormat.GIF);
         assertEquals(ThumbnailFormat.fromValue("bmp"), ThumbnailFormat.BMP);
-        assertEquals(ThumbnailFormat.fromValue("other"), 
+        assertEquals(ThumbnailFormat.fromValue("other"),
                 ThumbnailFormat.UNKNOWN);
         assertEquals(ThumbnailFormat.fromValue(null), ThumbnailFormat.UNKNOWN);
     }
-    
+
     @Test
-    public void testFromImageFormat(){
-        assertEquals(ThumbnailFormat.fromImageFormat(ImageFormat.JPEG), 
+    public void testFromImageFormat() {
+        assertEquals(ThumbnailFormat.fromImageFormat(ImageFormat.JPEG),
                 ThumbnailFormat.JPEG);
         assertEquals(ThumbnailFormat.fromImageFormat(ImageFormat.PNG),
                 ThumbnailFormat.PNG);
@@ -62,16 +45,16 @@ public class ThumbnailFormatTest {
                 ThumbnailFormat.BMP);
         assertEquals(ThumbnailFormat.fromImageFormat(ImageFormat.UNKNOWN),
                 ThumbnailFormat.UNKNOWN);
-        assertEquals(ThumbnailFormat.fromImageFormat(null), 
+        assertEquals(ThumbnailFormat.fromImageFormat(null),
                 ThumbnailFormat.UNKNOWN);
     }
-    
+
     @Test
-    public void testGetValue(){
+    public void testGetValue() {
         assertEquals(ThumbnailFormat.JPEG.getValue(), "jpeg");
         assertEquals(ThumbnailFormat.PNG.getValue(), "png");
         assertEquals(ThumbnailFormat.GIF.getValue(), "gif");
         assertEquals(ThumbnailFormat.BMP.getValue(), "bmp");
         assertEquals(ThumbnailFormat.UNKNOWN.getValue(), "unknown");
-    }    
+    }
 }

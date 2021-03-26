@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (C) 2016 Alberto Irurueta Carro (alberto@irurueta.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,34 +15,17 @@
  */
 package com.irurueta.server.commons.image;
 
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 public class ImageReaderResultTest {
-    
-    public ImageReaderResultTest() {}
-    
-    @BeforeClass
-    public static void setUpClass() {}
-    
-    @AfterClass
-    public static void tearDownClass() {}
-    
-    @Before
-    public void setUp() {}
-    
-    @After
-    public void tearDown() {}
-    
+
     @Test
-    public void testConstructor(){
-        ImageReaderResult result = new ImageReaderResult();
-        
-        //check default values
+    public void testConstructor() {
+        final ImageReaderResult result = new ImageReaderResult();
+
+        // check default values
         assertFalse(result.isValid());
         assertNull(result.getCrc());
         assertNull(result.getMd5());
@@ -52,109 +35,109 @@ public class ImageReaderResultTest {
         assertNull(result.getMetadata());
         assertEquals(result.getImageFormat(), ImageFormat.UNKNOWN);
     }
-    
+
     @Test
-    public void testIsSetValid(){
-        ImageReaderResult result = new ImageReaderResult();
-        
-        //check default value
+    public void testIsSetValid() {
+        final ImageReaderResult result = new ImageReaderResult();
+
+        // check default value
         assertFalse(result.isValid());
-        
-        //set new value
+
+        // set new value
         result.setValid(true);
-        
-        //check correctness
+
+        // check correctness
         assertTrue(result.isValid());
     }
-    
+
     @Test
-    public void testGetSetCrc(){
-        ImageReaderResult result = new ImageReaderResult();
-        
+    public void testGetSetCrc() {
+        final ImageReaderResult result = new ImageReaderResult();
+
         assertNull(result.getCrc());
-        
-        //set new crc
-        result.setCrc(Long.valueOf(1));
-        
-        //check correctness
+
+        // set new crc
+        result.setCrc(1L);
+
+        // check correctness
         assertEquals(result.getCrc(), Long.valueOf(1));
     }
-    
+
     @Test
-    public void testGetSetMd5(){
-        ImageReaderResult result = new ImageReaderResult();
-        
+    public void testGetSetMd5() {
+        final ImageReaderResult result = new ImageReaderResult();
+
         assertNull(result.getMd5());
-        
-        //set new md5
+
+        // set new md5
         result.setMd5("abcd");
-        
-        //check correctness
+
+        // check correctness
         assertEquals(result.getMd5(), "abcd");
     }
-    
+
     @Test
-    public void testGetSetFileLength(){
-        ImageReaderResult result = new ImageReaderResult();
-        
+    public void testGetSetFileLength() {
+        final ImageReaderResult result = new ImageReaderResult();
+
         assertEquals(result.getFileLength(), 0);
-        
-        //set new value
+
+        // set new value
         result.setFileLength(1);
-        
-        //check correctness
+
+        // check correctness
         assertEquals(result.getFileLength(), 1);
     }
-    
+
     @Test
-    public void testGetSetLastModified(){
-        ImageReaderResult result = new ImageReaderResult();
-        
+    public void testGetSetLastModified() {
+        final ImageReaderResult result = new ImageReaderResult();
+
         assertEquals(result.getLastModified(), 0);
-        
-        //set new value
+
+        // set new value
         result.setLastModified(1);
-        
-        //check correctness
+
+        // check correctness
         assertEquals(result.getLastModified(), 1);
     }
-    
+
     @Test
-    public void testGetSetContentType(){        
-        ImageReaderResult result = new ImageReaderResult();
-        
+    public void testGetSetContentType() {
+        final ImageReaderResult result = new ImageReaderResult();
+
         assertNull(result.getContentType());
-        
-        //set new value
+
+        // set new value
         result.setContentType("image/jpeg");
-        
-        //check correctness
+
+        // check correctness
         assertEquals(result.getContentType(), "image/jpeg");
     }
-    
+
     @Test
-    public void testGetSetMetadata(){
-        ImageReaderResult result = new ImageReaderResult();
-        
-        //set new value
-        ImageMetadata metadata = new ImageMetadata();
+    public void testGetSetMetadata() {
+        final ImageReaderResult result = new ImageReaderResult();
+
+        // set new value
+        final ImageMetadata metadata = new ImageMetadata();
         result.setMetadata(metadata);
-        
-        //check correctness
+
+        // check correctness
         assertEquals(result.getMetadata(), metadata);
     }
-    
+
     @Test
-    public void testGetSetImageFormat(){
-        ImageReaderResult result = new ImageReaderResult();
-        
-        //check default value
+    public void testGetSetImageFormat() {
+        final ImageReaderResult result = new ImageReaderResult();
+
+        // check default value
         assertEquals(result.getImageFormat(), ImageFormat.UNKNOWN);
-        
-        //set new value
+
+        // set new value
         result.setImageFormat(ImageFormat.JPEG);
-        
-        //check correctness
+
+        // check correctness
         assertEquals(result.getImageFormat(), ImageFormat.JPEG);
-    }    
+    }
 }

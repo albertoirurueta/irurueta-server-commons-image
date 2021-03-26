@@ -23,131 +23,134 @@ public enum LightSource {
      * Light source is unknown.
      */
     UNKNOWN(0),
-    
+
     /**
      * Day light source.
      */
     DAYLIGHT(1),
-    
+
     /**
      * Fluorescent light.
      */
     FLUORESCENT(2),
-    
+
     /**
      * Tungsten incandescent light.
      */
     TUNGSTEN_INCANDESCENT_LIGHT(3),
-    
+
     /**
      * Flash light.
      */
     FLASH(4),
-    
+
     /**
      * Fine weather.
      */
     FINE_WEATHER(9),
-    
+
     /**
      * Cloudy weather.
      */
     CLOUDY_WEATHER(10),
-    
+
     /**
      * Shade.
      */
     SHADE(11),
-    
+
     /**
      * Daylight fluorescent.
      */
     DAYLIGHT_FLUORESCENT_D_5700_7100K(12),
-    
+
     /**
      * Day white fluorescent.
      */
     DAY_WHITE_FLUORESCENT_N_4600_5400K(13),
-    
+
     /**
      * Cool white fluorescent.
      */
     COOL_WHITE_FLUORESCENT_W_3900_4500K(14),
-    
+
     /**
      * White fluorescent.
      */
     WHITE_FLUORESCENT_WW_3200_3700K(15),
-    
+
     /**
      * Standard light A.
      */
     STANDARD_LIGHT_A(17),
-    
+
     /**
      * Standard light B.
      */
     STANDARD_LIGHT_B(18),
-    
+
     /**
      * Standard light C.
      */
     STANDARD_LIGHT_C(19),
-    
+
     /**
      * D55.
      */
     D55(20),
-    
+
     /**
      * D65.
      */
     D65(21),
-    
+
     /**
      * D75.
      */
     D75(22),
-    
+
     /**
      * D50.
      */
     D50(23),
-    
+
     /**
      * ISO studio tungsten.
      */
     ISO_STUDIO_TUNGSTEN(24),
-    
+
     /**
      * Other unknown light source.
      */
     OTHER_LIGHT_SOURCE(255);
-    
+
     /**
      * Integer representation of a light source.
      */
     private final int mValue;
-    
+
     /**
      * Constructor.
+     *
      * @param value integer representation of a light source.
      */
     LightSource(int value) {
         mValue = value;
     }
-    
+
     /**
      * Returns integer representation of a light source.
+     *
      * @return integer representation of a light source.
      */
     public int getValue() {
         return mValue;
     }
-    
+
     /**
-     * Builds a LightSource instance from its corresponding integer 
+     * Builds a LightSource instance from its corresponding integer
      * representation.
+     *
      * @param value integer representation of a light source.
      * @return a light source instance.
      */
