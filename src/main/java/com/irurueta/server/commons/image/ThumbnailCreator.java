@@ -199,7 +199,6 @@ public class ThumbnailCreator {
                         break;
                     case BOTTOM_RIGHT:
                         // orientaton == 3 (clockwise 180º)
-                        exchangeSize = false;
                         quadrants = -2;
                         break;
                     case RIGHT_TOP:
