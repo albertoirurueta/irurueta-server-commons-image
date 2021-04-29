@@ -64,6 +64,17 @@ public class ThumbnailCreatorTest {
         final ThumbnailCreator creator = ThumbnailCreator.getInstance();
         assertEquals(creator.getMaxConcurrentThreads(),
                 ThumbnailCreator.DEFAULT_MAX_CONCURRENT_THREADS);
+
+        creator.setMaxConcurrentThreads(ThumbnailCreator.DEFAULT_MAX_CONCURRENT_THREADS + 1);
+
+        // check
+        assertEquals(ThumbnailCreator.DEFAULT_MAX_CONCURRENT_THREADS + 1, creator.getMaxConcurrentThreads());
+
+        // reset
+        creator.setMaxConcurrentThreads(ThumbnailCreator.DEFAULT_MAX_CONCURRENT_THREADS);
+
+        // check
+        assertEquals(ThumbnailCreator.DEFAULT_MAX_CONCURRENT_THREADS, creator.getMaxConcurrentThreads());
     }
 
     @Test

@@ -166,7 +166,7 @@ public class ImageReader {
                 metadata.setHeight(imageInfo.getHeight());
             }
 
-            computeCRCandMd5(f, result);
+            computeCRCAndMd5(f, result);
             return result;
         } catch (final ImageReadException e) {
             throw new InvalidImageException(e);
@@ -201,7 +201,7 @@ public class ImageReader {
      * @param result instance where CRC and MD5 will be stored.
      * @throws IOException if an I/O error occurs.
      */
-    private void computeCRCandMd5(final File f, final ImageReaderResult result)
+    private void computeCRCAndMd5(final File f, final ImageReaderResult result)
             throws IOException {
         if (f == null || result == null) {
             return;

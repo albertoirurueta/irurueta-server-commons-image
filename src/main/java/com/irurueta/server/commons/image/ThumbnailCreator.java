@@ -164,7 +164,7 @@ public class ThumbnailCreator {
      * @throws IOException              if an I/O error occurs.
      * @throws InterruptedException     if thread is interrupted.
      */
-    @SuppressWarnings("SuspiciousNameCombination")
+    @SuppressWarnings({"SuspiciousNameCombination", "DuplicatedCode"})
     public void generateAndSaveThumbnail(
             final File inputImageFile,
             final ImageOrientation inputOrientation,
@@ -193,16 +193,16 @@ public class ThumbnailCreator {
                 // will be ignored
                 switch (inputOrientation) {
                     case LEFT_BOTTOM:
-                        // orientaton == 8 (counterclockwise 90º)
+                        // orientation == 8 (counterclockwise 90º)
                         exchangeSize = true;
                         quadrants = -1;
                         break;
                     case BOTTOM_RIGHT:
-                        // orientaton == 3 (clockwise 180º)
+                        // orientation == 3 (clockwise 180º)
                         quadrants = -2;
                         break;
                     case RIGHT_TOP:
-                        // orientaton == 6 (clockwise 90º)
+                        // orientation == 6 (clockwise 90º)
                         exchangeSize = true;
                         quadrants = -3;
                         break;
@@ -238,7 +238,6 @@ public class ThumbnailCreator {
                         bufferedImageType);
                 graphics2D = resizedImage.createGraphics();
                 graphics2D.drawImage(tempImage, 0, 0, height, width, null);
-                graphics2D.dispose();
 
             } else {
                 if (width > inputImage.getWidth() ||
@@ -253,8 +252,8 @@ public class ThumbnailCreator {
                         bufferedImageType);
                 graphics2D = resizedImage.createGraphics();
                 graphics2D.drawImage(tempImage, 0, 0, width, height, null);
-                graphics2D.dispose();
             }
+            graphics2D.dispose();
 
 
             final double centerX;

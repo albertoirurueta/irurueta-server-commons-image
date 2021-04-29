@@ -17,7 +17,7 @@ package com.irurueta.server.commons.image;
 
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class FlashTest {
 
@@ -116,5 +116,93 @@ public class FlashTest {
                 FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE.
                 getValue(), 0x005F);
         assertEquals(Flash.UNKNOWN.getValue(), 0xFFFF);
+    }
+
+    @Test
+    public void testIsFlashFired() {
+        assertFalse(Flash.FLASH_DID_NOT_FIRE.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED.isFlashFired());
+        assertFalse(Flash.STROBE_RETURN_LIGHT_NOT_DETECTED.isFlashFired());
+        assertFalse(Flash.STROBE_RETURN_LIGHT_DETECTED.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_NOT_DETECTED.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_DETECTED.isFlashFired());
+        assertFalse(Flash.FLASH_DID_NOT_FIRE_COMPULSORY_FLASH_MODE.isFlashFired());
+        assertFalse(Flash.FLASH_DID_NOT_FIRE_AUTO_MODE.isFlashFired());
+        assertFalse(Flash.FLASH_FIRED_AUTO_MODE.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED.isFlashFired());
+        assertFalse(Flash.NO_FLASH_FUNCTION.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
+                .isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RED_EYE_REDUCTION_MODE.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED_RED_EYE_REDUCTION_MODE.isFlashFired());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE.isFlashFired());
+        assertFalse(Flash.UNKNOWN.isFlashFired());
+    }
+
+    @Test
+    public void testIsReturnLightDetected() {
+        assertFalse(Flash.FLASH_DID_NOT_FIRE.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED.isReturnLightDetected());
+        assertFalse(Flash.STROBE_RETURN_LIGHT_NOT_DETECTED.isReturnLightDetected());
+        assertTrue(Flash.STROBE_RETURN_LIGHT_DETECTED.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_NOT_DETECTED.isReturnLightDetected());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_DETECTED.isReturnLightDetected());
+        assertFalse(Flash.FLASH_DID_NOT_FIRE_COMPULSORY_FLASH_MODE.isReturnLightDetected());
+        assertFalse(Flash.FLASH_DID_NOT_FIRE_AUTO_MODE.isReturnLightDetected());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED.isReturnLightDetected());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED.isReturnLightDetected());
+        assertFalse(Flash.NO_FLASH_FUNCTION.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED.isReturnLightDetected());
+        assertTrue(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
+                .isReturnLightDetected());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
+                .isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_AUTO_MODE_RED_EYE_REDUCTION_MODE.isReturnLightDetected());
+        assertFalse(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED_RED_EYE_REDUCTION_MODE
+                .isReturnLightDetected());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE.isReturnLightDetected());
+        assertFalse(Flash.UNKNOWN.isReturnLightDetected());
+    }
+
+    @Test
+    public void testIsRedEyeReductionEnabled() {
+        assertFalse(Flash.FLASH_DID_NOT_FIRE.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_FIRED.isRedEyeReductionEnabled());
+        assertFalse(Flash.STROBE_RETURN_LIGHT_NOT_DETECTED.isRedEyeReductionEnabled());
+        assertFalse(Flash.STROBE_RETURN_LIGHT_DETECTED.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_NOT_DETECTED.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RETURN_LIGHT_DETECTED.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_DID_NOT_FIRE_COMPULSORY_FLASH_MODE.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_DID_NOT_FIRE_AUTO_MODE.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_FIRED_AUTO_MODE.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED.isRedEyeReductionEnabled());
+        assertFalse(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED.isRedEyeReductionEnabled());
+        assertFalse(Flash.NO_FLASH_FUNCTION.isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE.isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED.isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED.isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE.isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_NOT_DETECTED
+                .isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_COMPULSORY_FLASH_MODE_RED_EYE_REDUCTION_MODE_RETURN_LIGHT_DETECTED
+                .isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RED_EYE_REDUCTION_MODE.isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_NOT_DETECTED_RED_EYE_REDUCTION_MODE
+                .isRedEyeReductionEnabled());
+        assertTrue(Flash.FLASH_FIRED_AUTO_MODE_RETURN_LIGHT_DETECTED_RED_EYE_REDUCTION_MODE.isRedEyeReductionEnabled());
+        assertFalse(Flash.UNKNOWN.isRedEyeReductionEnabled());
     }
 }

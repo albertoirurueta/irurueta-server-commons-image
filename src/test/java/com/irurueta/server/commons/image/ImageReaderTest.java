@@ -78,6 +78,8 @@ public class ImageReaderTest {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/batllo1.jpg");
 
+        assertTrue(ImageReader.checkValidFile(f));
+
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
         reader.setComputeCrcEnabled(ImageReader.DEFAULT_COMPUTE_CRC);
@@ -130,6 +132,8 @@ public class ImageReaderTest {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/abishek.jpg");
 
+        assertTrue(ImageReader.checkValidFile(f));
+
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
         reader.setComputeCrcEnabled(ImageReader.DEFAULT_COMPUTE_CRC);
@@ -181,6 +185,8 @@ public class ImageReaderTest {
             NoSuchAlgorithmException {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/carlos1.jpg");
+
+        assertTrue(ImageReader.checkValidFile(f));
 
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
@@ -238,6 +244,8 @@ public class ImageReaderTest {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/rotate1.jpg");
 
+        assertTrue(ImageReader.checkValidFile(f));
+
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
         reader.setComputeCrcEnabled(ImageReader.DEFAULT_COMPUTE_CRC);
@@ -292,6 +300,8 @@ public class ImageReaderTest {
             NoSuchAlgorithmException {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/rotate2.jpg");
+
+        assertTrue(ImageReader.checkValidFile(f));
 
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
@@ -348,6 +358,8 @@ public class ImageReaderTest {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/rotate3.jpg");
 
+        assertTrue(ImageReader.checkValidFile(f));
+
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
         reader.setComputeCrcEnabled(ImageReader.DEFAULT_COMPUTE_CRC);
@@ -402,6 +414,8 @@ public class ImageReaderTest {
             NoSuchAlgorithmException {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/rotate4.jpg");
+
+        assertTrue(ImageReader.checkValidFile(f));
 
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
@@ -458,6 +472,8 @@ public class ImageReaderTest {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/Svalbard.bmp");
 
+        assertTrue(ImageReader.checkValidFile(f));
+
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
         reader.setComputeCrcEnabled(ImageReader.DEFAULT_COMPUTE_CRC);
@@ -510,6 +526,8 @@ public class ImageReaderTest {
         final File f = new File(
                 "./src/test/java/com/irurueta/server/commons/image/polo.png");
 
+        assertTrue(ImageReader.checkValidFile(f));
+        
         // reset DEFAULT_COMPUTE_CRC to its default value
         final ImageReader reader = ImageReader.getInstance();
         reader.setComputeCrcEnabled(ImageReader.DEFAULT_COMPUTE_CRC);

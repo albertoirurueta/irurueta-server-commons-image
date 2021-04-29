@@ -360,7 +360,7 @@ public class ImageMetadataTest {
     }
 
     @Test
-    public void testGetsetFlashEnergy() {
+    public void testGetSetFlashEnergy() {
         final ImageMetadata metadata = new ImageMetadata();
 
         // assert null

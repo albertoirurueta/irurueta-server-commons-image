@@ -23,45 +23,48 @@ public enum Unit {
      * Units are not available.
      */
     NOT_AVAILABLE(1),
-    
+
     /**
      * Inches.
      */
     INCHES(2),
-    
+
     /**
      * Centimeters.
      */
     CENTIMETERS(3),
-    
+
     /**
      * Units are defined but not recognized.
      */
     UNKNOWN(0);
-    
+
     /**
      * Integer representation of units.
      */
     private final int mValue;
-    
+
     /**
      * Constructor.
+     *
      * @param value integer representation of units.
      */
     Unit(final int value) {
         mValue = value;
     }
-    
+
     /**
      * Returns integer representation of units.
+     *
      * @return integer representation of units.
      */
     public int getValue() {
         return mValue;
     }
-    
+
     /**
      * Obtains unit from its integer representation.
+     *
      * @param value integer representation.
      * @return unit.
      */

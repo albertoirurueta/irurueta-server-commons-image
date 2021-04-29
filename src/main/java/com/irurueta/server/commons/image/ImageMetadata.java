@@ -145,7 +145,7 @@ public class ImageMetadata {
 
     /**
      * Indicates the digital zoom ratio when the image was shot. If the
-     * numberator of the recorded value is 0, this indicates that digital zoom
+     * numerator of the recorded value is 0, this indicates that digital zoom
      * was not used.
      */
     private Double mDigitalZoomRatio;
@@ -611,7 +611,7 @@ public class ImageMetadata {
     }
 
     /**
-     * Sets the digital zoom ratio when the image was shot. If the numberator of
+     * Sets the digital zoom ratio when the image was shot. If the numerator of
      * the recorded value is 0, this indicates the digital zoom was not used.
      *
      * @param digitalZoomRatio the digital zoom ratio when the image was shot.
