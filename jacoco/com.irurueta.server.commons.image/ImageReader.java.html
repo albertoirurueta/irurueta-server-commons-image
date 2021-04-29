@@ -166,7 +166,7 @@ public class ImageReader {
 <span class="fc" id="L166">                metadata.setHeight(imageInfo.getHeight());</span>
             }
 
-<span class="fc" id="L169">            computeCRCandMd5(f, result);</span>
+<span class="fc" id="L169">            computeCRCAndMd5(f, result);</span>
 <span class="fc" id="L170">            return result;</span>
 <span class="nc" id="L171">        } catch (final ImageReadException e) {</span>
 <span class="nc" id="L172">            throw new InvalidImageException(e);</span>
@@ -184,8 +184,8 @@ public class ImageReader {
     public static boolean checkValidFile(final File f) throws InvalidImageException,
             IOException {
         try {
-<span class="nc" id="L187">            final ImageInfo imageInfo = Imaging.getImageInfo(f);</span>
-<span class="nc" id="L188">            return internalCheckValid(imageInfo);</span>
+<span class="fc" id="L187">            final ImageInfo imageInfo = Imaging.getImageInfo(f);</span>
+<span class="fc" id="L188">            return internalCheckValid(imageInfo);</span>
 <span class="nc" id="L189">        } catch (final IOException e) {</span>
 <span class="nc" id="L190">            throw e;</span>
 <span class="nc" id="L191">        } catch (Exception e) {</span>
@@ -201,7 +201,7 @@ public class ImageReader {
      * @param result instance where CRC and MD5 will be stored.
      * @throws IOException if an I/O error occurs.
      */
-    private void computeCRCandMd5(final File f, final ImageReaderResult result)
+    private void computeCRCAndMd5(final File f, final ImageReaderResult result)
             throws IOException {
 <span class="pc bpc" id="L206" title="2 of 4 branches missed.">        if (f == null || result == null) {</span>
 <span class="nc" id="L207">            return;</span>

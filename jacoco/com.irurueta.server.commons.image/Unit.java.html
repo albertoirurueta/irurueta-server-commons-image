@@ -23,59 +23,62 @@ package com.irurueta.server.commons.image;
      * Units are not available.
      */
 <span class="fc" id="L25">    NOT_AVAILABLE(1),</span>
-    
+
     /**
      * Inches.
      */
 <span class="fc" id="L30">    INCHES(2),</span>
-    
+
     /**
      * Centimeters.
      */
 <span class="fc" id="L35">    CENTIMETERS(3),</span>
-    
+
     /**
      * Units are defined but not recognized.
      */
 <span class="fc" id="L40">    UNKNOWN(0);</span>
-    
+
     /**
      * Integer representation of units.
      */
     private final int mValue;
-    
+
     /**
      * Constructor.
+     *
      * @param value integer representation of units.
      */
-<span class="fc" id="L51">    Unit(final int value) {</span>
-<span class="fc" id="L52">        mValue = value;</span>
-<span class="fc" id="L53">    }</span>
-    
+<span class="fc" id="L52">    Unit(final int value) {</span>
+<span class="fc" id="L53">        mValue = value;</span>
+<span class="fc" id="L54">    }</span>
+
     /**
      * Returns integer representation of units.
+     *
      * @return integer representation of units.
      */
     public int getValue() {
-<span class="fc" id="L60">        return mValue;</span>
+<span class="fc" id="L62">        return mValue;</span>
     }
-    
+
     /**
      * Obtains unit from its integer representation.
+     *
      * @param value integer representation.
      * @return unit.
      */
     public static Unit fromValue(final int value) {
-<span class="fc bfc" id="L69" title="All 4 branches covered.">        switch (value) {</span>
+<span class="fc bfc" id="L72" title="All 4 branches covered.">        switch (value) {</span>
             case 1:
-<span class="fc" id="L71">                return NOT_AVAILABLE;</span>
+<span class="fc" id="L74">                return NOT_AVAILABLE;</span>
             case 2:
-<span class="fc" id="L73">                return INCHES;</span>
+<span class="fc" id="L76">                return INCHES;</span>
             case 3:
-<span class="fc" id="L75">                return CENTIMETERS;</span>
+<span class="fc" id="L78">                return CENTIMETERS;</span>
             case 0:
             default:
-<span class="fc" id="L78">                return UNKNOWN;</span>
+<span class="fc" id="L81">                return UNKNOWN;</span>
         }
     }
 }
