@@ -1,7 +1,7 @@
 # irurueta-server-commons-image
 Utility classes for image manipulation on a server
 
-[![Build Status](https://travis-ci.org/albertoirurueta/irurueta-server-commons-image.svg?branch=master)](https://travis-ci.org/albertoirurueta/irurueta-server-commons-image)
+[![Build Status](https://travis-ci.com/albertoirurueta/irurueta-server-commons-image.svg?branch=master)](https://travis-ci.com/albertoirurueta/irurueta-server-commons-image)
 
 
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=albertoirurueta_irurueta-server-commons-image&metric=bugs)](https://sonarcloud.io/dashboard?id=albertoirurueta_irurueta-server-commons-image)
