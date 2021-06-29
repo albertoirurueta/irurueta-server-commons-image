@@ -260,12 +260,12 @@ public class ThumbnailCreator {
             final double centerY;
             final int resizedHeight;
             if (exchangeSize) {
-                centerX = (double) height / 2.0;
-                centerY = (double) width / 2.0;
+                centerX = height / 2.0;
+                centerY = width / 2.0;
                 resizedHeight = width;
             } else {
-                centerX = (double) width / 2.0;
-                centerY = (double) height / 2.0;
+                centerX = width / 2.0;
+                centerY = height / 2.0;
                 resizedHeight = height;
             }
 
@@ -273,7 +273,7 @@ public class ThumbnailCreator {
             if (quadrants != 0) {
                 // set rotation transformation by the desired number of quadrants
                 final AffineTransform rotateT = new AffineTransform();
-                rotateT.rotate(0.5 * Math.PI * (double) quadrants,
+                rotateT.rotate(0.5 * Math.PI * quadrants,
                         centerX, centerY);
 
                 // find proper translations to ensure that rotation doesn't cut
