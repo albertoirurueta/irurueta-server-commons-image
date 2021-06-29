@@ -260,12 +260,12 @@ public class ThumbnailCreator {
             final double centerY;
             final int resizedHeight;
 <span class="fc bfc" id="L262" title="All 2 branches covered.">            if (exchangeSize) {</span>
-<span class="fc" id="L263">                centerX = (double) height / 2.0;</span>
-<span class="fc" id="L264">                centerY = (double) width / 2.0;</span>
+<span class="fc" id="L263">                centerX = height / 2.0;</span>
+<span class="fc" id="L264">                centerY = width / 2.0;</span>
 <span class="fc" id="L265">                resizedHeight = width;</span>
             } else {
-<span class="fc" id="L267">                centerX = (double) width / 2.0;</span>
-<span class="fc" id="L268">                centerY = (double) height / 2.0;</span>
+<span class="fc" id="L267">                centerX = width / 2.0;</span>
+<span class="fc" id="L268">                centerY = height / 2.0;</span>
 <span class="fc" id="L269">                resizedHeight = height;</span>
             }
 
@@ -273,7 +273,7 @@ public class ThumbnailCreator {
 <span class="fc bfc" id="L273" title="All 2 branches covered.">            if (quadrants != 0) {</span>
                 // set rotation transformation by the desired number of quadrants
 <span class="fc" id="L275">                final AffineTransform rotateT = new AffineTransform();</span>
-<span class="fc" id="L276">                rotateT.rotate(0.5 * Math.PI * (double) quadrants,</span>
+<span class="fc" id="L276">                rotateT.rotate(0.5 * Math.PI * quadrants,</span>
                         centerX, centerY);
 
                 // find proper translations to ensure that rotation doesn't cut

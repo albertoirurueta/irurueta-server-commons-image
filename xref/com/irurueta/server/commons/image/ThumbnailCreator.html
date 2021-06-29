@@ -268,12 +268,12 @@
 <a class="jxr_linenumber" name="L260" href="#L260">260</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> centerY;
 <a class="jxr_linenumber" name="L261" href="#L261">261</a>             <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> resizedHeight;
 <a class="jxr_linenumber" name="L262" href="#L262">262</a>             <strong class="jxr_keyword">if</strong> (exchangeSize) {
-<a class="jxr_linenumber" name="L263" href="#L263">263</a>                 centerX = (<strong class="jxr_keyword">double</strong>) height / 2.0;
-<a class="jxr_linenumber" name="L264" href="#L264">264</a>                 centerY = (<strong class="jxr_keyword">double</strong>) width / 2.0;
+<a class="jxr_linenumber" name="L263" href="#L263">263</a>                 centerX = height / 2.0;
+<a class="jxr_linenumber" name="L264" href="#L264">264</a>                 centerY = width / 2.0;
 <a class="jxr_linenumber" name="L265" href="#L265">265</a>                 resizedHeight = width;
 <a class="jxr_linenumber" name="L266" href="#L266">266</a>             } <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L267" href="#L267">267</a>                 centerX = (<strong class="jxr_keyword">double</strong>) width / 2.0;
-<a class="jxr_linenumber" name="L268" href="#L268">268</a>                 centerY = (<strong class="jxr_keyword">double</strong>) height / 2.0;
+<a class="jxr_linenumber" name="L267" href="#L267">267</a>                 centerX = width / 2.0;
+<a class="jxr_linenumber" name="L268" href="#L268">268</a>                 centerY = height / 2.0;
 <a class="jxr_linenumber" name="L269" href="#L269">269</a>                 resizedHeight = height;
 <a class="jxr_linenumber" name="L270" href="#L270">270</a>             }
 <a class="jxr_linenumber" name="L271" href="#L271">271</a> 
@@ -281,7 +281,7 @@
 <a class="jxr_linenumber" name="L273" href="#L273">273</a>             <strong class="jxr_keyword">if</strong> (quadrants != 0) {
 <a class="jxr_linenumber" name="L274" href="#L274">274</a>                 <em class="jxr_comment">// set rotation transformation by the desired number of quadrants</em>
 <a class="jxr_linenumber" name="L275" href="#L275">275</a>                 <strong class="jxr_keyword">final</strong> AffineTransform rotateT = <strong class="jxr_keyword">new</strong> AffineTransform();
-<a class="jxr_linenumber" name="L276" href="#L276">276</a>                 rotateT.rotate(0.5 * Math.PI * (<strong class="jxr_keyword">double</strong>) quadrants,
+<a class="jxr_linenumber" name="L276" href="#L276">276</a>                 rotateT.rotate(0.5 * Math.PI * quadrants,
 <a class="jxr_linenumber" name="L277" href="#L277">277</a>                         centerX, centerY);
 <a class="jxr_linenumber" name="L278" href="#L278">278</a> 
 <a class="jxr_linenumber" name="L279" href="#L279">279</a>                 <em class="jxr_comment">// find proper translations to ensure that rotation doesn't cut</em>
